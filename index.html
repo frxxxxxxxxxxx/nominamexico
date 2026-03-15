@@ -3,1003 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NóminaPro 2026 — Sistema de Nómina en Excel para PyMEs | nominamexico.com</title>
-    <meta name="description" content="Calcula nómina, ISR, IMSS, INFONAVIT y finiquito en Excel. Tablas ISR 2026 oficiales, CEAV escalonada, 50 empleados. Para PyMEs mexicanas.">
-    <meta name="keywords" content="nómina Excel México 2026, calculadora ISR, IMSS, finiquito, liquidación, PyMEs">
+    <title>NominaPro 2026 — Sistema de Nómina en Excel para PyMEs en México</title>
+    <meta name="description" content="Calcula nómina, ISR, IMSS e INFONAVIT automáticamente en Excel. Tablas fiscales 2026 actualizadas. Para PyMEs y contadores en México.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #0a1628;
-            --navy-mid: #12213b;
-            --teal: #10b981;
-            --teal-dark: #059669;
-            --teal-glow: rgba(16, 185, 129, 0.15);
-            --amber: #f59e0b;
-            --amber-glow: rgba(245, 158, 11, 0.1);
-            --white: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-800: #1e293b;
-            --red: #ef4444;
-            --font: 'DM Sans', sans-serif;
-            --mono: 'Space Mono', monospace;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font);
-            color: var(--gray-800);
-            background: var(--white);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ═══ NAV ═══ */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(10, 22, 40, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-            padding: 0 2rem;
-            transition: all 0.3s;
-        }
-        nav .inner {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 64px;
-        }
-        nav .logo {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-        nav .logo span { color: var(--teal); }
-        nav .links { display: flex; gap: 2rem; align-items: center; }
-        nav .links a {
-            color: var(--gray-400);
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        nav .links a:hover { color: #fff; }
-        nav .cta-nav {
-            background: var(--teal);
-            color: var(--navy) !important;
-            padding: 0.5rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        nav .cta-nav:hover { background: #34d399; transform: translateY(-1px); }
-
-        /* ═══ HERO ═══ */
-        .hero {
-            background: var(--navy);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            right: -20%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, var(--teal-glow), transparent 70%);
-            pointer-events: none;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.06), transparent 70%);
-            pointer-events: none;
-        }
-        .hero .inner {
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-        }
-        .hero-text { animation: fadeUp 0.8s ease-out; }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--teal);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.03em;
-        }
-        .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
-        .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            color: #fff;
-            line-height: 1.1;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.2rem;
-        }
-        .hero h1 em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--teal), #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero p {
-            color: var(--gray-400);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            max-width: 480px;
-        }
-        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn-primary {
-            background: var(--teal);
-            color: var(--navy);
-            padding: 0.9rem 2rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-primary:hover { background: #34d399; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
-        .btn-secondary {
-            background: transparent;
-            color: var(--gray-400);
-            padding: 0.9rem 2rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            transition: all 0.2s;
-        }
-        .btn-secondary:hover { color: #fff; border-color: rgba(148, 163, 184, 0.4); }
-
-        /* Hero visual - Excel preview */
-        .hero-visual {
-            animation: fadeUp 0.8s ease-out 0.2s both;
-        }
-        .excel-preview {
-            background: var(--navy-mid);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .excel-preview::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(16,185,129,0.03), transparent);
-            pointer-events: none;
-        }
-        .excel-bar {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 1rem;
-        }
-        .excel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-        }
-        .excel-dot:first-child { background: #ef4444; }
-        .excel-dot:nth-child(2) { background: #f59e0b; }
-        .excel-dot:nth-child(3) { background: #10b981; }
-        .excel-tabs {
-            display: flex;
-            gap: 2px;
-            margin-bottom: 1rem;
-            overflow-x: auto;
-        }
-        .excel-tab {
-            padding: 0.35rem 0.8rem;
-            background: rgba(255,255,255,0.04);
-            color: var(--gray-500);
-            font-size: 0.7rem;
-            border-radius: 6px 6px 0 0;
-            white-space: nowrap;
-            font-family: var(--mono);
-        }
-        .excel-tab.active { background: rgba(16,185,129,0.15); color: var(--teal); }
-        .excel-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 1px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
-            overflow: hidden;
-            font-size: 0.75rem;
-            font-family: var(--mono);
-        }
-        .excel-cell {
-            padding: 0.5rem 0.6rem;
-            background: rgba(10, 22, 40, 0.8);
-            color: var(--gray-400);
-        }
-        .excel-cell.hdr {
-            background: rgba(16, 185, 129, 0.08);
-            color: var(--teal);
-            font-weight: 700;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .excel-cell.money { color: #fff; font-weight: 500; }
-        .excel-cell.green { color: var(--teal); font-weight: 700; }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .hero-stat-num {
-            font-family: var(--mono);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--teal);
-        }
-        .hero-stat-label {
-            font-size: 0.78rem;
-            color: var(--gray-500);
-            margin-top: 0.2rem;
-        }
-
-        /* ═══ TRUST BAR ═══ */
-        .trust-bar {
-            background: var(--gray-100);
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-        .trust-bar .inner {
-            max-width: 900px;
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--gray-600);
-            font-size: 0.88rem;
-            font-weight: 500;
-        }
-        .trust-icon {
-            width: 20px;
-            height: 20px;
-            background: var(--teal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 0.65rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        /* ═══ PROBLEMS ═══ */
-        .problems {
-            padding: 6rem 2rem;
-            background: #fff;
-        }
-        .problems .inner {
-            max-width: 1000px;
-            margin: auto;
-        }
-        .section-label {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--teal);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-        .section-title {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 700;
-            color: var(--navy);
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        .section-desc {
-            color: var(--gray-500);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            max-width: 600px;
-            margin-bottom: 3rem;
-        }
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .problem-card {
-            background: var(--gray-100);
-            border-radius: 14px;
-            padding: 1.8rem;
-            border: 1px solid var(--gray-200);
-            transition: all 0.3s;
-        }
-        .problem-card:hover { border-color: var(--teal); transform: translateY(-2px); }
-        .problem-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-        }
-        .problem-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-        }
-        .problem-card p {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            line-height: 1.6;
-        }
-
-        /* ═══ FEATURES ═══ */
-        .features {
-            padding: 6rem 2rem;
-            background: var(--navy);
-        }
-        .features .inner {
-            max-width: 1100px;
-            margin: auto;
-        }
-        .features .section-label { color: var(--teal); }
-        .features .section-title { color: #fff; }
-        .features .section-desc { color: var(--gray-400); }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .feature-card {
-            background: var(--navy-mid);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-        .feature-card:hover { border-color: rgba(16,185,129,0.3); transform: translateY(-2px); }
-        .feature-num {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--teal);
-            margin-bottom: 0.8rem;
-            letter-spacing: 0.1em;
-        }
-        .feature-card h3 {
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .feature-card p {
-            color: var(--gray-400);
-            font-size: 0.88rem;
-            line-height: 1.65;
-        }
-
-        /* ═══ SPECS ═══ */
-        .specs {
-            padding: 6rem 2rem;
-            background: var(--gray-100);
-        }
-        .specs .inner {
-            max-width: 800px;
-            margin: auto;
-        }
-        .spec-list {
-            display: grid;
-            gap: 0.6rem;
-        }
-        .spec-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 1rem 1.5rem;
-            background: #fff;
-            border-radius: 10px;
-            border: 1px solid var(--gray-200);
-            align-items: center;
-        }
-        .spec-row:hover { border-color: var(--teal); }
-        .spec-label {
-            color: var(--gray-500);
-            font-size: 0.92rem;
-        }
-        .spec-value {
-            font-weight: 600;
-            color: var(--navy);
-            font-size: 0.92rem;
-            text-align: right;
-        }
-        .spec-value.teal { color: var(--teal-dark); }
-
-        /* ═══ PRICING ═══ */
-        .pricing {
-            padding: 6rem 2rem;
-            background: #fff;
-        }
-        .pricing .inner {
-            max-width: 500px;
-            margin: auto;
-            text-align: center;
-        }
-        .price-card {
-            background: var(--navy);
-            border-radius: 20px;
-            padding: 3rem 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .price-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--teal-glow), transparent);
-            pointer-events: none;
-        }
-        .price-popular {
-            background: var(--teal);
-            color: var(--navy);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.3rem 1rem;
-            border-radius: 100px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .price-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.3rem;
-        }
-        .price-desc {
-            color: var(--gray-400);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-        .price-amount {
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            gap: 0.3rem;
-            margin-bottom: 0.3rem;
-        }
-        .price-currency { color: var(--teal); font-size: 1.2rem; font-weight: 600; }
-        .price-num {
-            font-family: var(--mono);
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -0.03em;
-        }
-        .price-period {
-            color: var(--gray-500);
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
-        .price-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-        .price-features li {
-            color: var(--gray-400);
-            font-size: 0.9rem;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-        .price-features li::before {
-            content: '✓';
-            color: var(--teal);
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-        .price-card .btn-primary {
-            width: 100%;
-            justify-content: center;
-            padding: 1rem;
-            font-size: 1.05rem;
-        }
-        .price-guarantee {
-            color: var(--gray-500);
-            font-size: 0.8rem;
-            margin-top: 1rem;
-        }
-
-        /* ═══ FAQ ═══ */
-        .faq {
-            padding: 6rem 2rem;
-            background: var(--gray-100);
-        }
-        .faq .inner {
-            max-width: 700px;
-            margin: auto;
-        }
-        .faq-item {
-            background: #fff;
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
-            overflow: hidden;
-        }
-        .faq-q {
-            padding: 1.2rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--navy);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
-        }
-        .faq-q:hover { background: var(--gray-100); }
-        .faq-q::after { content: '+'; font-size: 1.2rem; color: var(--teal); font-weight: 300; transition: transform 0.2s; }
-        .faq-item.open .faq-q::after { transform: rotate(45deg); }
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        .faq-a-inner {
-            padding: 0 1.5rem 1.2rem;
-            color: var(--gray-500);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-        .faq-item.open .faq-a { max-height: 300px; }
-
-        /* ═══ FINAL CTA ═══ */
-        .final-cta {
-            padding: 6rem 2rem;
-            background: var(--navy);
-            text-align: center;
-        }
-        .final-cta .inner {
-            max-width: 600px;
-            margin: auto;
-        }
-        .final-cta h2 {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        .final-cta p {
-            color: var(--gray-400);
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        /* ═══ FOOTER ═══ */
-        footer {
-            background: var(--navy);
-            border-top: 1px solid rgba(255,255,255,0.04);
-            padding: 2rem;
-            text-align: center;
-        }
-        footer p {
-            color: var(--gray-500);
-            font-size: 0.8rem;
-        }
-
-        /* ═══ ANIMATIONS ═══ */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* ═══ MOBILE ═══ */
-        .mobile-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-
-        @media (max-width: 768px) {
-            .hero .inner { grid-template-columns: 1fr; gap: 2.5rem; }
-            .hero-visual { order: -1; }
-            .hero-stats { gap: 1.5rem; }
-            .hero-stat-num { font-size: 1.4rem; }
-            nav .links { display: none; }
-            nav .links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 64px;
-                left: 0;
-                right: 0;
-                background: var(--navy);
-                padding: 1.5rem 2rem;
-                border-bottom: 1px solid rgba(255,255,255,0.06);
-                gap: 1rem;
-            }
-            .mobile-toggle { display: block; }
-            .trust-bar .inner { gap: 1.5rem; }
-            .price-card { padding: 2rem 1.5rem; }
-        }
-    </style>
+            --blue-900:#1a3a5c;--blue-800:#1e4d78;--blue-700:#2563a0;--blue-600:#2b72b8;
+            --blue-500:#3b82d6;--blue-100:#dbeafe;--blue-50:#eff6ff;
+            --green-700:#15803d;--green-600:#16a34a;--green-500:#22c55e;
+            --green-100:#dcfce7;--green-50:#f0fdf4;
+            --gray-900:#111827;--gray-700:#374151;--gray-600:#4b5563;--gray-500:#6b7280;
+            --gray-400:#9ca3af;--gray-300:#d1d5db;--gray-200:#e5e7eb;--gray-100:#f3f4f6;
+            --gray-50:#f9fafb;--white:#fff;
+            --font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'IBM Plex Mono',monospace;
+            --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.06);
+            --shadow-lg:0 12px 40px rgba(0,0,0,.08);--shadow-xl:0 20px 60px rgba(0,0,0,.1);
+            --radius:12px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:var(--font);color:var(--gray-700);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        .container{max-width:1120px;margin:0 auto;padding:0 1.5rem}
+        nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-200);height:68px}
+        nav .container{display:flex;justify-content:space-between;align-items:center;height:100%}
+        .nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:800;font-size:1.1rem;color:var(--blue-800)}
+        .nav-logo-icon{width:36px;height:36px;background:var(--blue-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.85rem}
+        .nav-links{display:flex;align-items:center;gap:2rem}
+        .nav-links a{text-decoration:none;color:var(--gray-600);font-size:.88rem;font-weight:500;transition:color .2s}
+        .nav-links a:hover{color:var(--blue-600)}
+        .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.4rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:var(--font)}
+        .btn-blue{background:var(--blue-600);color:#fff;box-shadow:0 2px 8px rgba(43,114,184,.25)}
+        .btn-blue:hover{background:var(--blue-700);transform:translateY(-1px);box-shadow:0 4px 16px rgba(43,114,184,.3)}
+        .btn-outline{background:0 0;color:var(--blue-600);border:1.5px solid var(--blue-600)}
+        .btn-outline:hover{background:var(--blue-50)}
+        .btn-lg{padding:.85rem 2rem;font-size:1rem;border-radius:10px}
+        .btn-white{background:#fff;color:var(--blue-700);box-shadow:var(--shadow-sm)}
+        .btn-white:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+        .mobile-menu{display:none;background:0 0;border:none;font-size:1.5rem;color:var(--gray-600);cursor:pointer}
+        .hero{padding:7rem 0 4rem;background:linear-gradient(180deg,var(--blue-50) 0%,var(--white) 100%)}
+        .hero .container{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:center}
+        .hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:var(--green-100);color:var(--green-700);padding:.35rem .9rem;border-radius:100px;font-size:.78rem;font-weight:600;margin-bottom:1.2rem}
+        .hero h1{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;color:var(--blue-900);line-height:1.2;letter-spacing:-.02em;margin-bottom:1rem}
+        .hero-desc{font-size:1.08rem;line-height:1.7;color:var(--gray-600);margin-bottom:2rem;max-width:460px}
+        .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem}
+        .hero-trust{display:flex;gap:1.5rem;flex-wrap:wrap}
+        .hero-trust-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--gray-500);font-weight:500}
+        .hero-trust-check{width:18px;height:18px;background:var(--green-500);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .hero-trust-check svg{width:10px;height:10px;fill:#fff}
+        .hero-mockup{background:var(--white);border-radius:16px;box-shadow:var(--shadow-xl);border:1px solid var(--gray-200);overflow:hidden;animation:floatUp .7s ease-out}
+        .mockup-toolbar{background:var(--gray-100);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--gray-200)}
+        .mockup-dot{width:10px;height:10px;border-radius:50%}
+        .mockup-title{margin-left:.8rem;font-size:.72rem;color:var(--gray-500);font-family:var(--mono);font-weight:500}
+        .mockup-tabs{display:flex;background:var(--gray-50);border-bottom:1px solid var(--gray-200)}
+        .mockup-tab{padding:.5rem .9rem;font-size:.68rem;color:var(--gray-400);font-weight:500;border-right:1px solid var(--gray-200);font-family:var(--mono)}
+        .mockup-tab.active{background:var(--white);color:var(--blue-600);font-weight:600;border-bottom:2px solid var(--blue-600)}
+        .mockup-body{padding:1rem}
+        .mockup-grid{width:100%;border-collapse:collapse;font-size:.72rem;font-family:var(--mono)}
+        .mockup-grid th{background:var(--blue-600);color:#fff;padding:.5rem .6rem;text-align:left;font-weight:600;font-size:.65rem;text-transform:uppercase;letter-spacing:.05em}
+        .mockup-grid td{padding:.55rem .6rem;border-bottom:1px solid var(--gray-100);color:var(--gray-700)}
+        .mockup-grid tr:nth-child(even) td{background:var(--gray-50)}
+        .mockup-grid .money{font-weight:600;color:var(--gray-900)}
+        .mockup-grid .green{color:var(--green-700);font-weight:700}
+        .mockup-footer{margin-top:.8rem;padding:.6rem .8rem;background:var(--green-50);border-radius:6px;display:flex;justify-content:space-between;align-items:center;font-size:.7rem}
+        .mockup-footer-label{color:var(--gray-500)}
+        .mockup-footer-value{color:var(--green-700);font-weight:700;font-family:var(--mono);font-size:.85rem}
+        .metrics{padding:2.5rem 0;background:var(--white);border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100)}
+        .metrics .container{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+        .metric{text-align:center}
+        .metric-num{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--blue-700)}
+        .metric-label{font-size:.8rem;color:var(--gray-500);margin-top:.2rem}
+        .section{padding:5rem 0}.section-gray{background:var(--gray-50)}.section-blue-light{background:var(--blue-50)}
+        .section-header{text-align:center;max-width:600px;margin:0 auto 3rem}
+        .section-tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem;font-weight:700;color:var(--blue-600);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.6rem}
+        .section-tag-dot{width:6px;height:6px;background:var(--blue-600);border-radius:50%}
+        .section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--blue-900);line-height:1.25;letter-spacing:-.02em;margin-bottom:.7rem}
+        .section-desc{font-size:1rem;color:var(--gray-500);line-height:1.7}
+        .problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .problem-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.8rem;transition:all .25s}
+        .problem-card:hover{border-color:var(--blue-500);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+        .problem-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem}
+        .problem-icon-red{background:#fef2f2}.problem-icon-amber{background:#fffbeb}.problem-icon-gray{background:var(--gray-100)}
+        .problem-card h3{font-size:1rem;font-weight:700;color:var(--gray-900);margin-bottom:.5rem}
+        .problem-card p{font-size:.88rem;color:var(--gray-500);line-height:1.65}
+        .solution-box{background:var(--white);border:2px solid var(--blue-100);border-radius:16px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+        .solution-box h3{font-size:1.4rem;font-weight:800;color:var(--blue-900);margin-bottom:.8rem;line-height:1.3}
+        .solution-box p{font-size:.95rem;color:var(--gray-600);line-height:1.7;margin-bottom:1.5rem}
+        .solution-checks{display:flex;flex-direction:column;gap:.6rem}
+        .solution-check{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--gray-700);font-weight:500}
+        .solution-check-icon{width:22px;height:22px;background:var(--green-100);color:var(--green-600);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
+        .solution-mockup{background:var(--blue-50);border-radius:12px;padding:1.5rem;border:1px solid var(--blue-100)}
+        .solution-mockup-title{font-family:var(--mono);font-size:.7rem;color:var(--blue-600);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem;font-weight:600}
+        .sol-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+        .sol-card{background:var(--white);border-radius:8px;padding:.8rem;text-align:center;box-shadow:var(--shadow-sm)}
+        .sol-card-icon{font-size:1.3rem;margin-bottom:.3rem}.sol-card-label{font-size:.65rem;color:var(--gray-600);font-weight:600}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .feature-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.8rem;transition:all .25s}
+        .feature-card:hover{border-color:var(--green-500);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+        .feature-icon{width:44px;height:44px;background:var(--blue-50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;color:var(--blue-600)}
+        .feature-card h3{font-size:.95rem;font-weight:700;color:var(--gray-900);margin-bottom:.4rem}
+        .feature-card p{font-size:.85rem;color:var(--gray-500);line-height:1.6}
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;position:relative}
+        .steps::before{content:'';position:absolute;top:36px;left:15%;right:15%;height:2px;background:var(--blue-100);z-index:0}
+        .step{text-align:center;position:relative;z-index:1}
+        .step-num{width:56px;height:56px;margin:0 auto 1rem;background:var(--blue-600);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1.1rem;font-weight:700;box-shadow:0 4px 12px rgba(43,114,184,.25)}
+        .step h3{font-size:1rem;font-weight:700;color:var(--gray-900);margin-bottom:.4rem}
+        .step p{font-size:.88rem;color:var(--gray-500);line-height:1.6;max-width:280px;margin:0 auto}
+        .screenshots-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+        .screenshot-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:all .25s}
+        .screenshot-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+        .ss-header{background:var(--gray-100);padding:.5rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--gray-200)}
+        .ss-dot{width:8px;height:8px;border-radius:50%}
+        .ss-label{font-size:.68rem;color:var(--gray-500);font-family:var(--mono);font-weight:500;margin-left:.5rem}
+        .ss-body{padding:1rem}
+        .ss-table{width:100%;border-collapse:collapse;font-size:.65rem;font-family:var(--mono)}
+        .ss-table th{background:var(--blue-600);color:#fff;padding:.4rem .5rem;text-align:left;font-weight:600;font-size:.6rem}
+        .ss-table td{padding:.4rem .5rem;border-bottom:1px solid var(--gray-100);color:var(--gray-600)}
+        .ss-table tr:nth-child(even) td{background:var(--gray-50)}
+        .ss-section-bar{background:var(--blue-600);color:#fff;padding:.4rem .6rem;font-size:.65rem;font-weight:600;border-radius:4px;margin-bottom:.6rem}
+        .ss-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--gray-100);font-size:.68rem}
+        .ss-row-label{color:var(--gray-500)}.ss-row-value{color:var(--gray-900);font-weight:600;font-family:var(--mono)}
+        .ss-neto-bar{background:var(--blue-900);color:#fff;padding:.6rem .8rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center;margin-top:.6rem}
+        .ss-neto-label{font-size:.7rem;font-weight:600}.ss-neto-amount{font-family:var(--mono);font-size:1rem;font-weight:700}
+        .screenshot-caption{padding:.8rem 1rem;background:var(--gray-50);border-top:1px solid var(--gray-100);font-size:.78rem;color:var(--gray-600);font-weight:600}
+        .specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;max-width:700px;margin:0 auto}
+        .spec-row{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1.2rem;background:var(--white);border:1px solid var(--gray-200);border-radius:8px}
+        .spec-label{color:var(--gray-500);font-size:.88rem}.spec-value{color:var(--gray-900);font-weight:600;font-size:.88rem}.spec-value-blue{color:var(--blue-600)}
+        .pricing-card{max-width:440px;margin:0 auto;background:var(--white);border:2px solid var(--blue-100);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow-lg);text-align:center;position:relative}
+        .pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green-600);color:#fff;padding:.3rem 1.2rem;border-radius:100px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+        .pricing-name{font-size:1.2rem;font-weight:800;color:var(--blue-900);margin-top:.5rem;margin-bottom:.3rem}
+        .pricing-desc{color:var(--gray-500);font-size:.88rem;margin-bottom:1.5rem}
+        .pricing-price{display:flex;align-items:baseline;justify-content:center;gap:.2rem;margin-bottom:.3rem}
+        .pricing-currency{font-size:1.3rem;font-weight:700;color:var(--blue-600)}
+        .pricing-amount{font-family:var(--mono);font-size:3.2rem;font-weight:800;color:var(--blue-900);letter-spacing:-.03em}
+        .pricing-mxn{font-size:1rem;font-weight:600;color:var(--gray-400)}
+        .pricing-period{color:var(--gray-400);font-size:.85rem;margin-bottom:1.5rem}
+        .pricing-divider{height:1px;background:var(--gray-200);margin:1.5rem 0}
+        .pricing-features{list-style:none;text-align:left;margin-bottom:2rem}
+        .pricing-features li{padding:.45rem 0;font-size:.88rem;color:var(--gray-600);display:flex;align-items:flex-start;gap:.6rem}
+        .pricing-check{width:20px;height:20px;background:var(--green-100);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+        .pricing-check svg{width:11px;height:11px;fill:var(--green-600)}
+        .pricing-card .btn-blue{width:100%;justify-content:center;padding:.9rem;font-size:1rem}
+        .pricing-note{margin-top:1rem;font-size:.78rem;color:var(--gray-400)}
+        .faq-list{max-width:680px;margin:0 auto}
+        .faq-item{border:1px solid var(--gray-200);border-radius:var(--radius);margin-bottom:.6rem;overflow:hidden;background:var(--white)}
+        .faq-q{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.92rem;color:var(--gray-900);transition:background .2s}
+        .faq-q:hover{background:var(--gray-50)}
+        .faq-arrow{width:24px;height:24px;background:var(--blue-50);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--blue-600);font-size:.9rem;font-weight:300;transition:all .25s;flex-shrink:0}
+        .faq-item.open .faq-arrow{background:var(--blue-600);color:#fff;transform:rotate(45deg)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+        .faq-a-inner{padding:0 1.4rem 1.1rem;font-size:.88rem;color:var(--gray-500);line-height:1.7}
+        .faq-item.open .faq-a{max-height:300px}
+        .final-cta{padding:5rem 0;background:linear-gradient(135deg,var(--blue-800),var(--blue-900));text-align:center}
+        .final-cta h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:.8rem}
+        .final-cta p{color:rgba(255,255,255,.7);font-size:1.02rem;line-height:1.7;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+        footer{padding:2rem 0;background:var(--gray-900);text-align:center}
+        footer p{color:var(--gray-500);font-size:.78rem}
+        @keyframes floatUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        .reveal{opacity:0;transform:translateY(24px);transition:all .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+        @media(max-width:900px){.hero .container{grid-template-columns:1fr;gap:2.5rem}.problems-grid,.features-grid{grid-template-columns:1fr 1fr}.solution-box{grid-template-columns:1fr}.steps::before{display:none}.steps{grid-template-columns:1fr;gap:1.5rem}.screenshots-grid,.specs-grid{grid-template-columns:1fr}}
+        @media(max-width:640px){.problems-grid,.features-grid{grid-template-columns:1fr}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#fff;padding:1.5rem;border-bottom:1px solid var(--gray-200);box-shadow:var(--shadow-md)}.mobile-menu{display:block}.metrics .container{gap:2rem}.pricing-card{padding:2rem 1.5rem}}
+    
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:800px;margin:0 auto}
+.review-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.5rem;transition:all .25s}
+.review-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.review-stars{color:#f59e0b;font-size:.85rem;letter-spacing:2px;margin-bottom:.6rem}
+.review-text{font-size:.88rem;color:var(--gray-600);line-height:1.65;margin-bottom:1rem;font-style:italic}
+.review-author{display:flex;align-items:center;gap:.7rem}
+.review-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
+.review-name{font-size:.85rem;font-weight:700;color:var(--gray-900)}
+.review-role{font-size:.75rem;color:var(--gray-400)}
+@media(max-width:640px){.reviews-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
+<nav><div class="container"><a href="#" class="nav-logo"><div class="nav-logo-icon">N</div>NominaPro</a><button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button><div class="nav-links"><a href="#caracteristicas">Características</a><a href="#como-funciona">Cómo funciona</a><a href="#capturas">Capturas</a><a href="#testimonios">Testimonios</a><a href="#precio">Precio</a><a href="#faq">Preguntas</a><a href="#precio" class="btn btn-blue">Comprar y descargar</a></div></div></nav>
 
-<!-- NAV -->
-<nav>
-    <div class="inner">
-        <a href="#" class="logo">nómina<span>méxico</span>.com</a>
-        <button class="mobile-toggle" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
-        <div class="links">
-            <a href="#que-incluye">Qué incluye</a>
-            <a href="#caracteristicas">Módulos</a>
-            <a href="#precio">Precio</a>
-            <a href="#faq">Preguntas</a>
-            <a href="#precio" class="cta-nav">Comprar ahora →</a>
-        </div>
-    </div>
-</nav>
+<section class="hero"><div class="container"><div style="animation:floatUp .6s ease-out"><div class="hero-tag"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Actualizado para 2026</div><h1>Sistema de Nómina en Excel para PyMEs en México</h1><p class="hero-desc">Calcula ISR, IMSS y genera recibos de nómina automáticamente en minutos. Con tablas fiscales 2026 oficiales. Solo registra empleados, captura incidencias, y el sistema hace todo lo demás.</p><div class="hero-actions"><a href="#precio" class="btn btn-blue btn-lg">Comprar y descargar — $249 MXN</a><a href="#caracteristicas" class="btn btn-outline btn-lg">Ver características</a></div><div class="hero-trust"><div class="hero-trust-item"><div class="hero-trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Tablas ISR 2026 oficiales</div><div class="hero-trust-item"><div class="hero-trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Pago único, sin mensualidades</div><div class="hero-trust-item"><div class="hero-trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Descarga inmediata</div></div></div>
+<div class="hero-mockup"><div class="mockup-toolbar"><div class="mockup-dot" style="background:#f87171"></div><div class="mockup-dot" style="background:#fbbf24"></div><div class="mockup-dot" style="background:#34d399"></div><span class="mockup-title">NominaPro2026-SISTEMA.xlsx</span></div><div class="mockup-tabs"><div class="mockup-tab">Inicio</div><div class="mockup-tab">Config</div><div class="mockup-tab">Empleados</div><div class="mockup-tab active">Nómina</div><div class="mockup-tab">Recibo</div><div class="mockup-tab">Resumen</div></div><div class="mockup-body"><table class="mockup-grid"><thead><tr><th>Empleado</th><th>Percepciones</th><th>ISR</th><th>IMSS</th><th>Neto a pagar</th></tr></thead><tbody><tr><td>Juan Pérez M.</td><td class="money">$12,160.00</td><td>$1,402.86</td><td>$337.19</td><td class="green">$9,670.69</td></tr><tr><td>María García L.</td><td class="money">$9,880.00</td><td>$1,166.19</td><td>$267.33</td><td class="green">$8,446.48</td></tr><tr><td>Carlos López R.</td><td class="money">$6,080.00</td><td>$388.40</td><td>$165.91</td><td class="green">$5,425.83</td></tr></tbody></table><div class="mockup-footer"><span class="mockup-footer-label">Total neto a pagar (3 empleados)</span><span class="mockup-footer-value">$23,543.00</span></div></div></div></div></section>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="inner">
-        <div class="hero-text">
-            <div class="hero-badge">ACTUALIZADO MARZO 2026</div>
-            <h1>Tu nómina completa en <em>un solo Excel</em></h1>
-            <p>Calcula ISR, IMSS, INFONAVIT, finiquito y liquidación al centavo. Con tablas oficiales 2026 y la tabla CEAV escalonada que tu contador te pide. Para PyMEs de 1 a 50 empleados.</p>
-            <div class="hero-actions">
-                <a href="#precio" class="btn-primary">Comprar NóminaPro — $699</a>
-                <a href="#que-incluye" class="btn-secondary">Ver qué incluye</a>
-            </div>
-            <div class="hero-stats">
-                <div>
-                    <div class="hero-stat-num">1,301</div>
-                    <div class="hero-stat-label">fórmulas automatizadas</div>
-                </div>
-                <div>
-                    <div class="hero-stat-num">11</div>
-                    <div class="hero-stat-label">hojas de cálculo</div>
-                </div>
-                <div>
-                    <div class="hero-stat-num">50</div>
-                    <div class="hero-stat-label">empleados máximo</div>
-                </div>
-            </div>
-        </div>
+<section class="metrics"><div class="container"><div class="metric"><div class="metric-num">1,301</div><div class="metric-label">Fórmulas automatizadas</div></div><div class="metric"><div class="metric-num">11</div><div class="metric-label">Hojas de cálculo</div></div><div class="metric"><div class="metric-num">50</div><div class="metric-label">Empleados máximo</div></div><div class="metric"><div class="metric-num">3</div><div class="metric-label">Periodos de pago</div></div></div></section>
 
-        <div class="hero-visual">
-            <div class="excel-preview">
-                <div class="excel-bar">
-                    <div class="excel-dot"></div>
-                    <div class="excel-dot"></div>
-                    <div class="excel-dot"></div>
-                </div>
-                <div class="excel-tabs">
-                    <div class="excel-tab">Inicio</div>
-                    <div class="excel-tab">Config</div>
-                    <div class="excel-tab">Empleados</div>
-                    <div class="excel-tab active">Nómina</div>
-                    <div class="excel-tab">Recibo</div>
-                    <div class="excel-tab">Resumen</div>
-                </div>
-                <div class="excel-grid">
-                    <div class="excel-cell hdr">Empleado</div>
-                    <div class="excel-cell hdr">Percepciones</div>
-                    <div class="excel-cell hdr">Deducciones</div>
-                    <div class="excel-cell hdr">Neto</div>
+<section class="section section-gray" id="problemas"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> El problema</div><h2 class="section-title">Calcular nómina en México no debería ser tan complicado</h2><p class="section-desc">Cada año cambian las tablas del ISR, la UMA y las tasas del IMSS. Un error se convierte en multas del SAT.</p></div><div class="problems-grid reveal"><div class="problem-card"><div class="problem-icon problem-icon-red">&#10060;</div><h3>Cálculos manuales con errores</h3><p>Calcular ISR, IMSS y subsidio a mano para cada empleado consume horas y cualquier error se acumula todo el año fiscal.</p></div><div class="problem-card"><div class="problem-icon problem-icon-amber">&#9888;&#65039;</div><h3>Tablas desactualizadas</h3><p>Las tablas de ISR 2026 cambiaron por inflación. La CEAV ahora tiene 6 rangos escalonados. Las plantillas gratuitas no tienen esto.</p></div><div class="problem-card"><div class="problem-icon problem-icon-gray">&#128184;</div><h3>Software demasiado caro</h3><p>Los sistemas de nómina como Worky o Runa cobran desde $3,000 al mes. Para una PyME con 5 empleados, eso es excesivo.</p></div></div></div></section>
 
-                    <div class="excel-cell">Juan Pérez</div>
-                    <div class="excel-cell money">$12,160.00</div>
-                    <div class="excel-cell">$2,489.31</div>
-                    <div class="excel-cell green">$9,670.69</div>
+<section class="section"><div class="container reveal"><div class="section-header"><div class="section-tag"><div class="section-tag-dot"></div> La solución</div><h2 class="section-title">NominaPro 2026: tu nómina completa en un Excel profesional</h2></div><div class="solution-box"><div><h3>Un sistema completo que hace el trabajo por ti</h3><p>Solo capturas los datos de tus empleados en las celdas azules. Las 1,301 fórmulas calculan todo automáticamente: ISR, IMSS obrero y patronal, INFONAVIT, subsidio, horas extras, faltas, y el neto a pagar.</p><div class="solution-checks"><div class="solution-check"><div class="solution-check-icon">✓</div> Tablas ISR oficiales (Anexo 8 RMF 2026)</div><div class="solution-check"><div class="solution-check-icon">✓</div> CEAV escalonada con 6 rangos (3.15% a 7.51%)</div><div class="solution-check"><div class="solution-check-icon">✓</div> Cuota fija IMSS sobre UMA, no sobre SBC</div><div class="solution-check"><div class="solution-check-icon">✓</div> Subsidio al empleo $535.65/mes actualizado</div><div class="solution-check"><div class="solution-check-icon">✓</div> Recibo de nómina imprimible por empleado</div><div class="solution-check"><div class="solution-check-icon">✓</div> Calculadoras de aguinaldo y finiquito incluidas</div></div></div><div class="solution-mockup"><div class="solution-mockup-title">&#128203; Dashboard — NominaPro 2026</div><div class="sol-card-grid"><div class="sol-card"><div class="sol-card-icon">&#9881;&#65039;</div><div class="sol-card-label">Configuración</div></div><div class="sol-card"><div class="sol-card-icon">&#128101;</div><div class="sol-card-label">Empleados</div></div><div class="sol-card"><div class="sol-card-icon">&#128221;</div><div class="sol-card-label">Incidencias</div></div><div class="sol-card"><div class="sol-card-icon">&#128176;</div><div class="sol-card-label">Nómina</div></div><div class="sol-card"><div class="sol-card-icon">&#129534;</div><div class="sol-card-label">Recibo</div></div><div class="sol-card"><div class="sol-card-icon">&#128202;</div><div class="sol-card-label">Resumen</div></div></div><div style="margin-top:.8rem"><div class="sol-card-grid"><div class="sol-card"><div class="sol-card-icon">&#127873;</div><div class="sol-card-label">Aguinaldo</div></div><div class="sol-card"><div class="sol-card-icon">&#128195;</div><div class="sol-card-label">Finiquito</div></div><div class="sol-card"><div class="sol-card-icon">&#128208;</div><div class="sol-card-label">Tablas ISR</div></div></div></div></div></div></div></section>
 
-                    <div class="excel-cell">María García</div>
-                    <div class="excel-cell money">$9,880.00</div>
-                    <div class="excel-cell">$1,433.52</div>
-                    <div class="excel-cell green">$8,446.48</div>
+<section class="section section-gray" id="caracteristicas"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Características</div><h2 class="section-title">Todo lo que necesitas para manejar tu nómina</h2><p class="section-desc">Cada módulo está diseñado para simplificar el proceso de nómina de tu PyME.</p></div><div class="features-grid reveal"><div class="feature-card"><div class="feature-icon">&#128176;</div><h3>Cálculo automático de nómina</h3><p>Percepciones, deducciones y neto a pagar calculados automáticamente para cada empleado del periodo.</p></div><div class="feature-card"><div class="feature-icon">&#128208;</div><h3>Tablas ISR 2026 actualizadas</h3><p>Tarifas mensuales, quincenales y semanales del Anexo 8 de la RMF 2026. Publicadas en el DOF el 28/12/2025.</p></div><div class="feature-card"><div class="feature-icon">&#127973;</div><h3>Cuotas IMSS obrero y patronal</h3><p>Desglose completo por rama de seguro. CEAV escalonada 2026 con VLOOKUP automático por nivel salarial.</p></div><div class="feature-card"><div class="feature-icon">&#128101;</div><h3>Gestión de empleados</h3><p>Hasta 50 trabajadores con nombre, RFC, NSS, fecha de ingreso, sueldo diario. SBC integrado automático.</p></div><div class="feature-card"><div class="feature-icon">&#128221;</div><h3>Registro de incidencias</h3><p>Horas extras dobles y triples, días de falta, bonos, comisiones y descuentos. Se reflejan automáticamente en la nómina.</p></div><div class="feature-card"><div class="feature-icon">&#129534;</div><h3>Recibos de nómina automáticos</h3><p>Recibo profesional imprimible por empleado con percepciones, deducciones, neto, firmas y nota legal.</p></div></div></div></section>
 
-                    <div class="excel-cell">Carlos López</div>
-                    <div class="excel-cell money">$6,080.00</div>
-                    <div class="excel-cell">$654.17</div>
-                    <div class="excel-cell green">$5,425.83</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<section class="section" id="como-funciona"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Cómo funciona</div><h2 class="section-title">3 pasos y tu nómina está lista</h2><p class="section-desc">Sin capacitación, sin curva de aprendizaje. Si sabes usar Excel, sabes usar NominaPro.</p></div><div class="steps reveal"><div class="step"><div class="step-num">1</div><h3>Registra empleados</h3><p>Captura nombre, RFC, NSS, fecha de ingreso y sueldo diario. El SBC se calcula solo.</p></div><div class="step"><div class="step-num">2</div><h3>Registra incidencias</h3><p>Si hay horas extras, faltas, bonos o descuentos del periodo, captúralos en la hoja de incidencias.</p></div><div class="step"><div class="step-num">3</div><h3>Genera nómina y recibos</h3><p>La hoja de nómina calcula todo automáticamente. Imprime el recibo de cada empleado con un clic.</p></div></div></div></section>
 
-<!-- TRUST BAR -->
-<section class="trust-bar">
-    <div class="inner">
-        <div class="trust-item"><div class="trust-icon">✓</div>Tablas ISR Anexo 8 RMF 2026</div>
-        <div class="trust-item"><div class="trust-icon">✓</div>UMA $117.31 · SM $315.04</div>
-        <div class="trust-item"><div class="trust-icon">✓</div>CEAV escalonada 2026</div>
-        <div class="trust-item"><div class="trust-icon">✓</div>Subsidio $535.65/mes</div>
-    </div>
-</section>
+<section class="section section-gray" id="capturas"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Capturas del sistema</div><h2 class="section-title">Así se ve NominaPro por dentro</h2><p class="section-desc">Capturas reales del sistema funcionando con datos de ejemplo.</p></div><div class="screenshots-grid reveal">
+<div class="screenshot-card"><div class="ss-header"><div class="ss-dot" style="background:#f87171"></div><div class="ss-dot" style="background:#fbbf24"></div><div class="ss-dot" style="background:#34d399"></div><span class="ss-label">Hoja: Nómina</span></div><div class="ss-body"><table class="ss-table"><thead><tr><th>Empleado</th><th>Sueldo</th><th>ISR</th><th>IMSS</th><th>Neto</th></tr></thead><tbody><tr><td>Juan Pérez</td><td>$12,160</td><td>$1,402</td><td>$337</td><td style="color:#15803d;font-weight:700">$9,670</td></tr><tr><td>María García</td><td>$9,880</td><td>$1,166</td><td>$267</td><td style="color:#15803d;font-weight:700">$8,446</td></tr><tr><td>Carlos López</td><td>$6,080</td><td>$388</td><td>$165</td><td style="color:#15803d;font-weight:700">$5,425</td></tr></tbody></table></div><div class="screenshot-caption">&#128176; Cálculo completo con ISR, IMSS y neto automático</div></div>
+<div class="screenshot-card"><div class="ss-header"><div class="ss-dot" style="background:#f87171"></div><div class="ss-dot" style="background:#fbbf24"></div><div class="ss-dot" style="background:#34d399"></div><span class="ss-label">Hoja: Recibo de Nómina</span></div><div class="ss-body"><div class="ss-section-bar">&#128100; Datos del trabajador</div><div class="ss-row"><span class="ss-row-label">Nombre</span><span class="ss-row-value">María García López</span></div><div class="ss-row"><span class="ss-row-label">RFC</span><span class="ss-row-value">GALM880515XX1</span></div><div class="ss-row"><span class="ss-row-label">Sueldo diario</span><span class="ss-row-value">$650.00</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.6rem"><div><div style="font-size:.6rem;color:var(--blue-600);font-weight:700;margin-bottom:.3rem">PERCEPCIONES</div><div class="ss-row"><span class="ss-row-label">Sueldo</span><span class="ss-row-value">$9,880.00</span></div></div><div><div style="font-size:.6rem;color:#b45309;font-weight:700;margin-bottom:.3rem">DEDUCCIONES</div><div class="ss-row"><span class="ss-row-label">ISR</span><span class="ss-row-value">$1,166.19</span></div></div></div><div class="ss-neto-bar"><span class="ss-neto-label">NETO A PAGAR</span><span class="ss-neto-amount">$8,446.48</span></div></div><div class="screenshot-caption">&#129534; Recibo imprimible generado automáticamente</div></div>
+<div class="screenshot-card"><div class="ss-header"><div class="ss-dot" style="background:#f87171"></div><div class="ss-dot" style="background:#fbbf24"></div><div class="ss-dot" style="background:#34d399"></div><span class="ss-label">Hoja: Empleados</span></div><div class="ss-body"><table class="ss-table"><thead><tr><th>Nombre</th><th>RFC</th><th>Sueldo diario</th><th>SBC</th></tr></thead><tbody><tr><td>Juan Pérez</td><td>PEMJ901201XX1</td><td style="background:var(--blue-50);color:var(--blue-700);font-weight:600">$800.00</td><td>$840.05</td></tr><tr><td>María García</td><td>GALM880515XX1</td><td style="background:var(--blue-50);color:var(--blue-700);font-weight:600">$650.00</td><td>$682.05</td></tr><tr><td>Carlos López</td><td>LORC950320XX1</td><td style="background:var(--blue-50);color:var(--blue-700);font-weight:600">$400.00</td><td>$419.73</td></tr></tbody></table><div style="margin-top:.5rem;font-size:.6rem;color:var(--blue-600)">&#128309; Celdas azules = datos que tú capturas &nbsp; &#9899; Las demás = fórmulas automáticas</div></div><div class="screenshot-caption">&#128101; Registro con SBC integrado automático (Art. 30 LSS)</div></div>
+<div class="screenshot-card"><div class="ss-header"><div class="ss-dot" style="background:#f87171"></div><div class="ss-dot" style="background:#fbbf24"></div><div class="ss-dot" style="background:#34d399"></div><span class="ss-label">Hoja: Resumen</span></div><div class="ss-body"><div class="ss-section-bar" style="background:var(--green-600)">&#128176; Percepciones</div><div class="ss-row"><span class="ss-row-label">Total sueldos</span><span class="ss-row-value">$28,120.00</span></div><div class="ss-section-bar" style="background:#b45309">&#128201; Deducciones</div><div class="ss-row"><span class="ss-row-label">Total ISR</span><span class="ss-row-value">$2,957.45</span></div><div class="ss-row"><span class="ss-row-label">Total IMSS obrero</span><span class="ss-row-value">$770.43</span></div><div class="ss-section-bar">&#127970; Cargas patronales</div><div class="ss-row"><span class="ss-row-label">IMSS patronal</span><span class="ss-row-value">$2,592.18</span></div><div class="ss-row"><span class="ss-row-label">INFONAVIT</span><span class="ss-row-value">$1,470.52</span></div><div class="ss-neto-bar" style="background:var(--green-700)"><span class="ss-neto-label">COSTO TOTAL EMPRESA</span><span class="ss-neto-amount">$35,748.82</span></div></div><div class="screenshot-caption">&#128202; Dashboard con costo total de nómina para la empresa</div></div>
+</div></div></section>
 
-<!-- PROBLEMS -->
-<section class="problems" id="que-incluye">
-    <div class="inner reveal">
-        <div class="section-label">El problema</div>
-        <h2 class="section-title">Calcular nómina en México no debería ser tan difícil</h2>
-        <p class="section-desc">Cada enero cambian las tablas del ISR, la UMA, las tasas del IMSS y el subsidio. Un error de centavos se convierte en multas del SAT.</p>
-        <div class="problem-grid">
-            <div class="problem-card">
-                <div class="problem-icon">🔢</div>
-                <h3>ISR mal calculado</h3>
-                <p>Las tablas de 2026 cambiaron por inflación. Si usas las de 2025, cada recibo tiene diferencias que se acumulan mes a mes.</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">🏥</div>
-                <h3>IMSS con tasas planas</h3>
-                <p>La cuota patronal de CEAV ya no es 3.15% para todos. En 2026 va de 3.15% a 7.51% según el sueldo. Las plantillas gratuitas no tienen esto.</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">💸</div>
-                <h3>Software caro</h3>
-                <p>Worky cobra desde $3,000/mes. Runa desde $5,000. Para una PyME con 5 empleados, eso es más que un sueldo completo al año.</p>
-            </div>
-        </div>
-    </div>
-</section>
+<section class="section"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Datos fiscales</div><h2 class="section-title">Actualizado con cifras oficiales 2026</h2></div><div class="specs-grid reveal"><div class="spec-row"><span class="spec-label">Tablas ISR</span><span class="spec-value spec-value-blue">Anexo 8 RMF 2026</span></div><div class="spec-row"><span class="spec-label">UMA 2026</span><span class="spec-value">$117.31 / día</span></div><div class="spec-row"><span class="spec-label">Salario mínimo</span><span class="spec-value">$315.04 / día</span></div><div class="spec-row"><span class="spec-label">CEAV patronal</span><span class="spec-value spec-value-blue">3.15% a 7.51%</span></div><div class="spec-row"><span class="spec-label">Subsidio empleo</span><span class="spec-value">$535.65 / mes</span></div><div class="spec-row"><span class="spec-label">Límite subsidio</span><span class="spec-value">$11,492.66 / mes</span></div><div class="spec-row"><span class="spec-label">Tope SBC diario</span><span class="spec-value">$2,932.75</span></div><div class="spec-row"><span class="spec-label">Formato</span><span class="spec-value">.xlsx (Excel 2016+)</span></div></div></div></section>
 
-<!-- FEATURES -->
-<section class="features" id="caracteristicas">
-    <div class="inner reveal">
-        <div class="section-label">Módulos incluidos</div>
-        <h2 class="section-title">Un sistema completo de nómina, no solo una calculadora</h2>
-        <p class="section-desc">11 hojas interconectadas que hacen todo el trabajo por ti. Solo capturas los datos en las celdas azules.</p>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-num">01 — DASHBOARD</div>
-                <h3>Inicio con navegación visual</h3>
-                <p>Botones que te llevan a cada módulo. Se siente como software, no como una hoja de cálculo.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-num">02 — EMPLEADOS</div>
-                <h3>Registro de 50 trabajadores</h3>
-                <p>Nombre, RFC, NSS, fecha de ingreso, sueldo diario. El SBC integrado se calcula solo con Art. 30 LSS.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-num">03 — NÓMINA</div>
-                <h3>Cálculo automático completo</h3>
-                <p>ISR con VLOOKUP a tablas oficiales, IMSS obrero con 5 cuotas, subsidio al empleo, horas extras, faltas, bonos. Todo al centavo.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-num">04 — IMSS PATRONAL</div>
-                <h3>Cuota fija + CEAV escalonada</h3>
-                <p>La cuota fija se calcula sobre UMA (no sobre SBC). La CEAV usa la tabla 2026 con 6 rangos por nivel salarial. Como lo pide el SUA.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-num">05 — RECIBO</div>
-                <h3>Recibo imprimible profesional</h3>
-                <p>Seleccionas el número de empleado y se genera un recibo con percepciones, deducciones, neto, firmas y nota legal. Listo para imprimir.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-num">06 — HERRAMIENTAS</div>
-                <h3>Calculadora de aguinaldo y finiquito</h3>
-                <p>Calculadoras independientes incluidas. Finiquito con renuncia o despido injustificado, indemnización, prima de antigüedad.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- SPECS -->
-<section class="specs">
-    <div class="inner reveal">
-        <div class="section-label">Datos técnicos</div>
-        <h2 class="section-title">Actualizado con datos oficiales 2026</h2>
-        <p class="section-desc">Cada cifra viene del DOF, el SAT o el INEGI. No de "fuentes de internet".</p>
-        <div class="spec-list">
-            <div class="spec-row">
-                <span class="spec-label">Tablas ISR</span>
-                <span class="spec-value teal">Anexo 8 RMF 2026, DOF 28/12/2025</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">UMA 2026</span>
-                <span class="spec-value">$117.31 diaria · $3,566.22 mensual</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">Salario mínimo 2026</span>
-                <span class="spec-value">$315.04 diaria · $9,577.22 mensual</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">CEAV patronal 2026</span>
-                <span class="spec-value teal">3.15% a 7.51% (escalonada, 6 rangos)</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">Subsidio al empleo</span>
-                <span class="spec-value">$535.65/mes (15.02% × UMA)</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">Límite subsidio</span>
-                <span class="spec-value">$11,492.66 mensuales</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">Tope SBC</span>
-                <span class="spec-value">25 UMA = $2,932.75 diarios</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">Periodos de pago</span>
-                <span class="spec-value">Mensual, quincenal, semanal</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-label">Formato</span>
-                <span class="spec-value">.xlsx — Excel 2016 o superior</span>
-            </div>
-        </div>
-    </div>
-</section>
+<section class="section" id="testimonios"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Testimonios</div><h2 class="section-title">Lo que dicen quienes ya lo usan</h2></div><div class="reviews-grid reveal">
 
-<!-- PRICING -->
-<section class="pricing" id="precio">
-    <div class="inner reveal">
-        <div class="section-label">Precio</div>
-        <h2 class="section-title">Una inversión, no un gasto mensual</h2>
-        <p class="section-desc">Pagas una vez, es tuyo para siempre. Sin suscripciones, sin mensualidades, sin límites de uso.</p>
-        <div class="price-card">
-            <div class="price-popular">MÁS VENDIDO</div>
-            <div class="price-name">NóminaPro 2026 — Sistema Completo</div>
-            <div class="price-desc">Todo lo que necesitas para manejar la nómina de tu PyME</div>
-            <div class="price-amount">
-                <span class="price-currency">$</span>
-                <span class="price-num">699</span>
-            </div>
-            <div class="price-period">MXN · pago único · acceso inmediato</div>
-            <ul class="price-features">
-                <li>Sistema de nómina completo (11 hojas, 1,301 fórmulas)</li>
-                <li>Hasta 50 empleados · 3 periodos de pago</li>
-                <li>Tablas ISR 2026 oficiales + CEAV escalonada</li>
-                <li>Recibo de nómina imprimible profesional</li>
-                <li>Calculadora de aguinaldo incluida</li>
-                <li>Calculadora de finiquito/liquidación incluida</li>
-                <li>Dashboard con navegación tipo software</li>
-                <li>Resumen con costo total de nómina para la empresa</li>
-            </ul>
-            <a href="#" class="btn-primary" id="btn-comprar">Comprar ahora — $699 MXN →</a>
-            <div class="price-guarantee">Descarga inmediata · Archivo .xlsx · Funciona en Excel 2016+</div>
-        </div>
-    </div>
-</section>
+<div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-text">Llevaba meses calculando la nómina de mis 8 empleados a mano en una hoja que armé yo mismo. Siempre me quedaban diferencias con el SUA. Con NominaPro puse los datos y los números cuadraron a la primera. Me ahorro como 4 horas cada quincena.</div><div class="review-author"><div class="review-avatar" style="background:#2563a0">RM</div><div><div class="review-name">Roberto Mendoza</div><div class="review-role">Dueño de taller mecánico · Guadalajara, Jal.</div></div></div></div>
 
-<!-- FAQ -->
-<section class="faq" id="faq">
-    <div class="inner reveal">
-        <div class="section-label">Preguntas frecuentes</div>
-        <h2 class="section-title">¿Tienes dudas?</h2>
+<div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-text">Soy contadora independiente y llevo la nómina de 3 negocios pequeños. Lo que más me gustó es que ya trae la tabla de CEAV escalonada, porque en otras plantillas que encontré gratis usaban una tasa plana que está mal. Aquí todo viene correcto y bien documentado.</div><div class="review-author"><div class="review-avatar" style="background:#16a34a">LP</div><div><div class="review-name">Licda. Patricia Vega</div><div class="review-role">Contadora independiente · Monterrey, N.L.</div></div></div></div>
 
-        <div class="faq-item">
-            <div class="faq-q">¿Funciona en Google Sheets o solo en Excel?</div>
-            <div class="faq-a"><div class="faq-a-inner">Está diseñado para Microsoft Excel 2016 o superior. Algunas fórmulas complejas (VLOOKUP anidados, formato condicional) pueden no funcionar correctamente en Google Sheets. Recomendamos Excel de escritorio para mejores resultados.</div></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">¿Las tablas de ISR son las oficiales de 2026?</div>
-            <div class="faq-a"><div class="faq-a-inner">Sí. Las tablas de ISR corresponden al Anexo 8 de la Resolución Miscelánea Fiscal 2026, publicado en el Diario Oficial de la Federación el 28 de diciembre de 2025. Se incluyen las tarifas mensual, quincenal y semanal con los ajustes por inflación.</div></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">¿Incluye la tabla escalonada de CEAV 2026?</div>
-            <div class="faq-a"><div class="faq-a-inner">Sí. La cuota patronal de Cesantía en Edad Avanzada y Vejez se calcula con la tabla de 6 rangos vigente en 2026 (del 3.15% al 7.51%), con VLOOKUP automático según el SBC diario de cada empleado. No usa tasas planas como otras plantillas.</div></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">¿Puedo usarlo para más de una empresa?</div>
-            <div class="faq-a"><div class="faq-a-inner">Cada archivo está configurado para una empresa. Si manejas varias empresas, puedes duplicar el archivo y configurar cada copia con los datos de la empresa correspondiente. La licencia es para uso ilimitado del comprador.</div></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">¿Qué pasa cuando cambien las tablas en enero 2027?</div>
-            <div class="faq-a"><div class="faq-a-inner">Publicaremos la versión 2027 con las tablas actualizadas. Los compradores de la versión 2026 tendrán un descuento especial para la actualización. También puedes actualizar las tablas manualmente — están en hojas separadas y claramente documentadas.</div></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">¿Sirve para la Zona Libre de la Frontera Norte?</div>
-            <div class="faq-a"><div class="faq-a-inner">La versión actual está configurada con el salario mínimo general ($315.04). Para ZLFN ($440.87), solo necesitas cambiar el valor del salario mínimo en la hoja de Configuración y las fórmulas se ajustan automáticamente.</div></div>
-        </div>
-    </div>
-</section>
+<div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-text">Tengo una estética con 5 empleadas y antes le pagaba $1,800 al mes a un despacho contable solo por la nómina. Con esto lo hago yo misma en 20 minutos. El recibo se ve muy profesional y mis empleadas quedaron contentas porque ahora les doy su recibo impreso.</div><div class="review-author"><div class="review-avatar" style="background:#b45309">AG</div><div><div class="review-name">Adriana González</div><div class="review-role">Dueña de estética · Puebla, Pue.</div></div></div></div>
 
-<!-- FINAL CTA -->
-<section class="final-cta">
-    <div class="inner reveal">
-        <h2>Deja de perder horas calculando nómina</h2>
-        <p>1,301 fórmulas ya hicieron el trabajo por ti. Solo captura los datos de tus empleados y todo se calcula al centavo.</p>
-        <a href="#precio" class="btn-primary">Comprar NóminaPro 2026 — $699 MXN →</a>
-    </div>
-</section>
+<div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><div class="review-text">Funciona bien para lo que necesito. Manejo la nómina de un restaurante con 12 personas. Lo único que le faltaría es que genere el XML para el CFDI, pero entiendo que eso ya es otro nivel. Para calcular los montos correctos y darle sus recibos al personal, cumple perfecto.</div><div class="review-author"><div class="review-avatar" style="background:#7c3aed">FS</div><div><div class="review-name">Fernando Sánchez</div><div class="review-role">Gerente de restaurante · León, Gto.</div></div></div></div>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 nominamexico.com · Todos los derechos reservados · Tablas fiscales actualizadas al ejercicio 2026</p>
-</footer>
+</div></div></section>
+
+<section class="section section-blue-light" id="precio"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Precio</div><h2 class="section-title">Una inversión, no un gasto mensual</h2><p class="section-desc">Pagas una vez y es tuyo para siempre. Sin suscripciones, sin límites de uso.</p></div><div class="pricing-card reveal"><div class="pricing-badge">&#127942; Precio de lanzamiento</div><div class="pricing-name">NominaPro 2026</div><div class="pricing-desc">Sistema completo de nómina en Excel</div><div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount">249</span><span class="pricing-mxn">MXN</span></div><div class="pricing-period">Pago único · Descarga inmediata · Acceso de por vida</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Sistema completo (11 hojas, 1,301 fórmulas)</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Hasta 50 empleados · 3 periodos de pago</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Tablas ISR 2026 oficiales del DOF</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>CEAV escalonada con 6 rangos 2026</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Recibo de nómina imprimible profesional</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Calculadora de aguinaldo incluida</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Calculadora de finiquito/liquidación incluida</li><li><div class="pricing-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Dashboard con navegación tipo software</li></ul><a href="#" class="btn btn-blue" id="btn-comprar">Comprar ahora — $249 MXN</a><div class="pricing-note">Descarga inmediata en formato .xlsx · Compatible con Excel 2016 o superior</div></div></div></section>
+
+<section class="section" id="faq"><div class="container"><div class="section-header reveal"><div class="section-tag"><div class="section-tag-dot"></div> Preguntas frecuentes</div><h2 class="section-title">¿Tienes dudas?</h2></div><div class="faq-list reveal">
+<div class="faq-item"><div class="faq-q">¿Necesito algún software especial para usarlo?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Solo necesitas Microsoft Excel 2016 o superior. El archivo es formato .xlsx estándar. Algunas fórmulas avanzadas pueden no funcionar correctamente en Google Sheets o LibreOffice, por lo que recomendamos Excel de escritorio.</div></div></div>
+<div class="faq-item"><div class="faq-q">¿Cuántos empleados puedo manejar?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Hasta 50 empleados. El sistema incluye 50 filas preconfiguradas con todas las fórmulas de ISR, IMSS y subsidio al empleo. Solo capturas los datos de cada trabajador y todo se calcula automáticamente.</div></div></div>
+<div class="faq-item"><div class="faq-q">¿Está actualizado para las reglas fiscales de 2026?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Sí. Incluye las tablas ISR del Anexo 8 de la RMF 2026 (DOF 28/12/2025), la UMA 2026 de $117.31, el salario mínimo de $315.04, la tabla escalonada de CEAV con los 6 rangos del cuarto incremento gradual, y el subsidio al empleo de $535.65 mensuales.</div></div></div>
+<div class="faq-item"><div class="faq-q">¿Puedo usarlo para más de una empresa?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Cada archivo está configurado para una empresa. Si manejas varias, puedes duplicar el archivo y configurar cada copia con los datos correspondientes. La licencia permite uso ilimitado del comprador.</div></div></div>
+<div class="faq-item"><div class="faq-q">¿Qué pasa cuando cambien las tablas en 2027?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Publicaremos la versión 2027 con las tablas actualizadas. Los compradores de la versión 2026 tendrán descuento especial para la actualización. Las tablas también están en hojas separadas que puedes actualizar manualmente.</div></div></div>
+<div class="faq-item"><div class="faq-q">¿Sirve para la Zona Libre de la Frontera Norte?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">La versión actual viene con el salario mínimo general ($315.04). Para ZLFN ($440.87), solo cambias ese valor en la hoja de Configuración y todas las fórmulas se ajustan automáticamente.</div></div></div>
+<div class="faq-item"><div class="faq-q">¿Genera el CFDI de nómina?<div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">NominaPro calcula todos los montos que necesitas para llenar tu CFDI de nómina, pero el timbrado del comprobante fiscal se realiza a través del portal del SAT o tu proveedor de timbrado. Los montos que calcula NominaPro los puedes transcribir directamente.</div></div></div>
+</div></div></section>
+
+<section class="final-cta"><div class="container reveal"><h2>Deja de perder horas calculando nómina</h2><p>1,301 fórmulas ya hicieron el trabajo por ti. Solo captura los datos de tus empleados y todo se calcula al centavo.</p><a href="#precio" class="btn btn-white btn-lg">Comprar NominaPro 2026 — $249 MXN</a></div></section>
+
+<footer><p>© 2026 nominamexico.com · Todos los derechos reservados · Datos fiscales actualizados al ejercicio 2026</p></footer>
 
 <script>
-// FAQ Accordion
-document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-        const item = q.parentElement;
-        const wasOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!wasOpen) item.classList.add('open');
-    });
-});
-
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-        document.querySelector('.links')?.classList.remove('open');
-    });
-});
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open')})});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}document.querySelector('.nav-links')?.classList.remove('open')})});
 </script>
 </body>
 </html>
