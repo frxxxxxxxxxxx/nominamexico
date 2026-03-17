@@ -270,8 +270,47 @@ function getNumericValue(id){
     return parseFloat(document.getElementById(id).value.replace(/,/g,''))||0;
 }
 
-// ISR monthly table 2026 (Anexo 8 RMF 2026)
-const isrTable=[
+// ISR 2026 tables - ALL 4 periods (Anexo 8 RMF 2026, DOF 28/12/2025)
+const isrDiaria=[
+    {li:0.01,ls:27.78,cf:0,pct:0.0192},
+    {li:27.79,ls:235.81,cf:0.53,pct:0.064},
+    {li:235.82,ls:414.41,cf:13.85,pct:0.1088},
+    {li:414.42,ls:481.73,cf:33.28,pct:0.16},
+    {li:481.74,ls:576.76,cf:44.05,pct:0.1792},
+    {li:576.77,ls:1163.25,cf:61.08,pct:0.2136},
+    {li:1163.26,ls:1833.44,cf:186.35,pct:0.2352},
+    {li:1833.45,ls:3500.35,cf:343.98,pct:0.30},
+    {li:3500.36,ls:4667.13,cf:844.05,pct:0.32},
+    {li:4667.14,ls:14001.38,cf:1217.42,pct:0.34},
+    {li:14001.39,ls:9999999,cf:4391.07,pct:0.35}
+];
+const isrSemanal=[
+    {li:0.01,ls:194.46,cf:0,pct:0.0192},
+    {li:194.47,ls:1650.67,cf:3.71,pct:0.064},
+    {li:1650.68,ls:2900.87,cf:96.95,pct:0.1088},
+    {li:2900.88,ls:3372.11,cf:232.96,pct:0.16},
+    {li:3372.12,ls:4037.32,cf:308.35,pct:0.1792},
+    {li:4037.33,ls:8142.75,cf:427.56,pct:0.2136},
+    {li:8142.76,ls:12834.08,cf:1304.45,pct:0.2352},
+    {li:12834.09,ls:24502.45,cf:2407.86,pct:0.30},
+    {li:24502.46,ls:32669.91,cf:5908.35,pct:0.32},
+    {li:32669.92,ls:98009.66,cf:8521.94,pct:0.34},
+    {li:98009.67,ls:9999999,cf:30737.49,pct:0.35}
+];
+const isrQuincenal=[
+    {li:0.01,ls:416.70,cf:0,pct:0.0192},
+    {li:416.71,ls:3537.15,cf:7.95,pct:0.064},
+    {li:3537.16,ls:6216.15,cf:207.75,pct:0.1088},
+    {li:6216.16,ls:7225.95,cf:499.20,pct:0.16},
+    {li:7225.96,ls:8651.40,cf:660.75,pct:0.1792},
+    {li:8651.41,ls:17448.75,cf:916.20,pct:0.2136},
+    {li:17448.76,ls:27501.60,cf:2795.25,pct:0.2352},
+    {li:27501.61,ls:52505.25,cf:5159.70,pct:0.30},
+    {li:52505.26,ls:70006.95,cf:12660.75,pct:0.32},
+    {li:70006.96,ls:210020.70,cf:18261.30,pct:0.34},
+    {li:210020.71,ls:9999999,cf:65866.05,pct:0.35}
+];
+const isrMensual=[
     {li:0.01,ls:844.59,cf:0,pct:0.0192},
     {li:844.60,ls:7168.51,cf:16.22,pct:0.064},
     {li:7168.52,ls:12598.02,cf:420.95,pct:0.1088},
@@ -284,18 +323,32 @@ const isrTable=[
     {li:141880.67,ls:425641.99,cf:37009.69,pct:0.34},
     {li:425642.00,ls:9999999,cf:133488.54,pct:0.35}
 ];
+const isrAnual=[
+    {li:0.01,ls:10135.11,cf:0,pct:0.0192},
+    {li:10135.12,ls:86022.11,cf:194.59,pct:0.064},
+    {li:86022.12,ls:151176.19,cf:5051.37,pct:0.1088},
+    {li:151176.20,ls:175735.66,cf:12140.13,pct:0.16},
+    {li:175735.67,ls:210403.69,cf:16069.64,pct:0.1792},
+    {li:210403.70,ls:424353.97,cf:22282.14,pct:0.2136},
+    {li:424353.98,ls:668840.14,cf:67981.92,pct:0.2352},
+    {li:668840.15,ls:1276925.98,cf:125485.07,pct:0.30},
+    {li:1276925.99,ls:1702567.97,cf:307910.81,pct:0.32},
+    {li:1702567.98,ls:5107703.92,cf:444116.23,pct:0.34},
+    {li:5107703.93,ls:9999999999,cf:1601862.46,pct:0.35}
+];
+const isrTables={diario:isrDiaria,semanal:isrSemanal,quincenal:isrQuincenal,mensual:isrMensual,anual:isrAnual};
 
-const SUBSIDIO_MENSUAL=535.65;
-const LIMITE_SUBSIDIO=11492.66;
+const SUBSIDIO={diario:535.65/30.4,semanal:535.65/30.4*7,quincenal:535.65/2,mensual:535.65,anual:535.65*12};
+const LIM_SUBSIDIO={diario:11492.66/30.4,semanal:11492.66/30.4*7,quincenal:11492.66/2,mensual:11492.66,anual:11492.66*12};
 const SM_DIARIO=315.04;
 const SM_MENSUAL=SM_DIARIO*30.4;
 const UMA_MENSUAL=3566.22;
 
-function calcISR(baseGravMensual){
-    if(baseGravMensual<=0) return 0;
-    for(let i=isrTable.length-1;i>=0;i--){
-        if(baseGravMensual>=isrTable[i].li){
-            return isrTable[i].cf+(baseGravMensual-isrTable[i].li)*isrTable[i].pct;
+function calcISR(base,tabla){
+    if(base<=0) return 0;
+    for(let i=tabla.length-1;i>=0;i--){
+        if(base>=tabla[i].li){
+            return tabla[i].cf+(base-tabla[i].li)*tabla[i].pct;
         }
     }
     return 0;
@@ -338,11 +391,25 @@ function calcular(){
     const sbcDiario=diario*1.0493;
     const sbcMensual=sbcDiario*30.4;
 
-    // ISR mensual
-    const isrBruto=calcISR(mensual);
-    let subsidio=0;
-    if(mensual<=LIMITE_SUBSIDIO) subsidio=Math.min(SUBSIDIO_MENSUAL,isrBruto);
-    const isrNeto=Math.max(0,isrBruto-subsidio);
+    // ISR con tabla específica del periodo seleccionado
+    const baseISR={diario:diario,semanal:semanal,quincenal:quincenal,mensual:mensual,anual:anual}[periodo];
+    const tablaISR=isrTables[periodo];
+    const isrPeriodo=calcISR(baseISR,tablaISR);
+
+    // Convertir ISR del periodo a mensual para mostrar desglose mensual
+    let isrBrutoMensual;
+    switch(periodo){
+        case 'diario':isrBrutoMensual=isrPeriodo*30.4;break;
+        case 'semanal':isrBrutoMensual=isrPeriodo*30.4/7;break;
+        case 'quincenal':isrBrutoMensual=isrPeriodo*2;break;
+        case 'mensual':isrBrutoMensual=isrPeriodo;break;
+        case 'anual':isrBrutoMensual=isrPeriodo/12;break;
+    }
+
+    // Subsidio al empleo
+    let subsidioMensual=0;
+    if(mensual<=LIM_SUBSIDIO.mensual) subsidioMensual=Math.min(SUBSIDIO.mensual,isrBrutoMensual);
+    const isrNeto=Math.max(0,isrBrutoMensual-subsidioMensual);
 
     // IMSS obrero mensual
     const imssObrero=calcIMSSObrero(sbcMensual);
@@ -367,8 +434,8 @@ function calcular(){
     });
 
     // Deducciones
-    document.getElementById('d-isr').textContent='-'+fmt(isrBruto);
-    document.getElementById('d-subsidio').textContent=subsidio>0?'+'+fmt(subsidio):'$0.00';
+    document.getElementById('d-isr').textContent='-'+fmt(isrBrutoMensual);
+    document.getElementById('d-subsidio').textContent=subsidioMensual>0?'+'+fmt(subsidioMensual):'$0.00';
     document.getElementById('d-isr-neto').textContent='-'+fmt(isrNeto);
     document.getElementById('d-imss').textContent='-'+fmt(imssObrero);
     document.getElementById('d-total-ded').textContent='-'+fmt(totalDed);
