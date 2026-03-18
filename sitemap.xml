@@ -7,19 +7,25 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nominamexico.com/calculadora-finiquito.html</loc>
+    <loc>https://nominamexico.com/calculadora-finiquito</loc>
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nominamexico.com/calculadora-salario.html</loc>
+    <loc>https://nominamexico.com/calculadora-salario</loc>
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nominamexico.com/simulador-costo-empleado.html</loc>
+    <loc>https://nominamexico.com/simulador-costo-empleado</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nominamexico.com/convertidor-xml</loc>
     <lastmod>2026-03-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
