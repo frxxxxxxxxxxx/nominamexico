@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Costo Real de un Empleado 2026 México — ¿Cuánto cuesta contratar? | NominaPro</title>
+    <meta name="description" content="Calcula el costo real de un empleado en México 2026. Sueldo + IMSS patronal + INFONAVIT + Retiro + CEAV + aguinaldo + vacaciones + prima. Descubre cuánto pagas realmente.">
+    <meta name="keywords" content="costo real empleado México 2026, cuánto cuesta contratar empleado, IMSS patronal, costo laboral México, cargas sociales empleado, simulador costo empleado">
+    <link rel="canonical" href="https://nominamexico.com/simulador-costo-empleado">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--blue-900:#1a3a5c;--blue-800:#1e4d78;--blue-700:#2563a0;--blue-600:#2b72b8;--blue-100:#dbeafe;--blue-50:#eff6ff;--green-700:#15803d;--green-600:#16a34a;--green-500:#22c55e;--green-100:#dcfce7;--green-50:#f0fdf4;--gray-900:#111827;--gray-700:#374151;--gray-600:#4b5563;--gray-500:#6b7280;--gray-400:#9ca3af;--gray-200:#e5e7eb;--gray-100:#f3f4f6;--gray-50:#f9fafb;--white:#fff;--amber-700:#92400e;--amber-100:#fef3c7;--amber-50:#fffbeb;--red-600:#dc2626;--red-50:#fef2f2;--font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'IBM Plex Mono',monospace;--shadow-md:0 4px 12px rgba(0,0,0,.06);--radius:12px}
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:var(--font);color:var(--gray-700);background:var(--gray-50);-webkit-font-smoothing:antialiased}
+        .container{max-width:760px;margin:0 auto;padding:0 1.5rem;overflow:hidden}
+        nav{background:var(--white);border-bottom:1px solid var(--gray-200);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:center}
+        nav .inner{max-width:760px;width:100%;display:flex;justify-content:space-between;align-items:center}
+        nav a{text-decoration:none;color:var(--blue-800);font-weight:800;font-size:1rem;display:flex;align-items:center;gap:.5rem}
+        nav .logo-icon{width:30px;height:30px;background:var(--blue-600);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.75rem}
+        nav .back{color:var(--gray-500);font-size:.85rem;font-weight:500}
+        nav .back:hover{color:var(--blue-600)}
+        .hero-mini{background:linear-gradient(180deg,var(--blue-50),var(--white));padding:2.5rem 0 1.5rem;text-align:center}
+        .hero-mini h1{font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:800;color:var(--blue-900);letter-spacing:-.02em;margin-bottom:.5rem;line-height:1.2}
+        .hero-mini p{color:var(--gray-500);font-size:.95rem;line-height:1.6;max-width:540px;margin:0 auto}
+        .hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--green-100);color:var(--green-700);padding:.3rem .8rem;border-radius:100px;font-size:.72rem;font-weight:600;margin-bottom:.8rem}
+        .calc-card{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:2rem;box-shadow:var(--shadow-md);margin:1.5rem 0;overflow:hidden}
+        .form-section-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;padding:.5rem .8rem;border-radius:8px}
+        .section-blue{color:var(--blue-600);background:var(--blue-50)}
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+        .form-group{display:flex;flex-direction:column;gap:.3rem}
+        .form-group.full{grid-column:1/-1}
+        .form-group label{font-size:.82rem;font-weight:600;color:var(--gray-700);display:flex;align-items:center;gap:.3rem}
+        .form-group input,.form-group select{padding:.65rem .8rem;border:1.5px solid var(--gray-200);border-radius:8px;font-family:var(--font);font-size:.92rem;color:var(--gray-900);transition:border .2s;background:var(--white)}
+        .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--blue-600);box-shadow:0 0 0 3px rgba(43,114,184,.1)}
+        .form-hint{font-size:.72rem;color:var(--gray-400)}
+        .tooltip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:var(--gray-200);border-radius:50%;font-size:.65rem;font-weight:700;color:var(--gray-500);cursor:help}
+        .tooltip:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--gray-900);color:#fff;padding:.4rem .7rem;border-radius:6px;font-size:.72rem;font-weight:400;max-width:260px;white-space:normal;line-height:1.4;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+        .btn-calc{width:100%;padding:.85rem;background:var(--blue-600);color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+        .btn-calc:hover{background:var(--blue-700);transform:translateY(-1px);box-shadow:0 4px 16px rgba(43,114,184,.3)}
+        .results{display:none;margin-top:1.5rem}
+        .results.show{display:block;animation:fadeIn .4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+        .big-number{text-align:center;padding:1.5rem;background:var(--blue-900);border-radius:12px;color:#fff;margin-bottom:1.5rem}
+        .big-number-label{font-size:.85rem;font-weight:500;opacity:.7;margin-bottom:.3rem}
+        .big-number-amount{font-family:var(--mono);font-size:clamp(1.8rem,5vw,2.5rem);font-weight:800}
+        .big-number-sub{font-size:.78rem;opacity:.5;margin-top:.3rem}
+
+        .percent-bar{margin-bottom:1.5rem}
+        .percent-bar-label{font-size:.78rem;font-weight:700;color:var(--gray-700);margin-bottom:.5rem;display:flex;justify-content:space-between}
+        .percent-bar-track{height:32px;background:var(--gray-100);border-radius:8px;overflow:hidden;display:flex}
+        .pb-segment{height:100%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff;transition:width .5s ease;min-width:0;overflow:hidden;white-space:nowrap}
+        .pb-salary{background:var(--blue-600)}
+        .pb-imss{background:var(--green-600)}
+        .pb-infonavit{background:#7c3aed}
+        .pb-retiro{background:#b45309}
+        .pb-prestaciones{background:#0d9488}
+        .percent-legend{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.6rem}
+        .legend-item{display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--gray-600)}
+        .legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+        .detail-section{margin-bottom:1.2rem}
+        .detail-title{font-size:.78rem;font-weight:700;color:var(--white);padding:.45rem .8rem;border-radius:6px;margin-bottom:.6rem}
+        .detail-title.blue{background:var(--blue-600)}
+        .detail-title.green{background:var(--green-600)}
+        .detail-title.purple{background:#7c3aed}
+        .detail-title.amber{background:#b45309}
+        .detail-title.teal{background:#0d9488}
+        .detail-row{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--gray-100);font-size:.85rem;gap:.5rem;min-width:0}
+        .detail-row:last-child{border-bottom:none}
+        .detail-label{color:var(--gray-500);flex-shrink:1;min-width:0}
+        .detail-value{font-weight:600;color:var(--gray-900);font-family:var(--mono);font-size:.83rem;text-align:right;white-space:nowrap}
+        .detail-value.green{color:var(--green-700)}
+        .detail-value.red{color:var(--red-600)}
+        .detail-subtotal{background:var(--gray-50);margin:0 -.5rem;padding:.5rem;border-radius:6px;display:flex;justify-content:space-between;font-size:.88rem}
+        .detail-subtotal .detail-label{font-weight:700;color:var(--gray-900)}
+
+        .compare-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+        .compare-card{border:1px solid var(--gray-200);border-radius:12px;padding:1.2rem;text-align:center}
+        .compare-card-label{font-size:.75rem;color:var(--gray-500);font-weight:600;margin-bottom:.3rem}
+        .compare-card-amount{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--blue-900)}
+        .compare-card-sub{font-size:.7rem;color:var(--gray-400);margin-top:.2rem}
+        .compare-card.highlight{background:var(--red-50);border-color:var(--red-600)}
+        .compare-card.highlight .compare-card-amount{color:var(--red-600)}
+        .compare-card.highlight .compare-card-label{color:var(--red-600)}
+
+        .insight-box{background:var(--amber-50);border:1px solid var(--amber-100);border-radius:10px;padding:1rem;margin:1rem 0;font-size:.85rem;color:var(--amber-700);line-height:1.6}
+        .insight-box strong{color:var(--amber-700)}
+
+        .data-ref{background:var(--blue-50);border:1px solid var(--blue-100);border-radius:10px;padding:1rem;margin-top:1rem}
+        .data-ref-title{font-size:.75rem;font-weight:700;color:var(--blue-700);margin-bottom:.4rem}
+        .data-ref-row{display:flex;justify-content:space-between;font-size:.78rem;padding:.25rem 0;color:var(--gray-600);gap:.5rem;flex-wrap:wrap}
+        .data-ref-row span:last-child{font-family:var(--mono);font-weight:600;color:var(--gray-900)}
+
+        .promo-banner{background:linear-gradient(135deg,var(--blue-800),var(--blue-900));border-radius:14px;padding:2rem;text-align:center;margin:2.5rem 0}
+        .promo-banner h3{color:#fff;font-size:1.15rem;font-weight:700;margin-bottom:.5rem}
+        .promo-banner p{color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:1.2rem;line-height:1.6}
+        .promo-btn{display:inline-flex;align-items:center;gap:.4rem;background:#fff;color:var(--blue-700);padding:.7rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .2s}
+        .promo-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.2)}
+        .info-section{margin:2rem 0}
+        .info-section h2{font-size:1.2rem;font-weight:800;color:var(--blue-900);margin-bottom:.8rem}
+        .info-section h3{font-size:1rem;font-weight:700;color:var(--gray-900);margin:1.2rem 0 .4rem}
+        .info-section p{font-size:.9rem;color:var(--gray-600);line-height:1.7;margin-bottom:.6rem}
+        .info-section ul{margin:.5rem 0 1rem 1.2rem}
+        .info-section li{font-size:.88rem;color:var(--gray-600);line-height:1.6;margin-bottom:.3rem}
+        footer{margin-top:2rem;padding:1.5rem;text-align:center;border-top:1px solid var(--gray-200)}
+        footer p{font-size:.75rem;color:var(--gray-400)}
+        footer a{color:var(--blue-600);text-decoration:none}
+        .wa-float{position:fixed;bottom:24px;right:24px;z-index:999;text-decoration:none}
+        .wa-btn{width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4)}
+        .wa-btn svg{width:28px;height:28px;fill:#fff}
+        @media(max-width:640px){
+            html,body{overflow-x:hidden}
+            *{max-width:100vw}
+            .form-grid{grid-template-columns:1fr}
+            .calc-card{padding:1.3rem}
+            .compare-cards{grid-template-columns:1fr}
+            .promo-banner{padding:1.5rem}
+            .percent-bar-track{height:24px}
+            .pb-segment{font-size:.55rem}
+            .detail-row{font-size:.8rem}
+            .tooltip:hover::after{left:auto;right:0;transform:none;max-width:200px}
+        }
+    </style>
+</head>
+<body>
+<nav><div class="inner"><a href="/"><div class="logo-icon">N</div>NominaPro</a><a href="/" class="back">← Inicio</a></div></nav>
+<section class="hero-mini">
+    <div class="container">
+        <div class="hero-badge">Datos 2026 · IMSS + INFONAVIT + prestaciones · Gratis</div>
+        <h1>¿Cuánto cuesta realmente un empleado en México?</h1>
+        <p>Descubre el costo real de contratar. No es solo el sueldo — incluye IMSS patronal, INFONAVIT, Retiro, CEAV, aguinaldo, vacaciones y prima vacacional.</p>
+    </div>
+</section>
+<div class="container">
+    <div class="calc-card">
+        <div class="form-section-title section-blue">Datos del empleado</div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Salario mensual bruto ($) <span class="tooltip" data-tip="El sueldo mensual antes de descuentos que aparece en el contrato del trabajador.">i</span></label>
+                <input type="text" id="salario" placeholder="Ej: 15,000" inputmode="decimal" oninput="formatInput(this)">
+            </div>
+            <div class="form-group">
+                <label>Periodo de pago</label>
+                <select id="periodo">
+                    <option value="mensual" selected>Mensual</option>
+                    <option value="quincenal">Quincenal</option>
+                    <option value="semanal">Semanal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Días de aguinaldo <span class="tooltip" data-tip="Mínimo 15 días por ley (Art. 87 LFT). Algunas empresas dan 20, 30 o más.">i</span></label>
+                <input type="number" id="aguinaldo" value="15" min="15">
+            </div>
+            <div class="form-group">
+                <label>Prima vacacional (%) <span class="tooltip" data-tip="Mínimo 25% sobre vacaciones (Art. 80 LFT).">i</span></label>
+                <input type="number" id="prima-vac" value="25" min="25">
+            </div>
+            <div class="form-group">
+                <label>Antigüedad (años) <span class="tooltip" data-tip="Años del trabajador en la empresa. Afecta los días de vacaciones y el factor de integración del SBC.">i</span></label>
+                <input type="number" id="antiguedad" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label>Prima riesgo de trabajo (%) <span class="tooltip" data-tip="Varía según la siniestralidad de tu empresa. Clase I: 0.54%, Clase II: 1.13%, Clase III: 2.60%, Clase IV: 4.65%, Clase V: 7.59%.">i</span></label>
+                <select id="prima-rt">
+                    <option value="0.0054">Clase I — 0.54%</option>
+                    <option value="0.0113" selected>Clase II — 1.13%</option>
+                    <option value="0.0260">Clase III — 2.60%</option>
+                    <option value="0.0465">Clase IV — 4.65%</option>
+                    <option value="0.0759">Clase V — 7.59%</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn-calc" onclick="calcular()">Calcular costo real</button>
+
+        <div class="results" id="results">
+            <div class="big-number">
+                <div class="big-number-label">Costo total mensual para tu empresa</div>
+                <div class="big-number-amount" id="r-total">$0</div>
+                <div class="big-number-sub" id="r-total-sub">por empleado al mes</div>
+            </div>
+
+            <!-- Barra visual -->
+            <div class="percent-bar">
+                <div class="percent-bar-label"><span>Distribución del costo</span><span id="pct-extra">—</span></div>
+                <div class="percent-bar-track">
+                    <div class="pb-segment pb-salary" id="pb-sal" style="width:0%"></div>
+                    <div class="pb-segment pb-imss" id="pb-imss" style="width:0%"></div>
+                    <div class="pb-segment pb-infonavit" id="pb-info" style="width:0%"></div>
+                    <div class="pb-segment pb-retiro" id="pb-ret" style="width:0%"></div>
+                    <div class="pb-segment pb-prestaciones" id="pb-prest" style="width:0%"></div>
+                </div>
+                <div class="percent-legend">
+                    <div class="legend-item"><div class="legend-dot" style="background:var(--blue-600)"></div>Sueldo</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:var(--green-600)"></div>IMSS patronal</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>INFONAVIT</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#b45309"></div>Retiro + CEAV</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#0d9488"></div>Prestaciones</div>
+                </div>
+            </div>
+
+            <!-- Comparativa rápida -->
+            <div class="compare-cards">
+                <div class="compare-card">
+                    <div class="compare-card-label">El empleado recibe</div>
+                    <div class="compare-card-amount" id="r-neto">—</div>
+                    <div class="compare-card-sub">neto aproximado / mes</div>
+                </div>
+                <div class="compare-card highlight">
+                    <div class="compare-card-label">Tú pagas realmente</div>
+                    <div class="compare-card-amount" id="r-costo">—</div>
+                    <div class="compare-card-sub" id="r-diff">— más que el sueldo</div>
+                </div>
+            </div>
+
+            <div class="insight-box" id="insight">—</div>
+
+            <!-- Desglose IMSS -->
+            <div class="detail-section">
+                <div class="detail-title green">IMSS patronal (desglose por rama)</div>
+                <div class="detail-row"><span class="detail-label">Cuota fija EyM (20.40% sobre UMA)</span><span class="detail-value" id="d-cuota-fija">—</span></div>
+                <div class="detail-row"><span class="detail-label">Excedente EyM (1.10% sobre SBC-3UMA)</span><span class="detail-value" id="d-excedente">—</span></div>
+                <div class="detail-row"><span class="detail-label">Gastos médicos pensionados (1.05%)</span><span class="detail-value" id="d-gastos">—</span></div>
+                <div class="detail-row"><span class="detail-label">Prestaciones en dinero (0.70%)</span><span class="detail-value" id="d-dinero">—</span></div>
+                <div class="detail-row"><span class="detail-label">Invalidez y vida (1.75%)</span><span class="detail-value" id="d-invalidez">—</span></div>
+                <div class="detail-row"><span class="detail-label">Riesgo de trabajo (según clase)</span><span class="detail-value" id="d-riesgo">—</span></div>
+                <div class="detail-row"><span class="detail-label">Guarderías (1.00%)</span><span class="detail-value" id="d-guarderias">—</span></div>
+                <div class="detail-subtotal"><span class="detail-label">Total IMSS patronal / mes</span><span class="detail-value" id="d-imss-total">—</span></div>
+            </div>
+
+            <!-- Retiro + CEAV + INFONAVIT -->
+            <div class="detail-section">
+                <div class="detail-title purple">INFONAVIT + Retiro + CEAV</div>
+                <div class="detail-row"><span class="detail-label">INFONAVIT (5.00% sobre SBC)</span><span class="detail-value" id="d-infonavit">—</span></div>
+                <div class="detail-row"><span class="detail-label">Retiro SAR (2.00% sobre SBC)</span><span class="detail-value" id="d-retiro">—</span></div>
+                <div class="detail-row"><span class="detail-label">CEAV patronal (escalonada 2026)</span><span class="detail-value" id="d-ceav">—</span></div>
+                <div class="detail-row" style="font-size:.75rem;color:var(--gray-400)"><span class="detail-label" id="d-ceav-det">— rango aplicable</span><span class="detail-value"></span></div>
+                <div class="detail-subtotal"><span class="detail-label">Total INFONAVIT + Retiro + CEAV / mes</span><span class="detail-value" id="d-irc-total">—</span></div>
+            </div>
+
+            <!-- Prestaciones de ley -->
+            <div class="detail-section">
+                <div class="detail-title teal">Prestaciones de ley (costo mensualizado)</div>
+                <div class="detail-row"><span class="detail-label">Aguinaldo (proporcional mensual)</span><span class="detail-value" id="d-aguinaldo">—</span></div>
+                <div class="detail-row"><span class="detail-label">Vacaciones (proporcional mensual)</span><span class="detail-value" id="d-vacaciones">—</span></div>
+                <div class="detail-row"><span class="detail-label">Prima vacacional (proporcional mensual)</span><span class="detail-value" id="d-prima">—</span></div>
+                <div class="detail-subtotal"><span class="detail-label">Total prestaciones / mes</span><span class="detail-value" id="d-prest-total">—</span></div>
+            </div>
+
+            <!-- Resumen anual -->
+            <div class="detail-section">
+                <div class="detail-title blue">Resumen anual</div>
+                <div class="detail-row"><span class="detail-label">Sueldo anual bruto</span><span class="detail-value" id="d-anual-sueldo">—</span></div>
+                <div class="detail-row"><span class="detail-label">Cargas sociales anuales</span><span class="detail-value red" id="d-anual-cargas">—</span></div>
+                <div class="detail-row"><span class="detail-label">Prestaciones anuales</span><span class="detail-value" id="d-anual-prest">—</span></div>
+                <div class="detail-subtotal"><span class="detail-label">Costo total anual</span><span class="detail-value" style="font-size:1rem" id="d-anual-total">—</span></div>
+            </div>
+
+            <div class="data-ref">
+                <div class="data-ref-title">Datos oficiales 2026 utilizados</div>
+                <div class="data-ref-row"><span>UMA diaria / mensual</span><span>$117.31 / $3,566.22</span></div>
+                <div class="data-ref-row"><span>Salario mínimo general</span><span>$315.04 / día</span></div>
+                <div class="data-ref-row"><span>CEAV patronal 2026</span><span>3.15% a 7.51% (escalonada)</span></div>
+                <div class="data-ref-row"><span>Vacaciones (reforma LFT 2023)</span><span>12 a 32 días según antigüedad</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <h3>¿Tienes varios empleados?</h3>
+        <p>NominaPro 2026 calcula automáticamente el costo de cada empleado, genera la nómina completa con ISR, IMSS, INFONAVIT y recibos. Todo en Excel.</p>
+        <a href="/" class="promo-btn">Conocer NominaPro 2026 — $249 MXN →</a>
+    </div>
+
+    <div class="info-section">
+        <h2>¿Cuánto cuesta realmente un empleado en México 2026?</h2>
+        <p>Contratar un empleado en México implica costos que van mucho más allá del sueldo que aparece en el contrato. Como patrón, tienes obligaciones legales que representan entre un 30% y un 45% adicional al salario bruto dependiendo del nivel salarial y la clase de riesgo de tu empresa.</p>
+        <h3>Cargas sociales obligatorias</h3>
+        <p>Las cargas sociales que el patrón paga por cada trabajador son:</p>
+        <ul>
+            <li><strong>IMSS patronal:</strong> incluye cuota fija de Enfermedades y Maternidad (20.40% sobre UMA), excedente, gastos médicos pensionados, prestaciones en dinero, invalidez y vida, riesgo de trabajo y guarderías.</li>
+            <li><strong>INFONAVIT:</strong> 5% sobre el SBC del trabajador, destinado al fondo de vivienda.</li>
+            <li><strong>Retiro (SAR):</strong> 2% sobre el SBC.</li>
+            <li><strong>CEAV patronal:</strong> desde 2023 es una cuota escalonada que va del 3.15% al 7.51% según el nivel salarial. En 2026 estamos en el cuarto año del incremento gradual (Decreto DOF 16/12/2020).</li>
+        </ul>
+        <h3>Prestaciones mínimas de ley</h3>
+        <ul>
+            <li><strong>Aguinaldo:</strong> mínimo 15 días de salario al año (Art. 87 LFT).</li>
+            <li><strong>Vacaciones:</strong> desde la reforma 2023, el primer año son 12 días y aumentan progresivamente hasta 32.</li>
+            <li><strong>Prima vacacional:</strong> 25% sobre el monto de vacaciones (Art. 80 LFT).</li>
+        </ul>
+        <h3>¿Cómo se calcula el SBC?</h3>
+        <p>El Salario Base de Cotización integra el salario diario más la parte proporcional de aguinaldo, vacaciones y prima vacacional (Art. 30 LSS). El factor de integración para prestaciones mínimas de ley y un año de antigüedad es de 1.0493. Este factor aumenta con la antigüedad porque los días de vacaciones se incrementan.</p>
+        <h3>Tabla de CEAV patronal 2026</h3>
+        <p>La cuota de Cesantía en Edad Avanzada y Vejez varía según el nivel salarial del empleado medido en UMAs:</p>
+        <ul>
+            <li>Hasta 1 salario mínimo ($315.04/día): 3.150%</li>
+            <li>Más de 1 SM hasta 3.00 UMA ($351.93): 6.030%</li>
+            <li>3.01 a 3.50 UMA ($410.59): 6.360%</li>
+            <li>3.51 a 4.00 UMA ($469.24): 6.610%</li>
+            <li>Más de 4.01 UMA: 7.510%</li>
+        </ul>
+    </div>
+</div>
+<footer><p>© 2026 <a href="/">nominamexico.com</a> · Simulador de costo de empleado · <a href="/">NominaPro — Sistema de nómina en Excel</a></p></footer>
+
+<a href="https://wa.me/message/F5GEDQNKGGBRE1" target="_blank" rel="noopener" class="wa-float"><div class="wa-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div></a>
+
+<script>
+const UMA_D=117.31,UMA_M=UMA_D*30.4,SM_D=315.04;
+const vacT=[0,12,14,16,18,20,22,22,22,22,22,24,24,24,24,24,26,26,26,26,26,28,28,28,28,28,30,30,30,30,30,32,32,32,32,32];
+function diasVac(a){return a<1?12:a<vacT.length?vacT[a]:32}
+
+const ceav=[{lim:0.01,rate:0.0315},{lim:315.05,rate:0.0603},{lim:293.29,rate:0.0603},{lim:351.94,rate:0.0636},{lim:410.60,rate:0.0661},{lim:469.25,rate:0.0751}];
+function getCEAV(sbcD){
+    if(sbcD<=315.04) return {rate:0.0315,label:'3.15% (hasta 1 SM)'};
+    if(sbcD<=351.93) return {rate:0.0603,label:'6.03% (2.51-3.00 UMA)'};
+    if(sbcD<=410.59) return {rate:0.0636,label:'6.36% (3.01-3.50 UMA)'};
+    if(sbcD<=469.24) return {rate:0.0661,label:'6.61% (3.51-4.00 UMA)'};
+    return {rate:0.0751,label:'7.51% (4.01+ UMA)'};
+}
+
+function fmt(n){return'$'+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function fmtK(n){return n>=10000?'$'+Math.round(n/1000).toLocaleString()+'k':fmt(n)}
+function formatInput(el){let p=el.selectionStart;let r=el.value.replace(/[^0-9.]/g,'');let pts=r.split('.');let i=pts[0];let d=pts.length>1?'.'+pts[1].slice(0,2):'';let o=el.value.length;let f=i.replace(/\B(?=(\d{3})+(?!\d))/g,',')+d;el.value=f;el.setSelectionRange(p+(f.length-o),p+(f.length-o))}
+
+function calcular(){
+    const salMensualRaw=parseFloat(document.getElementById('salario').value.replace(/,/g,''))||0;
+    if(!salMensualRaw){alert('Ingresa el salario mensual.');return}
+
+    const periodo=document.getElementById('periodo').value;
+    const diasAg=parseInt(document.getElementById('aguinaldo').value)||15;
+    const primaVacPct=(parseInt(document.getElementById('prima-vac').value)||25)/100;
+    const antiguedad=parseInt(document.getElementById('antiguedad').value)||1;
+    const primaRT=parseFloat(document.getElementById('prima-rt').value);
+
+    const salMensual=salMensualRaw;
+    const salDiario=salMensual/30.4;
+    const diasVacAnio=diasVac(antiguedad);
+
+    // Factor de integración SBC
+    const factorAg=diasAg/365;
+    const factorVac=(diasVacAnio*primaVacPct)/365;
+    const factorVacDias=diasVacAnio/365;
+    const factorInt=1+factorAg+factorVac+factorVacDias;
+    const sbcDiario=Math.min(salDiario*factorInt,UMA_D*25);
+    const sbcMensual=sbcDiario*30.4;
+
+    // IMSS Patronal
+    const cuotaFija=UMA_M*0.204;
+    const excedente=Math.max(0,sbcMensual-3*UMA_M)*0.011;
+    const gastosMed=sbcMensual*0.0105;
+    const dinero=sbcMensual*0.007;
+    const invalidez=sbcMensual*0.0175;
+    const riesgo=sbcMensual*primaRT;
+    const guarderias=sbcMensual*0.01;
+    const imssTotal=cuotaFija+excedente+gastosMed+dinero+invalidez+riesgo+guarderias;
+
+    // INFONAVIT + Retiro + CEAV
+    const infonavit=sbcMensual*0.05;
+    const retiro=sbcMensual*0.02;
+    const ceavData=getCEAV(sbcDiario);
+    const ceavMonto=sbcMensual*ceavData.rate;
+    const ircTotal=infonavit+retiro+ceavMonto;
+
+    // Prestaciones mensualizadas
+    const aguinaldoMes=salDiario*diasAg/12;
+    const vacacionesMes=salDiario*diasVacAnio/12;
+    const primaMes=vacacionesMes*primaVacPct;
+    const prestTotal=aguinaldoMes+vacacionesMes+primaMes;
+
+    // Total
+    const costoTotal=salMensual+imssTotal+ircTotal+prestTotal;
+    const cargasSociales=imssTotal+ircTotal;
+    const pctExtra=((costoTotal/salMensual-1)*100).toFixed(0);
+
+    // ISR aproximado del empleado (para mostrar neto)
+    const isrM=[{li:0.01,ls:844.59,cf:0,p:.0192},{li:844.6,ls:7168.51,cf:16.22,p:.064},{li:7168.52,ls:12598.02,cf:420.95,p:.1088},{li:12598.03,ls:14644.64,cf:1011.68,p:.16},{li:14644.65,ls:17533.64,cf:1339.14,p:.1792},{li:17533.65,ls:35362.83,cf:1856.84,p:.2136},{li:35362.84,ls:55736.68,cf:5665.16,p:.2352},{li:55736.69,ls:106410.5,cf:10457.09,p:.3},{li:106410.51,ls:141880.66,cf:25659.23,p:.32},{li:141880.67,ls:425641.99,cf:37009.69,p:.34},{li:425642,ls:9e9,cf:133488.54,p:.35}];
+    let isrBruto=0;
+    for(let i=isrM.length-1;i>=0;i--){if(salMensual>=isrM[i].li){isrBruto=isrM[i].cf+(salMensual-isrM[i].li)*isrM[i].p;break}}
+    let subsidio=salMensual<=11492.66?Math.min(535.65,isrBruto):0;
+    const isrNeto=Math.max(0,isrBruto-subsidio);
+    const imssObrero=Math.max(0,sbcMensual-3*UMA_M)*0.004+sbcMensual*0.0025+sbcMensual*0.0038+sbcMensual*0.0063+sbcMensual*0.01125;
+    const netoEmpleado=salMensual-isrNeto-imssObrero;
+
+    // Render
+    document.getElementById('r-total').textContent=fmt(costoTotal);
+    document.getElementById('r-total-sub').textContent='por empleado al mes · '+pctExtra+'% más que el sueldo';
+    document.getElementById('r-neto').textContent=fmt(netoEmpleado);
+    document.getElementById('r-costo').textContent=fmt(costoTotal);
+    document.getElementById('r-diff').textContent='+'+fmt(costoTotal-salMensual)+' arriba del sueldo';
+    document.getElementById('pct-extra').textContent='+'+pctExtra+'% sobre el sueldo';
+
+    // Percent bar
+    const pSal=(salMensual/costoTotal*100).toFixed(1);
+    const pImss=(imssTotal/costoTotal*100).toFixed(1);
+    const pInfo=(infonavit/costoTotal*100).toFixed(1);
+    const pRet=((retiro+ceavMonto)/costoTotal*100).toFixed(1);
+    const pPrest=(prestTotal/costoTotal*100).toFixed(1);
+    document.getElementById('pb-sal').style.width=pSal+'%';
+    document.getElementById('pb-sal').textContent=pSal>8?pSal+'%':'';
+    document.getElementById('pb-imss').style.width=pImss+'%';
+    document.getElementById('pb-imss').textContent=pImss>5?pImss+'%':'';
+    document.getElementById('pb-info').style.width=pInfo+'%';
+    document.getElementById('pb-info').textContent=pInfo>4?pInfo+'%':'';
+    document.getElementById('pb-ret').style.width=pRet+'%';
+    document.getElementById('pb-ret').textContent=pRet>4?pRet+'%':'';
+    document.getElementById('pb-prest').style.width=pPrest+'%';
+    document.getElementById('pb-prest').textContent=pPrest>4?pPrest+'%':'';
+
+    // IMSS detail
+    document.getElementById('d-cuota-fija').textContent=fmt(cuotaFija);
+    document.getElementById('d-excedente').textContent=fmt(excedente);
+    document.getElementById('d-gastos').textContent=fmt(gastosMed);
+    document.getElementById('d-dinero').textContent=fmt(dinero);
+    document.getElementById('d-invalidez').textContent=fmt(invalidez);
+    document.getElementById('d-riesgo').textContent=fmt(riesgo);
+    document.getElementById('d-guarderias').textContent=fmt(guarderias);
+    document.getElementById('d-imss-total').textContent=fmt(imssTotal);
+
+    // IRC detail
+    document.getElementById('d-infonavit').textContent=fmt(infonavit);
+    document.getElementById('d-retiro').textContent=fmt(retiro);
+    document.getElementById('d-ceav').textContent=fmt(ceavMonto);
+    document.getElementById('d-ceav-det').textContent='Tasa: '+ceavData.label+' · SBC diario: '+fmt(sbcDiario);
+    document.getElementById('d-irc-total').textContent=fmt(ircTotal);
+
+    // Prestaciones
+    document.getElementById('d-aguinaldo').textContent=fmt(aguinaldoMes);
+    document.getElementById('d-vacaciones').textContent=fmt(vacacionesMes);
+    document.getElementById('d-prima').textContent=fmt(primaMes);
+    document.getElementById('d-prest-total').textContent=fmt(prestTotal);
+
+    // Anual
+    document.getElementById('d-anual-sueldo').textContent=fmt(salMensual*12);
+    document.getElementById('d-anual-cargas').textContent=fmt(cargasSociales*12);
+    document.getElementById('d-anual-prest').textContent=fmt(prestTotal*12);
+    document.getElementById('d-anual-total').textContent=fmt(costoTotal*12);
+
+    // Insight
+    const insightText='Por cada <strong>$1.00</strong> de sueldo que le pagas a este empleado, en realidad gastas <strong>$'+(costoTotal/salMensual).toFixed(2)+'</strong> en total. Las cargas sociales y prestaciones representan <strong>'+fmt(costoTotal-salMensual)+'</strong> mensuales adicionales, o <strong>'+fmt((costoTotal-salMensual)*12)+'</strong> al año.';
+    document.getElementById('insight').innerHTML=insightText;
+
+    document.getElementById('results').classList.add('show');
+    document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
