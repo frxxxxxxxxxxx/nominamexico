@@ -3,519 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema de Inventarios 2026 México — Control de Stock, Kardex y Valuación | InventarioPro</title>
-<meta name="description" content="Controla tu inventario, registra entradas y salidas, genera Kardex automático y valúa tu stock con costo promedio. IVA, IEPS, claves SAT CFDI 4.0. Para negocios en México. Pago único.">
-<meta name="keywords" content="sistema inventarios México 2026, control de inventario, Kardex automático, valuación inventario, costo promedio, PEPS, claves SAT, CFDI 4.0, stock mínimo, inventario físico, mermas, IEPS 2026, inventario Excel, control de stock">
+<title>Sistema de Inventarios 2026 México — Control de Stock, Kardex, Costo Promedio y Valuación | InventarioPro</title>
+<meta name="description" content="Sistema de inventarios para negocios en México. Controla stock, genera Kardex automático, calcula costo promedio ponderado, concilia inventario físico. IVA, IEPS, claves SAT CFDI 4.0 actualizados 2026. Pago único.">
+<meta name="keywords" content="sistema inventarios México 2026, control de inventario negocio, Kardex automático Excel, valuación inventario costo promedio, claves SAT CFDI 4.0, stock mínimo alertas, inventario físico conciliación, IEPS 2026 bebidas alimentos, control mermas, entradas salidas almacén, Art 76 LISR inventarios, sistema control stock PyME México">
 <meta property="og:title" content="InventarioPro 2026 — Sistema de Inventarios para Negocios en México">
-<meta property="og:description" content="Controla stock, genera Kardex, valúa inventario y cumple con el SAT. Costo promedio automático. IVA, IEPS, claves SAT.">
+<meta property="og:description" content="Controla stock, genera Kardex, valúa inventario con costo promedio y cumple con el SAT. IVA, IEPS, claves SAT actualizados 2026.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nominamexico.com/inventario/">
 <meta property="og:locale" content="es_MX">
 <link rel="canonical" href="https://nominamexico.com/inventario/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--b9:#0a1628;--b8:#0f2240;--b7:#1e3a5f;--b6:#2563eb;--b5:#3b82f6;--b4:#60a5fa;--b3:#93c5fd;--b2:#bfdbfe;--b1:#dbeafe;--b0:#eff6ff;--d9:#111827;--d7:#374151;--d6:#4b5563;--d5:#6b7280;--d4:#9ca3af;--d2:#e5e7eb;--d1:#f3f4f6;--d0:#f9fafb;--w:#fff;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444;--font:'DM Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--r:14px}
+:root{--b9:#0a1628;--b8:#0f2240;--b7:#1e3a5f;--b6:#2563eb;--b5:#3b82f6;--b4:#60a5fa;--b3:#93c5fd;--b2:#bfdbfe;--b1:#dbeafe;--b0:#eff6ff;--d9:#111827;--d7:#374151;--d6:#4b5563;--d5:#6b7280;--d4:#9ca3af;--d2:#e5e7eb;--d1:#f3f4f6;--d0:#f9fafb;--w:#fff;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444;--font:'Plus Jakarta Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--r:12px;--gold:#b8860b;--gold-l:#fdf6e3}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--d6);background:var(--w);-webkit-font-smoothing:antialiased;overflow-x:hidden}.ct{max-width:1160px;margin:0 auto;padding:0 2rem}
-
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--d2);height:64px}nav .ct{display:flex;justify-content:space-between;align-items:center;height:100%}.nl{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:800;font-size:1.05rem;color:var(--b8)}.nli{width:34px;height:34px;background:linear-gradient(135deg,var(--b6),var(--b8));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.75rem;box-shadow:0 2px 8px rgba(37,99,235,.2)}.nk{display:flex;align-items:center;gap:1.4rem}.nk a{text-decoration:none;color:var(--d5);font-size:.82rem;font-weight:500;transition:.2s}.nk a:hover{color:var(--b6)}.nb{background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff!important;padding:.5rem 1.2rem;border-radius:8px;font-weight:600;font-size:.82rem;box-shadow:0 2px 8px rgba(37,99,235,.25);transition:all .2s}.nb:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.3)}.mm{display:none;background:none;border:none;font-size:1.4rem;color:var(--d5);cursor:pointer}
-
-/* HERO */
-.hero{padding:10rem 0 5rem;background:linear-gradient(175deg,var(--b0) 0%,#f0f4ff 40%,var(--w) 100%);position:relative;overflow:hidden}.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.06) 0%,transparent 70%);pointer-events:none}.hero::after{content:'';position:absolute;bottom:-100px;left:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,.04) 0%,transparent 70%);pointer-events:none}.hero .ct{display:grid;grid-template-columns:1fr 1.05fr;gap:4.5rem;align-items:center}
-.htag{display:inline-flex;align-items:center;gap:.4rem;background:var(--b1);color:var(--b7);padding:.4rem 1rem;border-radius:100px;font-size:.78rem;font-weight:600;margin-bottom:1.2rem;border:1px solid var(--b2)}
-.hero h1{font-size:clamp(2rem,4.2vw,2.8rem);font-weight:900;color:var(--b9);line-height:1.12;letter-spacing:-.03em;margin-bottom:1rem}.hero h1 span{background:linear-gradient(135deg,var(--b6),var(--b8));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hd{font-size:1.05rem;line-height:1.75;color:var(--d5);margin-bottom:2rem;max-width:480px}
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--d2);height:64px}nav .ct{display:flex;justify-content:space-between;align-items:center;height:100%}.nl{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:800;font-size:1.1rem;color:var(--b8)}.nli{width:36px;height:36px;background:linear-gradient(135deg,var(--b6),var(--b8));border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.75rem;box-shadow:0 2px 8px rgba(37,99,235,.2)}.nk{display:flex;align-items:center;gap:1.5rem}.nk a{text-decoration:none;color:var(--d5);font-size:.85rem;font-weight:500;transition:.2s}.nk a:hover{color:var(--b6)}.nb{background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff!important;padding:.55rem 1.3rem;border-radius:8px;font-weight:600;font-size:.85rem;transition:all .2s}.nb:hover{transform:translateY(-1px)}.mm{display:none;background:none;border:none;font-size:1.4rem;color:var(--d5);cursor:pointer}
+.hero{padding:10rem 0 5rem;background:linear-gradient(175deg,var(--b0) 0%,#f0f4ff 40%,var(--w) 100%);position:relative;overflow:hidden}.hero .ct{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+.htag{display:inline-flex;align-items:center;gap:.45rem;background:var(--b1);color:var(--b7);padding:.45rem 1.1rem;border-radius:100px;font-size:.78rem;font-weight:600;margin-bottom:1.4rem;border:1px solid var(--b2)}.htag svg{width:14px;height:14px;fill:var(--b6)}
+.hero h1{font-size:clamp(2.1rem,4.5vw,3rem);font-weight:800;color:var(--b9);line-height:1.12;letter-spacing:-.03em;margin-bottom:1.2rem}.hero h1 span{background:linear-gradient(135deg,var(--b6),var(--b8));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd{font-size:1.1rem;line-height:1.8;color:var(--d5);margin-bottom:2.2rem;max-width:520px}
 .ha{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.bm{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.2rem;background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff;border-radius:12px;font-weight:700;font-size:1rem;text-decoration:none;transition:all .25s;box-shadow:0 4px 16px rgba(37,99,235,.25);border:none;cursor:pointer;font-family:var(--font)}.bm:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.3)}
-.bs{display:inline-flex;align-items:center;gap:.4rem;padding:.85rem 1.8rem;background:var(--w);color:var(--b7);border:1.5px solid var(--b2);border-radius:12px;font-weight:600;font-size:.95rem;text-decoration:none;transition:.2s}.bs:hover{background:var(--b0);border-color:var(--b5)}
-.htr{display:flex;gap:1.5rem;flex-wrap:wrap}.hti{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--d5);font-weight:500}
-.hck{width:18px;height:18px;background:var(--b5);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}.hck svg{width:10px;height:10px;fill:#fff}
-.hero-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
-.hero-stat{display:flex;align-items:center;gap:.5rem}
-.hero-stat-num{font-family:var(--mono);font-size:1.3rem;font-weight:800;color:var(--b6)}
-.hero-stat-label{font-size:.72rem;color:var(--d4);line-height:1.3}
-.guar{font-size:.72rem;color:var(--d4);margin-bottom:.8rem}
-
-/* HERO VISUAL — Mockup */
-.hv{position:relative;animation:slideUp .7s ease-out}
-@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.hv-frame{background:var(--w);border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.1),0 0 0 1px rgba(0,0,0,.04);overflow:hidden}
-.hv-bar{background:var(--d1);padding:.5rem .8rem;display:flex;align-items:center;gap:.4rem;border-bottom:1px solid var(--d2)}
-.hv-dot{width:9px;height:9px;border-radius:50%}
-.hv-title{margin-left:.5rem;font-size:.68rem;color:var(--d4);font-family:var(--mono);font-weight:500}
-.hv-body{padding:1.2rem;background:linear-gradient(135deg,#fafbff,#f0f4ff)}
-.hv-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:.8rem}
-.hv-card{background:var(--w);border-radius:10px;padding:.7rem;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--d2)}
-.hv-card-icon{font-size:1.4rem;margin-bottom:.2rem}
-.hv-card-num{font-family:var(--mono);font-size:1.1rem;font-weight:800;color:var(--b9)}
-.hv-card-label{font-size:.58rem;color:var(--d4);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
-.hv-table{background:var(--w);border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--d2)}
-.hv-thead{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.2fr;background:linear-gradient(135deg,var(--b7),var(--b9));padding:.4rem .6rem}
-.hv-th{font-size:.56rem;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.hv-row{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.2fr;padding:.35rem .6rem;border-bottom:1px solid var(--d1);font-size:.62rem;color:var(--d7);font-family:var(--mono)}
-.hv-row:nth-child(even){background:var(--d0)}
-.hv-row .ok{color:#16a34a;font-weight:700}
-.hv-row .warn{color:#d97706;font-weight:700}
-.hv-row .err{color:#dc2626;font-weight:700}
-.hv-badges{position:absolute;bottom:1rem;right:1rem;display:flex;flex-direction:column;gap:.4rem;align-items:flex-end}
-.hv-badge{padding:.3rem .7rem;border-radius:6px;font-size:.68rem;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.hv-badge-blue{background:var(--b8);color:#fff}
-.hv-badge-white{background:rgba(255,255,255,.95);color:var(--b7);backdrop-filter:blur(4px)}
-
-/* METRICS BAR */
-.mts{padding:3.5rem 0;background:var(--w);border-top:1px solid var(--d1);border-bottom:1px solid var(--d1)}.mts .ct{display:flex;justify-content:center;gap:4.5rem;flex-wrap:wrap}.mt{text-align:center}.mtn{font-family:var(--mono);font-size:1.7rem;font-weight:700;color:var(--b6)}.mtl{font-size:.82rem;color:var(--d4);margin-top:.25rem}
-
-/* SECTIONS */
-.sec{padding:6.5rem 0}.sa{background:var(--d0)}.sb-bg{background:linear-gradient(175deg,var(--b0),var(--w))}
-.sh{text-align:center;max-width:640px;margin:0 auto 3.5rem}
-.sht{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;color:var(--b6);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.6rem}
-.shd{width:6px;height:6px;background:var(--b5);border-radius:50%}
-.stt{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:var(--b9);line-height:1.25;letter-spacing:-.02em;margin-bottom:.7rem}
-.std{font-size:1rem;color:var(--d5);line-height:1.7}
-
-/* PROBLEM CARDS */
-.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-.pc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:2rem;transition:.3s}.pc:hover{border-color:var(--b4);box-shadow:0 8px 24px rgba(37,99,235,.08);transform:translateY(-4px)}
-.pi{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem}
-.pi-r{background:#fef2f2}.pi-y{background:#fffbeb}.pi-g{background:var(--d1)}
-.pc h3{font-size:1.02rem;font-weight:700;color:var(--d9);margin-bottom:.5rem}
-.pc p{font-size:.88rem;color:var(--d5);line-height:1.7}
-
-/* SOLUTION BOX */
-.solbox{background:var(--w);border:2px solid var(--b2);border-radius:20px;padding:3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;box-shadow:0 8px 32px rgba(37,99,235,.04)}
-.solbox h3{font-size:1.5rem;font-weight:800;color:var(--b9);margin-bottom:.8rem;line-height:1.3}
-.solbox p{font-size:.95rem;color:var(--d6);line-height:1.75;margin-bottom:1.5rem}
-.sck{display:flex;flex-direction:column;gap:.65rem}
-.sci{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--d7);font-weight:500}
-.scii{width:22px;height:22px;background:var(--b1);color:var(--b6);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
-.sol-visual{background:linear-gradient(135deg,var(--b0),#e8eeff);border-radius:14px;padding:1.5rem;border:1px solid var(--b2)}
-.sol-vt{font-family:var(--mono);font-size:.7rem;color:var(--b7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem;font-weight:600}
-.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-.sol-mod{background:var(--w);border-radius:8px;padding:.7rem;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05);border:1px solid transparent;transition:.2s}
-.sol-mod:hover{border-color:var(--b5);transform:translateY(-2px)}
-.sol-mod-icon{font-size:1.3rem;margin-bottom:.25rem}
-.sol-mod-label{font-size:.6rem;color:var(--d6);font-weight:600}
-
-/* FEATURE GRID */
-.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-.fc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:2rem;transition:.3s}.fc:hover{border-color:var(--b4);box-shadow:0 8px 24px rgba(37,99,235,.08);transform:translateY(-4px)}
-.fi{width:48px;height:48px;background:var(--b0);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;color:var(--b7);border:1px solid var(--b2)}
-.fc h3{font-size:.95rem;font-weight:700;color:var(--d9);margin-bottom:.4rem}
-.fc p{font-size:.85rem;color:var(--d5);line-height:1.65}
-
-/* STEPS */
-.sps{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;position:relative}
-.sps::before{content:'';position:absolute;top:32px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--b2),var(--b5),var(--b2));z-index:0}
-.sp{text-align:center;position:relative;z-index:1}
-.spn{width:56px;height:56px;margin:0 auto 1.2rem;background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1.1rem;font-weight:700;box-shadow:0 4px 16px rgba(37,99,235,.25)}
-.sp h3{font-size:1rem;font-weight:700;color:var(--d9);margin-bottom:.4rem}
-.sp p{font-size:.85rem;color:var(--d5);line-height:1.65;max-width:240px;margin:0 auto}
-
-/* SCREENSHOTS */
-.ssg{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
-.ssc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:.3s}.ssc:hover{box-shadow:0 12px 32px rgba(0,0,0,.08);transform:translateY(-4px)}
-.ssh{background:var(--d1);padding:.5rem 1rem;display:flex;align-items:center;gap:.45rem;border-bottom:1px solid var(--d2)}
-.ssd{width:8px;height:8px;border-radius:50%}
-.ssl{font-size:.66rem;color:var(--d4);font-family:var(--mono);font-weight:500;margin-left:.5rem}
+.bm{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 2.4rem;background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff;border-radius:10px;font-weight:700;font-size:1.05rem;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(37,99,235,.2);border:none;cursor:pointer;font-family:var(--font)}.bm:hover{background:var(--b7);transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.25)}
+.bs2{display:inline-flex;align-items:center;gap:.4rem;padding:.9rem 2rem;background:var(--w);color:var(--b7);border:2px solid var(--b2);border-radius:10px;font-weight:600;font-size:1rem;text-decoration:none;transition:.2s}.bs2:hover{background:var(--b0);border-color:var(--b5)}
+.guar{font-size:.78rem;color:var(--d4);margin-bottom:1rem}
+.htr{display:flex;gap:1.8rem;flex-wrap:wrap}.hti{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--d5);font-weight:500}
+.hck{width:20px;height:20px;background:var(--b5);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}.hck svg{width:11px;height:11px;fill:#fff}
+.hero-stats{display:flex;gap:2.2rem;margin-top:1.8rem;flex-wrap:wrap}.hero-stat{display:flex;align-items:center;gap:.5rem}.hero-stat-n{font-family:var(--mono);font-size:1.4rem;font-weight:800;color:var(--b6)}.hero-stat-l{font-size:.75rem;color:var(--d4);line-height:1.3}
+/* 3D BOOK */
+.soft-box{display:flex;justify-content:center;align-items:center;perspective:1200px}
+.box-3d{position:relative;width:260px;height:350px;transform-style:preserve-3d;transform:rotateY(-28deg) rotateX(3deg);transition:transform .5s ease}.soft-box:hover .box-3d{transform:rotateY(-16deg) rotateX(2deg)}
+.box-front{position:absolute;width:100%;height:100%;background:linear-gradient(160deg,#2563eb 0%,#1e3a5f 40%,#0f2240 100%);border-radius:3px 0 0 3px;display:flex;flex-direction:column;justify-content:space-between;padding:2rem 1.6rem;z-index:2;overflow:hidden;transform:translateZ(13px);backface-visibility:hidden}
+.box-front::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(96,165,250,.25) 0%,transparent 70%);pointer-events:none}
+.box-front::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(0,0,0,.2),transparent);pointer-events:none}
+.bf-tag{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:.6rem;font-weight:600;padding:.25rem .7rem;border-radius:100px;display:inline-block;width:fit-content;letter-spacing:.05em;text-transform:uppercase;border:1px solid rgba(255,255,255,.1)}
+.bf-logo{margin-top:1.2rem}.bf-logo-n{font-size:.6rem;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.25rem}.bf-logo-title{font-size:1.85rem;font-weight:800;color:#fff;line-height:1;letter-spacing:-.02em}.bf-logo-sub{font-size:.9rem;font-weight:600;color:var(--b3);margin-top:.2rem;letter-spacing:.02em}
+.bf-year{font-family:var(--mono);font-size:3rem;font-weight:800;color:rgba(255,255,255,.06);position:absolute;bottom:10px;right:10px;letter-spacing:-.05em}
+.bf-bottom{position:relative;z-index:1}.bf-feat{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.8rem}.bf-feat-i{display:flex;align-items:center;gap:.35rem;font-size:.65rem;color:rgba(255,255,255,.7);font-weight:500}.bf-feat-i .dot{width:4px;height:4px;background:var(--b4);border-radius:50%;flex-shrink:0}
+.bf-badge{background:rgba(255,255,255,.1);color:#fff;font-size:.6rem;font-weight:700;padding:.4rem .75rem;border-radius:6px;display:inline-flex;align-items:center;gap:.25rem;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}.bf-badge svg{width:12px;height:12px;fill:var(--b4)}
+.box-pages{position:absolute;top:2px;bottom:2px;left:100%;width:26px;transform-origin:left center;transform:translateZ(13px) rotateY(90deg);background:linear-gradient(to right,#f5f0e8 0%,#ede5d8 30%,#f0eade 60%,#e8e0d0 72%,#1e3a5f 72%,#0f2240 100%);z-index:1}.box-pages::before{content:'';position:absolute;top:0;bottom:0;left:0;width:72%;background:repeating-linear-gradient(to bottom,transparent,transparent 2.5px,rgba(0,0,0,.04) 2.5px,rgba(0,0,0,.04) 3px)}.box-pages::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to right,rgba(0,0,0,.12),transparent)}
+.box-spine{position:absolute;top:2px;bottom:2px;left:100%;width:26px;transform-origin:left center;transform:translateZ(13px) rotateY(90deg);display:flex;align-items:center;justify-content:center;z-index:2;pointer-events:none}.box-spine-text{writing-mode:vertical-rl;text-orientation:mixed;font-size:.55rem;font-weight:800;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;position:absolute;right:2px}
+.box-back{position:absolute;width:100%;height:100%;background:linear-gradient(160deg,#162d50,#0a1628);border-radius:0 3px 3px 0;transform:translateZ(-13px);box-shadow:10px 20px 50px rgba(0,0,0,.25),4px 8px 16px rgba(0,0,0,.12)}
+@media(max-width:900px){.soft-box{display:none}}
+.mts{padding:3.5rem 0;background:var(--w);border-top:1px solid var(--d1);border-bottom:1px solid var(--d1)}.mts .ct{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap}.mt{text-align:center}.mtn{font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--b6)}.mtl{font-size:.85rem;color:var(--d4);margin-top:.3rem}
+.sec{padding:7rem 0}.sa{background:var(--d0)}.sb-bg{background:linear-gradient(175deg,var(--b0),var(--w))}
+.sh{text-align:center;max-width:680px;margin:0 auto 4rem}.sht{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;color:var(--b6);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7rem}.shd{width:6px;height:6px;background:var(--b5);border-radius:50%}.stt{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800;color:var(--b9);line-height:1.25;letter-spacing:-.02em;margin-bottom:.8rem}.std{font-size:1.08rem;color:var(--d5);line-height:1.75}
+.hl{color:var(--b6);font-weight:700}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.pc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:2.2rem;transition:.3s}.pc:hover{border-color:var(--b4);box-shadow:0 8px 24px rgba(37,99,235,.06);transform:translateY(-4px)}.pi{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.3rem}.pi-r{background:#fef2f2}.pi-y{background:#fffbeb}.pi-g{background:var(--d1)}.pc h3{font-size:1.1rem;font-weight:700;color:var(--d9);margin-bottom:.6rem}.pc p{font-size:.95rem;color:var(--d5);line-height:1.75}
+.solbox{background:var(--w);border:2px solid var(--b2);border-radius:18px;padding:3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;box-shadow:0 8px 32px rgba(37,99,235,.04)}.solbox h3{font-size:1.6rem;font-weight:800;color:var(--b9);margin-bottom:.8rem;line-height:1.3}.solbox>div>p{font-size:1.02rem;color:var(--d5);line-height:1.8;margin-bottom:1.5rem}.sck{display:flex;flex-direction:column;gap:.7rem}.sci{display:flex;align-items:center;gap:.65rem;font-size:.95rem;color:var(--d7);font-weight:500}.scii{width:24px;height:24px;background:var(--b1);color:var(--b6);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.sol-visual{background:linear-gradient(135deg,var(--b0),#e0eaff);border-radius:14px;padding:1.5rem;border:1px solid var(--b2)}.sol-vt{font-family:var(--mono);font-size:.72rem;color:var(--b7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem;font-weight:600}.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}.sol-mod{background:var(--w);border-radius:8px;padding:.7rem;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05);border:1px solid transparent;transition:.2s}.sol-mod:hover{border-color:var(--b5);transform:translateY(-2px)}.sol-mod-icon{font-size:1.3rem;margin-bottom:.25rem}.sol-mod-label{font-size:.6rem;color:var(--d6);font-weight:600}
+.highlight-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}.highlight-card{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:1.8rem 2rem;transition:.2s}.highlight-card:hover{border-color:var(--b2)}.highlight-card h4{font-size:1.15rem;font-weight:700;color:var(--d9);margin-bottom:.4rem}.highlight-card p{font-size:1rem;color:var(--d5);line-height:1.7}.highlight-num{font-family:var(--mono);font-size:1.8rem;font-weight:800;color:var(--b6);margin-bottom:.3rem}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.fc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:2.2rem;transition:.3s}.fc:hover{border-color:var(--b4);box-shadow:0 8px 24px rgba(37,99,235,.06);transform:translateY(-4px)}.fi{width:52px;height:52px;background:var(--b0);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.3rem;color:var(--b7);border:1px solid var(--b2)}.fc h3{font-size:1.05rem;font-weight:700;color:var(--d9);margin-bottom:.5rem}.fc p{font-size:.92rem;color:var(--d5);line-height:1.7}
+.optg{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:780px;margin:0 auto}.opt{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.4rem;background:var(--w);border:1px solid var(--d2);border-radius:10px;transition:.2s;gap:1rem}.opt:hover{border-color:var(--b2)}.opt-l{color:var(--d5);font-size:.92rem}.opt-v{color:var(--ok);font-weight:700;font-size:.88rem;text-align:right;flex-shrink:0}
+.sps{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;position:relative}.sps::before{content:'';position:absolute;top:32px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--b2),var(--b5),var(--b2));z-index:0}.sp{text-align:center;position:relative;z-index:1}.spn{width:58px;height:58px;margin:0 auto 1.3rem;background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1.15rem;font-weight:700;box-shadow:0 4px 16px rgba(37,99,235,.2)}.sp h3{font-size:1.08rem;font-weight:700;color:var(--d9);margin-bottom:.5rem}.sp p{font-size:.92rem;color:var(--d5);line-height:1.7;max-width:240px;margin:0 auto}
+.ssg{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}.ssc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:.3s}.ssc:hover{box-shadow:0 12px 32px rgba(0,0,0,.08);transform:translateY(-4px)}.ssh{background:var(--d1);padding:.55rem 1rem;display:flex;align-items:center;gap:.45rem;border-bottom:1px solid var(--d2)}.ssd{width:8px;height:8px;border-radius:50%}.ssl{font-size:.68rem;color:var(--d4);font-family:var(--mono);font-weight:500;margin-left:.5rem}
 .ss-body{padding:1.2rem;background:linear-gradient(135deg,#fafbff,var(--b0))}
-.ss-mock-table{width:100%;border-collapse:collapse;font-size:.62rem;font-family:var(--mono)}
-.ss-mock-table th{background:linear-gradient(135deg,var(--b7),var(--b9));color:#fff;padding:.4rem .5rem;text-align:left;font-weight:600;font-size:.56rem}
-.ss-mock-table td{padding:.38rem .5rem;border-bottom:1px solid var(--d1);color:var(--d7)}
-.ss-mock-table tr:nth-child(even) td{background:var(--d0)}
-.ss-mock-table .input-cell{background:var(--b1);color:var(--b6);font-weight:600}
-.ss-mock-table .calc-cell{font-weight:700;color:var(--b9)}
-.ss-mock-table .ok{color:#16a34a;font-weight:700}
-.ss-mock-table .warn{color:#d97706;font-weight:700}
-.ss-mock-table .err{color:#dc2626;font-weight:700}
-.sscap{padding:.7rem 1rem;background:var(--d0);border-top:1px solid var(--d1);font-size:.76rem;color:var(--d6);font-weight:600}
-
-/* OPTIONS GRID */
-.optg{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:780px;margin:0 auto}
-.opt{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.3rem;background:var(--w);border:1px solid var(--d2);border-radius:10px;transition:.2s;gap:1rem}.opt:hover{border-color:var(--b2)}
-.opt-l{color:var(--d5);font-size:.88rem}
-.opt-v{color:var(--d9);font-weight:600;font-size:.88rem;text-align:right;flex-shrink:0}
-.opt-on{color:var(--ok);font-weight:700}
-.opt-off{color:var(--d4)}
-
-/* FISCAL DATA */
-.fdata{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:720px;margin:0 auto}
-.fdi{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.3rem;background:var(--w);border:1px solid var(--d2);border-radius:10px}.fdi:hover{border-color:var(--b2)}
-.fdl{color:var(--d5);font-size:.88rem}
-.fdv{color:var(--d9);font-weight:600;font-size:.88rem}
-.fdv-b{color:var(--b6)}
-
-/* TESTIMONIALS */
-.rg{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:840px;margin:0 auto}
-.rc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:2rem;transition:.3s}.rc:hover{box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-3px)}
-.rs{color:#f59e0b;font-size:.85rem;letter-spacing:2px;margin-bottom:.6rem}
-.rt{font-size:.88rem;color:var(--d6);line-height:1.7;margin-bottom:1rem;font-style:italic}
-.ra{display:flex;align-items:center;gap:.7rem}
-.rav{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
-.rn{font-size:.85rem;font-weight:700;color:var(--d9)}
-.rr{font-size:.73rem;color:var(--d4)}
-
-/* PRICING */
-.prc{max-width:480px;margin:0 auto;background:var(--w);border:2px solid var(--b2);border-radius:24px;padding:3rem;box-shadow:0 16px 48px rgba(37,99,235,.08);text-align:center;position:relative}
-.prb{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff;padding:.35rem 1.3rem;border-radius:100px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;box-shadow:0 4px 12px rgba(37,99,235,.2)}
-.prn{font-size:1.25rem;font-weight:800;color:var(--b9);margin-top:.8rem;margin-bottom:.3rem}
-.prd{color:var(--d5);font-size:.88rem;margin-bottom:1.5rem}
-.pro{font-size:.88rem;color:var(--d4);text-decoration:line-through;margin-bottom:.3rem}
-.prr{display:flex;align-items:baseline;justify-content:center;gap:.2rem;margin-bottom:.3rem}
-.prcu{font-size:1.3rem;font-weight:700;color:var(--b6)}
-.pra{font-family:var(--mono);font-size:3.4rem;font-weight:800;color:var(--b9);letter-spacing:-.03em}
-.prm{font-size:1rem;font-weight:600;color:var(--d4)}
-.prp{color:var(--d4);font-size:.85rem;margin-bottom:1.5rem}
-.prdv{height:1px;background:var(--d2);margin:1.5rem 0}
-.prfl{list-style:none;text-align:left;margin-bottom:2rem}
-.prfl li{padding:.5rem 0;font-size:.88rem;color:var(--d6);display:flex;align-items:flex-start;gap:.6rem}
-.prck{width:20px;height:20px;background:var(--b1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.prck svg{width:11px;height:11px;fill:var(--b6)}
-.prc .bm{width:100%;justify-content:center;padding:.95rem;font-size:1.05rem}
-.prnt{margin-top:1rem;font-size:.78rem;color:var(--d4)}
-.prsc{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.8rem;font-size:.72rem;color:var(--d4)}
-
-/* FAQ */
-.fql{max-width:720px;margin:0 auto}
-.fqi{border:1px solid var(--d2);border-radius:var(--r);margin-bottom:.7rem;overflow:hidden;background:var(--w);transition:.2s}.fqi:hover{border-color:var(--b2)}
-.fqq{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.92rem;color:var(--d9);transition:.2s}.fqq:hover{background:var(--d0)}
-.fqa{width:26px;height:26px;background:var(--b0);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--b6);font-size:.9rem;font-weight:300;transition:.3s;flex-shrink:0}
-.fqi.open .fqa{background:var(--b6);color:#fff;transform:rotate(45deg)}
-.fqan{max-height:0;overflow:hidden;transition:max-height .35s ease}
-.fqai{padding:0 1.4rem 1.2rem;font-size:.88rem;color:var(--d5);line-height:1.75}
-.fqi.open .fqan{max-height:400px}
-
-/* CTA FOOTER */
-.ctf{padding:6rem 0;background:linear-gradient(135deg,var(--b8),var(--b9));text-align:center;position:relative;overflow:hidden}
-.ctf::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,.12) 0%,transparent 70%);pointer-events:none}
-.ctf h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:#fff;margin-bottom:.8rem}
-.ctf p{color:rgba(255,255,255,.6);font-size:1.02rem;line-height:1.7;margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto}
-.bc{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--b8);padding:.9rem 2.5rem;border-radius:12px;font-weight:700;font-size:1.05rem;text-decoration:none;transition:.25s;box-shadow:0 4px 16px rgba(0,0,0,.15)}.bc:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2)}
-
-footer{padding:2rem 0;background:var(--b9);text-align:center}footer p{color:rgba(255,255,255,.35);font-size:.78rem}
-
-/* WHATSAPP */
-.wf{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;align-items:center;gap:.6rem;text-decoration:none;transition:.3s}.wf:hover{transform:translateY(-3px)}.wf:hover .wt{opacity:1;transform:translateX(0)}
-.wt{background:#fff;color:var(--d7);padding:.5rem 1rem;border-radius:8px;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.08);opacity:0;transform:translateX(10px);transition:.3s;white-space:nowrap;pointer-events:none}
-.wb{width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:.3s}.wb:hover{background:#20c05c}.wb svg{width:32px;height:32px;fill:#fff}
-
-/* REVEAL */
+.ss-mock-table{width:100%;border-collapse:collapse;font-size:.64rem;font-family:var(--mono)}.ss-mock-table th{background:linear-gradient(135deg,var(--b7),var(--b9));color:#fff;padding:.45rem .5rem;text-align:left;font-weight:600;font-size:.58rem}.ss-mock-table td{padding:.4rem .5rem;border-bottom:1px solid var(--d1);color:var(--d7)}.ss-mock-table tr:nth-child(even) td{background:var(--d0)}.ss-mock-table .input-cell{background:var(--b1);color:var(--b6);font-weight:600}.ss-mock-table .calc-cell{font-weight:700;color:var(--b9)}.ss-mock-table .ok{color:#16a34a;font-weight:700}.ss-mock-table .warn{color:#d97706;font-weight:700}.ss-mock-table .err{color:#dc2626;font-weight:700}
+.sscap{padding:.8rem 1rem;background:var(--d0);border-top:1px solid var(--d1);font-size:.8rem;color:var(--d6);font-weight:600}
+.fdata{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:720px;margin:0 auto}.fdi{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.4rem;background:var(--w);border:1px solid var(--d2);border-radius:10px}.fdi:hover{border-color:var(--b2)}.fdl{color:var(--d5);font-size:.92rem}.fdv{color:var(--d9);font-weight:600;font-size:.92rem}.fdv-b{color:var(--b6)}
+.rg{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:840px;margin:0 auto}.rc{background:var(--w);border:1px solid var(--d2);border-radius:var(--r);padding:2rem;transition:.3s}.rc:hover{box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-3px)}.rs{color:var(--gold);font-size:.9rem;letter-spacing:2px;margin-bottom:.6rem}.rt{font-size:.95rem;color:var(--d5);line-height:1.75;margin-bottom:1.1rem;font-style:italic}.ra{display:flex;align-items:center;gap:.7rem}.rav{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem;color:#fff;flex-shrink:0}.rn{font-size:.88rem;font-weight:700;color:var(--d9)}.rr{font-size:.76rem;color:var(--d4)}
+.prc{max-width:480px;margin:0 auto;background:var(--w);border:2px solid var(--b2);border-radius:22px;padding:3rem;box-shadow:0 16px 48px rgba(37,99,235,.06);text-align:center;position:relative}.prb{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--b6),var(--b8));color:#fff;padding:.4rem 1.4rem;border-radius:100px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.prn{font-size:1.3rem;font-weight:800;color:var(--b9);margin-top:.8rem;margin-bottom:.3rem}.prd{color:var(--d5);font-size:.92rem;margin-bottom:1.5rem}.pro{font-size:.88rem;color:var(--d4);text-decoration:line-through;margin-bottom:.3rem}.prr{display:flex;align-items:baseline;justify-content:center;gap:.2rem;margin-bottom:.3rem}.prcu{font-size:1.3rem;font-weight:700;color:var(--b6)}.pra{font-family:var(--mono);font-size:3.6rem;font-weight:800;color:var(--b9);letter-spacing:-.03em}.prm{font-size:1rem;font-weight:600;color:var(--d4)}.prp{color:var(--d4);font-size:.88rem;margin-bottom:1.5rem}.prdv{height:1px;background:var(--d2);margin:1.5rem 0}.prfl{list-style:none;text-align:left;margin-bottom:2rem}.prfl li{padding:.55rem 0;font-size:.92rem;color:var(--d6);display:flex;align-items:flex-start;gap:.65rem}.prck{width:22px;height:22px;background:var(--b1);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}.prck svg{width:12px;height:12px;fill:var(--b6)}.prc .bm{width:100%;justify-content:center;padding:1rem;font-size:1.08rem}.prnt{margin-top:1rem;font-size:.8rem;color:var(--d4)}.prsc{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.8rem;font-size:.75rem;color:var(--d4)}
+.fql{max-width:720px;margin:0 auto}.fqi{border:1px solid var(--d2);border-radius:var(--r);margin-bottom:.7rem;overflow:hidden;background:var(--w);transition:.2s}.fqi:hover{border-color:var(--b2)}.fqq{padding:1.2rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.98rem;color:var(--d9);transition:.2s}.fqq:hover{background:var(--d0)}.fqa{width:28px;height:28px;background:var(--b0);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--b6);font-size:.9rem;font-weight:300;transition:.3s;flex-shrink:0}.fqi.open .fqa{background:var(--b6);color:#fff;transform:rotate(45deg)}.fqan{max-height:0;overflow:hidden;transition:max-height .35s ease}.fqai{padding:0 1.5rem 1.3rem;font-size:.95rem;color:var(--d5);line-height:1.8}.fqi.open .fqan{max-height:400px}
+.ctf{padding:6rem 0;background:linear-gradient(135deg,var(--b8),var(--b9));text-align:center;position:relative;overflow:hidden}.ctf::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,.1) 0%,transparent 70%);pointer-events:none}.ctf h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:.8rem}.ctf p{color:rgba(255,255,255,.6);font-size:1.05rem;line-height:1.75;margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto}.bc{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--b8);padding:.95rem 2.5rem;border-radius:10px;font-weight:700;font-size:1.08rem;text-decoration:none;transition:.25s;box-shadow:0 4px 16px rgba(0,0,0,.15)}.bc:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2)}
+footer{padding:2rem 0;background:var(--b9);text-align:center}footer p{color:rgba(255,255,255,.3);font-size:.8rem}
+.wf{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;align-items:center;gap:.6rem;text-decoration:none;transition:.3s}.wf:hover{transform:translateY(-3px)}.wf:hover .wt{opacity:1;transform:translateX(0)}.wt{background:#fff;color:var(--d7);padding:.5rem 1rem;border-radius:8px;font-size:.85rem;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.08);opacity:0;transform:translateX(10px);transition:.3s;white-space:nowrap;pointer-events:none}.wb{width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:.3s}.wb:hover{background:#20c05c}.wb svg{width:32px;height:32px;fill:#fff}
+.upsell{background:linear-gradient(135deg,#14532d,#0c1f14);padding:1.3rem 2rem;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-top:3rem;flex-wrap:wrap}.upsell-text{color:rgba(255,255,255,.85);font-size:.92rem;line-height:1.5}.upsell-text strong{color:#4ade80;font-weight:700}.upsell-btn{background:#22c55e;color:#fff;padding:.65rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.88rem;white-space:nowrap;transition:.2s;flex-shrink:0}.upsell-btn:hover{background:#16a34a;transform:translateY(-1px)}
 .rv{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.22,1,.36,1)}.rv.vis{opacity:1;transform:translateY(0)}
-
-/* UPSELL BANNER */
-.upsell{background:linear-gradient(135deg,#14532d,#0c1f14);padding:1.2rem 2rem;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-top:3rem;flex-wrap:wrap}
-.upsell-text{color:rgba(255,255,255,.85);font-size:.88rem;line-height:1.5}
-.upsell-text strong{color:#4ade80;font-weight:700}
-.upsell-btn{background:#22c55e;color:#fff;padding:.6rem 1.4rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;white-space:nowrap;transition:.2s;flex-shrink:0}.upsell-btn:hover{background:#16a34a;transform:translateY(-1px)}
-
-/* RESPONSIVE */
-@media(max-width:900px){.hero .ct{grid-template-columns:1fr;gap:2rem}.pg,.fg{grid-template-columns:1fr 1fr}.solbox{grid-template-columns:1fr;padding:2rem}.sps::before{display:none}.sps{grid-template-columns:1fr 1fr;gap:1.5rem}.ssg,.fdata,.optg{grid-template-columns:1fr}.rg{grid-template-columns:1fr}}
-@media(max-width:640px){html,body{overflow-x:hidden}.ct{padding:0 1.2rem;overflow:hidden}.nk{display:none}.nk.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1.5rem;border-bottom:1px solid var(--d2);box-shadow:0 8px 24px rgba(0,0,0,.08);gap:1rem}.mm{display:block}.hero{padding:7.5rem 0 2.5rem}.hero h1{font-size:1.65rem}.hd{font-size:.95rem}.ha{flex-direction:column}.ha .bm,.ha .bs{width:100%;justify-content:center;text-align:center}.htr{flex-direction:column;gap:.6rem}.hero-stats{gap:1rem}.hv-grid{grid-template-columns:1fr 1fr 1fr}.hv-card{padding:.5rem}.hv-card-num{font-size:.9rem}.mts .ct{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:center}.mtn{font-size:1.3rem}.sec{padding:3.5rem 0}.sh{margin-bottom:2rem}.stt{font-size:1.35rem}.pg,.fg{grid-template-columns:1fr;gap:1rem}.pc,.fc{padding:1.3rem}.solbox{padding:1.3rem;gap:1.5rem;border-width:1px}.sol-mod{padding:.5rem .3rem}.sol-mod-icon{font-size:1rem}.sol-mod-label{font-size:.5rem}.sps{grid-template-columns:1fr;gap:1.5rem}.ssg{grid-template-columns:1fr;gap:1rem}.optg,.fdata{grid-template-columns:1fr;gap:.5rem}.rg{grid-template-columns:1fr;gap:1rem}.prc{padding:2rem 1.3rem;border-radius:18px;margin:0 -.25rem}.pra{font-size:2.6rem}.prfl li{font-size:.82rem}.fqq{padding:.9rem 1rem;font-size:.85rem}.ctf{padding:3.5rem 0}.ctf h2{font-size:1.35rem}.bc{width:90%;justify-content:center}.wt{display:none}.wb{width:54px;height:54px}.wb svg{width:28px;height:28px}.wf{bottom:18px;right:18px}.upsell{flex-direction:column;text-align:center;padding:1rem;gap:.8rem}}
+@keyframes mf{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.hero .ct{grid-template-columns:1fr;gap:2rem}.pg,.fg{grid-template-columns:1fr 1fr}.solbox{grid-template-columns:1fr;padding:2rem}.sps::before{display:none}.sps{grid-template-columns:1fr 1fr;gap:1.5rem}.ssg,.fdata,.optg{grid-template-columns:1fr}.rg{grid-template-columns:1fr}.highlight-grid{grid-template-columns:1fr}}
+@media(max-width:640px){html,body{overflow-x:hidden}.ct{padding:0 1.2rem;overflow:hidden}.nk{display:none}.nk.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1.5rem;border-bottom:1px solid var(--d2);box-shadow:0 8px 24px rgba(0,0,0,.08);gap:1rem}.mm{display:block}.hero{padding:7.5rem 0 2.5rem}.hero h1{font-size:1.75rem}.hd{font-size:1rem}.ha{flex-direction:column}.ha .bm,.ha .bs2{width:100%;justify-content:center;text-align:center}.htr{flex-direction:column;gap:.6rem}.mts .ct{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:center}.mtn{font-size:1.3rem}.sec{padding:3.5rem 0}.sh{margin-bottom:2rem}.stt{font-size:1.4rem}.pg,.fg{grid-template-columns:1fr;gap:1rem}.pc,.fc{padding:1.5rem}.solbox{padding:1.5rem;gap:1.5rem;border-width:1px}.sol-mod{padding:.5rem .3rem}.sol-mod-icon{font-size:1rem}.sol-mod-label{font-size:.52rem}.sps{grid-template-columns:1fr;gap:1.5rem}.ssg{grid-template-columns:1fr;gap:1rem}.optg,.fdata{grid-template-columns:1fr;gap:.5rem}.rg{grid-template-columns:1fr;gap:1rem}.prc{padding:2rem 1.5rem;border-radius:18px;margin:0 -.25rem}.pra{font-size:2.8rem}.fqq{padding:1rem;font-size:.92rem}.fqai{padding:0 1rem 1rem;font-size:.88rem}.ctf{padding:3.5rem 0}.ctf h2{font-size:1.4rem}.bc{width:90%;justify-content:center}.wt{display:none}.wb{width:54px;height:54px}.wb svg{width:28px;height:28px}.wf{bottom:18px;right:18px}.highlight-grid{grid-template-columns:1fr;gap:.8rem}.highlight-card{padding:1.3rem}.upsell{flex-direction:column;text-align:center;padding:1rem;gap:.8rem}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"InventarioPro 2026","description":"Sistema de inventarios para negocios en México. Control de stock, Kardex, valuación, IVA, IEPS y claves SAT.","applicationCategory":"BusinessApplication","operatingSystem":"Microsoft Excel 2016+","offers":{"@type":"Offer","price":"199","priceCurrency":"MXN","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"InventarioPro 2026","description":"Sistema de control de inventarios para negocios en México. Kardex automático, costo promedio ponderado, conciliación de inventario físico, IVA, IEPS y claves SAT CFDI 4.0.","applicationCategory":"BusinessApplication","operatingSystem":"Microsoft Excel 2016+","offers":{"@type":"Offer","price":"199","priceCurrency":"MXN","availability":"https://schema.org/InStock"}}</script>
 </head>
 <body>
+<nav><div class="ct"><a href="#" class="nl"><div class="nli">IP</div>InventarioPro</a><button class="mm" onclick="document.querySelector('.nk').classList.toggle('open')">&#9776;</button><div class="nk"><a href="#caracteristicas">Características</a><a href="#modulos">Módulos</a><a href="#como-funciona">Cómo funciona</a><a href="#capturas">Capturas</a><a href="#testimonios">Testimonios</a><a href="#precio">Precio</a><a href="#faq">FAQ</a><a href="#precio" class="nb">Ver precio</a></div></div></nav>
+<div style="background:var(--b9);color:var(--b3);text-align:center;padding:.6rem 1rem;font-size:.8rem;font-weight:600;letter-spacing:.02em;position:fixed;top:64px;width:100%;z-index:99">📦 +18,000 fórmulas · Kardex automático · Costo promedio · <span style="color:var(--b1)">Descubre qué incluye ↓</span></div>
 
-<!-- NAV -->
-<nav><div class="ct">
-<a href="#" class="nl"><div class="nli">IP</div>InventarioPro</a>
-<button class="mm" onclick="document.querySelector('.nk').classList.toggle('open')">&#9776;</button>
-<div class="nk">
-<a href="#caracteristicas">Características</a><a href="#modulos">Módulos</a><a href="#como-funciona">Cómo funciona</a><a href="#capturas">Capturas</a><a href="#testimonios">Testimonios</a><a href="#precio">Precio</a><a href="#faq">FAQ</a>
-<a href="#precio" class="nb">Ver precio</a>
-</div>
-</div></nav>
-
-<!-- TOP BANNER -->
-<div style="background:var(--b9);color:var(--b3);text-align:center;padding:.55rem 1rem;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:fixed;top:64px;width:100%;z-index:99">
-📦 +18,000 fórmulas automatizadas · 8 módulos profesionales · <span style="color:var(--b1)">Descubre qué incluye ↓</span>
-</div>
-
-<!-- HERO -->
-<section class="hero"><div class="ct">
-<div style="animation:slideUp .6s ease-out">
-<div class="htag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="var(--b6)" stroke="none"/></svg> Actualizado 2026 · IVA · IEPS · SAT</div>
+<section class="hero"><div class="ct"><div style="animation:mf .6s ease-out">
+<div class="htag"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="var(--b6)"/></svg> Actualizado 2026 · IVA · IEPS · SAT</div>
 <h1>Tu inventario bajo <span>control total</span>, sin perder una sola pieza</h1>
-<p class="hd">Registra entradas y salidas, genera Kardex automático, valúa tu stock con costo promedio y cumple con las obligaciones del SAT. Solo capturas datos y el sistema hace el resto.</p>
-<div class="ha">
-<a href="#caracteristicas" class="bm">📦 Ver qué incluye el sistema</a>
-<a href="#como-funciona" class="bs">¿Cómo funciona?</a>
-</div>
+<p class="hd">Registra entradas y salidas, genera Kardex automático, valúa tu stock con <strong style="color:var(--d9)">costo promedio ponderado</strong> y cumple con las obligaciones del SAT. Solo capturas datos y el sistema calcula todo.</p>
+<div class="ha"><a href="#caracteristicas" class="bm">📦 Ver qué incluye el sistema</a><a href="#como-funciona" class="bs2">¿Cómo funciona?</a></div>
 <div class="guar">💪 Garantía de 7 días — si no te sirve, te devolvemos tu dinero</div>
-<div class="htr">
-<div class="hti"><div class="hck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg></div>IVA, IEPS y claves SAT 2026</div>
-<div class="hti"><div class="hck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg></div>Pago único, sin mensualidades</div>
-<div class="hti"><div class="hck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg></div>Entrega inmediata por email</div>
-</div>
-<div class="hero-stats">
-<div class="hero-stat"><div class="hero-stat-num">18,021</div><div class="hero-stat-label">fórmulas<br>automatizadas</div></div>
-<div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">módulos<br>profesionales</div></div>
-<div class="hero-stat"><div class="hero-stat-num">500</div><div class="hero-stat-label">productos<br>máximo</div></div>
-</div>
-</div>
-
-<!-- HERO VISUAL MOCKUP -->
-<div class="hv">
-<div class="hv-frame">
-<div class="hv-bar">
-<div class="hv-dot" style="background:#f87171"></div>
-<div class="hv-dot" style="background:#fbbf24"></div>
-<div class="hv-dot" style="background:#34d399"></div>
-<span class="hv-title">InventarioPro2026.xlsx — Dashboard</span>
-</div>
-<div class="hv-body">
-<div class="hv-grid">
-<div class="hv-card"><div class="hv-card-icon">📦</div><div class="hv-card-num">247</div><div class="hv-card-label">Productos</div></div>
-<div class="hv-card"><div class="hv-card-icon">⚠️</div><div class="hv-card-num" style="color:var(--warn)">12</div><div class="hv-card-label">Stock bajo</div></div>
-<div class="hv-card"><div class="hv-card-icon">💰</div><div class="hv-card-num" style="font-size:.85rem">$184,350</div><div class="hv-card-label">Valuación</div></div>
-</div>
-<div class="hv-table">
-<div class="hv-thead"><div class="hv-th">Producto</div><div class="hv-th">Stock</div><div class="hv-th">Costo Prom.</div><div class="hv-th">Estado</div></div>
-<div class="hv-row"><div>Aceite 5W-30 1L</div><div>65</div><div>$85.70</div><div class="ok">✅ OK</div></div>
-<div class="hv-row"><div>Filtro de aire</div><div>3</div><div>$122.40</div><div class="warn">⚠️ Bajo</div></div>
-<div class="hv-row"><div>Refresco 600ml</div><div>155</div><div>$8.50</div><div class="ok">✅ OK</div></div>
-<div class="hv-row"><div>Laptop Dell 15"</div><div>0</div><div>$12,680</div><div class="err">🔴 Agotado</div></div>
-<div class="hv-row"><div>Papas fritas 170g</div><div>75</div><div>$22.00</div><div class="ok">✅ OK</div></div>
-</div>
-</div>
-<div class="hv-badges">
-<div class="hv-badge hv-badge-blue">✓ 18,021 fórmulas activas</div>
-<div class="hv-badge hv-badge-white">⭐ IVA · IEPS · SAT 2026</div>
-</div>
-</div>
-</div>
-
+<div class="htr"><div class="hti"><div class="hck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg></div>IVA, IEPS y claves SAT 2026</div><div class="hti"><div class="hck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg></div>Pago único, sin mensualidades</div><div class="hti"><div class="hck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#fff"/></svg></div>Entrega inmediata por email</div></div>
+<div class="hero-stats"><div class="hero-stat"><div class="hero-stat-n">18,021</div><div class="hero-stat-l">fórmulas<br>automatizadas</div></div><div class="hero-stat"><div class="hero-stat-n">8</div><div class="hero-stat-l">módulos<br>profesionales</div></div><div class="hero-stat"><div class="hero-stat-n">4.9</div><div class="hero-stat-l">★ calificación<br>promedio</div></div></div></div>
+<div class="soft-box"><div class="box-3d"><div class="box-front"><div><div class="bf-tag">Sistema de Inventarios · México</div><div class="bf-logo"><div class="bf-logo-n">nominamexico.com</div><div class="bf-logo-title">InventarioPro</div><div class="bf-logo-sub">Edición 2026</div></div></div><div class="bf-bottom"><div class="bf-feat"><div class="bf-feat-i"><span class="dot"></span> Kardex · Costo Promedio</div><div class="bf-feat-i"><span class="dot"></span> IVA · IEPS · Claves SAT</div><div class="bf-feat-i"><span class="dot"></span> Alertas stock mínimo</div><div class="bf-feat-i"><span class="dot"></span> Conciliación inventario físico</div></div><div class="bf-badge"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Excel 2016+ · 8 módulos · 18,021 fórmulas</div></div><div class="bf-year">2026</div></div><div class="box-pages"></div><div class="box-spine"><span class="box-spine-text">InventarioPro 2026</span></div><div class="box-back"></div></div></div>
 </div></section>
 
-<!-- METRICS -->
-<section class="mts"><div class="ct">
-<div class="mt"><div class="mtn">18,021</div><div class="mtl">Fórmulas automatizadas</div></div>
-<div class="mt"><div class="mtn">8</div><div class="mtl">Módulos del sistema</div></div>
-<div class="mt"><div class="mtn">500</div><div class="mtl">Productos registrables</div></div>
-<div class="mt"><div class="mtn">1,000</div><div class="mtl">Movimientos por tipo</div></div>
-</div></section>
+<section class="mts"><div class="ct"><div class="mt"><div class="mtn">18,021</div><div class="mtl">Fórmulas automatizadas</div></div><div class="mt"><div class="mtn">8</div><div class="mtl">Módulos del sistema</div></div><div class="mt"><div class="mtn">11</div><div class="mtl">Opciones configurables</div></div><div class="mt"><div class="mtn">0</div><div class="mtl">Errores de fórmula</div></div></div></section>
 
-<!-- PROBLEMA -->
-<section class="sec sa" id="problemas"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> El problema</div>
-<h2 class="stt">Perder mercancía y dinero por no tener control de inventario</h2>
-<p class="std">El SAT exige llevar control de inventarios (Art. 76 LISR). Sin un sistema, pierdes productos, no sabes tu costo real y te arriesgas a multas.</p></div>
+<section class="sec sa" id="problemas"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> El problema</div><h2 class="stt">Cada pieza que pierdes es dinero que <span class="hl">nunca recuperas</span></h2><p class="std">El SAT exige llevar control de inventarios (Art. 76 LISR). Sin un sistema, pierdes productos, desconoces tu costo real y te arriesgas a multas que pueden superar los $50,000.</p></div>
 <div class="pg rv">
-<div class="pc"><div class="pi pi-r">❌</div><h3>No sabes cuánto tienes</h3><p>Sin un registro real de entradas y salidas, tu stock "en papel" nunca cuadra con lo que hay en el almacén. Faltantes y sobrantes son el pan de cada día.</p></div>
-<div class="pc"><div class="pi pi-y">⚠️</div><h3>Tu costo real es un misterio</h3><p>Si no calculas costo promedio ponderado con cada compra, no sabes cuánto te costó vender. Tu utilidad es una adivinanza.</p></div>
-<div class="pc"><div class="pi pi-g">💸</div><h3>Los sistemas de inventario son caros</h3><p>Bind, Alegra, ContaPyme cobran desde $500 al mes. Eso son $6,000 al año. Para un negocio chico es demasiado cuando la función principal es controlar stock.</p></div>
-</div>
-</div></section>
+<div class="pc"><div class="pi pi-r">❌</div><h3>Tu stock "en papel" nunca cuadra</h3><p>Sin un registro real de entradas y salidas, los faltantes y sobrantes se acumulan silenciosamente. <strong style="color:var(--d9)">Un producto perdido al día son 365 al año.</strong></p></div>
+<div class="pc"><div class="pi pi-y">⚠️</div><h3>Tu utilidad es una adivinanza</h3><p>Si no recalculas el <span class="hl">costo promedio ponderado</span> con cada compra, no sabes cuánto te costó vender. Puedes estar vendiendo a pérdida sin saberlo.</p></div>
+<div class="pc"><div class="pi pi-g">💸</div><h3>Los sistemas de inventario son caros</h3><p>Bind, Alegra y ContaPyme cobran desde $500/mes. Eso son <strong style="color:var(--d9)">$6,000 al año</strong> por una función que debería ser simple: saber qué tienes y cuánto costó.</p></div>
+</div></div></section>
 
-<!-- SOLUCIÓN -->
-<section class="sec" id="modulos"><div class="ct rv">
-<div class="sh"><div class="sht"><div class="shd"></div> La solución</div>
-<h2 class="stt">InventarioPro 2026: control total de tu inventario en un sistema profesional</h2></div>
-<div class="solbox">
-<div>
-<h3>Un sistema que piensa por ti</h3>
-<p>Capturas entradas y salidas en celdas azules. Las 18,021 fórmulas calculan stock actual, costo promedio, IVA, IEPS, valuación y alertas automáticamente. Zero errores.</p>
-<div class="sck">
-<div class="sci"><div class="scii">✓</div> Costo promedio ponderado automático (Art. 41 LISR)</div>
-<div class="sci"><div class="scii">✓</div> IVA 16% configurable · Zona Frontera 8% · Tasa 0% · Exento</div>
-<div class="sci"><div class="scii">✓</div> IEPS 2026 actualizado (bebidas, alimentos, tabaco, alcohol)</div>
-<div class="sci"><div class="scii">✓</div> Claves SAT c_ClaveProdServ y c_ClaveUnidad (CFDI 4.0)</div>
-<div class="sci"><div class="scii">✓</div> Alertas de stock mínimo con semáforo automático</div>
-<div class="sci"><div class="scii">✓</div> Conciliación de inventario físico vs sistema</div>
-</div>
-</div>
-<div class="sol-visual">
-<div class="sol-vt">📊 Módulos — InventarioPro 2026</div>
-<div class="sol-grid">
-<div class="sol-mod"><div class="sol-mod-icon">⚙️</div><div class="sol-mod-label">Configuración</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📦</div><div class="sol-mod-label">Catálogo</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📥</div><div class="sol-mod-label">Entradas</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📤</div><div class="sol-mod-label">Salidas</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📒</div><div class="sol-mod-label">Kardex</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📋</div><div class="sol-mod-label">Inv. Físico</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📊</div><div class="sol-mod-label">Resumen</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">📑</div><div class="sol-mod-label">Datos SAT</div></div>
-<div class="sol-mod"><div class="sol-mod-icon">🎛️</div><div class="sol-mod-label">Dashboard</div></div>
-</div>
-</div>
-</div>
-</div></section>
+<section class="sec" id="modulos"><div class="ct rv"><div class="sh"><div class="sht"><div class="shd"></div> La solución</div><h2 class="stt">InventarioPro 2026: <span class="hl">control total</span> de tu inventario en un sistema profesional</h2></div>
+<div class="solbox"><div><h3>Un sistema que piensa por ti</h3><p>Capturas entradas y salidas en celdas azules. Las <strong style="color:var(--b9)">18,021 fórmulas</strong> calculan stock actual, costo promedio, IVA, IEPS, valuación y alertas automáticamente. Verificado con cero errores.</p>
+<div class="sck"><div class="sci"><div class="scii">✓</div> <strong>Costo promedio ponderado</strong> automático (Art. 41 LISR)</div><div class="sci"><div class="scii">✓</div> IVA 16% configurable · Zona Frontera 8% · Tasa 0% · Exento</div><div class="sci"><div class="scii">✓</div> <strong>IEPS 2026</strong> actualizado (bebidas, alimentos, tabaco, alcohol)</div><div class="sci"><div class="scii">✓</div> Claves SAT c_ClaveProdServ y c_ClaveUnidad (<strong>CFDI 4.0</strong>)</div><div class="sci"><div class="scii">✓</div> <strong>Alertas de stock</strong> mínimo con semáforo automático</div><div class="sci"><div class="scii">✓</div> Conciliación de <strong>inventario físico</strong> vs sistema</div></div></div>
+<div class="sol-visual"><div class="sol-vt">📊 Módulos — InventarioPro 2026</div><div class="sol-grid"><div class="sol-mod"><div class="sol-mod-icon">⚙️</div><div class="sol-mod-label">Configuración</div></div><div class="sol-mod"><div class="sol-mod-icon">📦</div><div class="sol-mod-label">Catálogo</div></div><div class="sol-mod"><div class="sol-mod-icon">📥</div><div class="sol-mod-label">Entradas</div></div><div class="sol-mod"><div class="sol-mod-icon">📤</div><div class="sol-mod-label">Salidas</div></div><div class="sol-mod"><div class="sol-mod-icon">📒</div><div class="sol-mod-label">Kardex</div></div><div class="sol-mod"><div class="sol-mod-icon">📋</div><div class="sol-mod-label">Inv. Físico</div></div><div class="sol-mod"><div class="sol-mod-icon">📊</div><div class="sol-mod-label">Resumen</div></div><div class="sol-mod"><div class="sol-mod-icon">📑</div><div class="sol-mod-label">Datos SAT</div></div><div class="sol-mod"><div class="sol-mod-icon">🎛️</div><div class="sol-mod-label">Dashboard</div></div></div></div></div>
+<div class="highlight-grid rv"><div class="highlight-card"><div class="highlight-num">Art. 41</div><h4>Costo promedio conforme a LISR</h4><p>Se recalcula con cada entrada: (stock × costo anterior + nuevas × costo nuevo) ÷ total. <strong style="color:var(--d9)">Auditable y correcto.</strong></p></div><div class="highlight-card"><div class="highlight-num">Art. 76</div><h4>Control de inventarios obligatorio</h4><p>El SAT exige registro de entradas, salidas y valuación. InventarioPro <strong style="color:var(--d9)">cumple ambos artículos</strong> automáticamente.</p></div><div class="highlight-card"><div class="highlight-num">CFDI 4.0</div><h4>Claves SAT precargadas</h4><p>20 claves de producto y 20 unidades de medida más usadas, listas para <strong style="color:var(--d9)">facturar sin errores</strong> en tu PAC.</p></div><div class="highlight-card"><div class="highlight-num">100%</div><h4>Fórmulas nativas, cero macros</h4><p>Solo SUMIFS, VLOOKUP e IF anidados. <strong style="color:var(--d9)">Puedes auditar y modificar</strong> cualquier fórmula sin riesgo.</p></div></div></div></section>
 
-<!-- CARACTERÍSTICAS -->
-<section class="sec sa" id="caracteristicas"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Características</div>
-<h2 class="stt">Todo lo que necesitas para controlar tu inventario</h2>
-<p class="std">Cada módulo está diseñado para que no pierdas ni una pieza ni un peso.</p></div>
+<section class="sec sa" id="caracteristicas"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Características</div><h2 class="stt">Cada módulo resuelve un dolor real de tu negocio</h2><p class="std">No es una hoja de cálculo vacía. Es un sistema con <strong>18,021 fórmulas</strong> que se conectan entre sí para que tú solo captures y todo se calcule.</p></div>
 <div class="fg rv">
-<div class="fc"><div class="fi">📦</div><h3>Catálogo de 500 productos</h3><p>SKU, descripción, clave SAT, unidad, categoría, proveedor, precios de compra/venta y ubicación en almacén.</p></div>
-<div class="fc"><div class="fi">📥</div><h3>Registro de entradas</h3><p>Compras, devoluciones de cliente y ajustes positivos. IVA e IEPS se calculan solos según tu configuración.</p></div>
-<div class="fc"><div class="fi">📤</div><h3>Registro de salidas</h3><p>Ventas, mermas, devoluciones a proveedor y consumo interno. Calcula costo de venta automáticamente.</p></div>
-<div class="fc"><div class="fi">📒</div><h3>Kardex automático</h3><p>Registro cronológico de movimientos por producto. Saldo y costo promedio actualizados en cada línea.</p></div>
-<div class="fc"><div class="fi">📋</div><h3>Inventario físico</h3><p>Conciliación de conteo real vs sistema. Detecta faltantes, sobrantes y calcula diferencia en pesos. Art. 76-XIV LISR.</p></div>
-<div class="fc"><div class="fi">📊</div><h3>Dashboard y análisis</h3><p>Valuación total, utilidad bruta, margen, mermas, análisis ABC, rotación y alertas de stock bajo y agotado.</p></div>
-</div>
-</div></section>
+<div class="fc"><div class="fi">📦</div><h3>Catálogo de productos completo</h3><p>SKU, descripción, clave SAT, unidad, categoría, proveedor, precios de compra y venta, ubicación en almacén. <strong style="color:var(--d9)">Stock y costo promedio se actualizan solos.</strong></p></div>
+<div class="fc"><div class="fi">📥</div><h3>Entradas con IVA e IEPS automático</h3><p>Compras, devoluciones de cliente y ajustes positivos. El sistema <strong style="color:var(--d9)">calcula IVA e IEPS según tu configuración</strong> — si los desactivaste, da cero.</p></div>
+<div class="fc"><div class="fi">📤</div><h3>Salidas con costo de venta</h3><p>Ventas, mermas, devoluciones a proveedor y consumo interno. <strong style="color:var(--d9)">Calcula el costo de venta automáticamente</strong> desde el costo promedio del catálogo.</p></div>
+<div class="fc"><div class="fi">📒</div><h3>Kardex cronológico por producto</h3><p>Registro de cada movimiento con saldo y costo promedio actualizados línea por línea. <strong style="color:var(--d9)">Es lo que el SAT te pide en una auditoría.</strong></p></div>
+<div class="fc"><div class="fi">📋</div><h3>Conciliación de inventario físico</h3><p>Capturas el conteo real. El sistema detecta faltantes, sobrantes, calcula la diferencia en pesos y el <strong style="color:var(--d9)">% de desviación por producto</strong>. Art. 76-XIV LISR.</p></div>
+<div class="fc"><div class="fi">📊</div><h3>Dashboard con utilidad y análisis</h3><p>Valuación total, utilidad bruta, margen, mermas acumuladas, <strong style="color:var(--d9)">análisis ABC</strong>, fórmulas de rotación y alertas de stock bajo y agotado.</p></div>
+</div></div></section>
 
-<!-- CONFIGURACIÓN OPCIONAL -->
-<section class="sec"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Tú decides</div>
-<h2 class="stt">Activa solo lo que tu negocio necesita</h2>
-<p class="std">Cada función se prende o apaga con un SÍ o NO. Nada te sobra, nada te falta.</p></div>
+<section class="sec"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Tú decides</div><h2 class="stt">Activa solo lo que <span class="hl">tu negocio necesita</span></h2><p class="std">Cada función se prende o apaga con un SÍ o NO en la hoja de configuración. Nada te sobra, nada te falta.</p></div>
 <div class="optg rv">
-<div class="opt"><span class="opt-l">¿Aplicar IVA a productos?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Zona Frontera Norte (IVA 8%)?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Manejar IEPS?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Claves SAT (CFDI 4.0)?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Alertas de stock mínimo?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Ubicación en almacén?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Número de lote?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-<div class="opt"><span class="opt-l">¿Fecha de caducidad?</span><span class="opt-v opt-on">SÍ / NO</span></div>
-</div>
-</div></section>
+<div class="opt"><span class="opt-l">¿Aplicar IVA a productos?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Zona Frontera Norte (IVA 8%)?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Manejar IEPS?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Claves SAT (CFDI 4.0)?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Alertas de stock mínimo?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Ubicación en almacén?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Número de lote?</span><span class="opt-v">SÍ / NO</span></div>
+<div class="opt"><span class="opt-l">¿Fecha de caducidad?</span><span class="opt-v">SÍ / NO</span></div>
+</div></div></section>
 
-<!-- CÓMO FUNCIONA -->
-<section class="sec sa" id="como-funciona"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Cómo funciona</div>
-<h2 class="stt">4 pasos y tu inventario está controlado</h2>
-<p class="std">Si sabes capturar datos en celdas, sabes usar InventarioPro.</p></div>
-<div class="sps rv">
-<div class="sp"><div class="spn">1</div><h3>Configura</h3><p>Activa IVA, IEPS, claves SAT y las opciones que necesites.</p></div>
-<div class="sp"><div class="spn">2</div><h3>Registra productos</h3><p>SKU, descripción, precios, proveedor y stock mínimo en el Catálogo.</p></div>
-<div class="sp"><div class="spn">3</div><h3>Captura movimientos</h3><p>Cada compra va a Entradas. Cada venta o merma va a Salidas.</p></div>
-<div class="sp"><div class="spn">4</div><h3>Consulta resultados</h3><p>Stock, Kardex, valuación y alertas se actualizan al instante.</p></div>
-</div>
-</div></section>
+<section class="sec sa" id="como-funciona"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Cómo funciona</div><h2 class="stt">4 pasos y tu inventario está <span class="hl">bajo control</span></h2><p class="std">Si sabes capturar datos en celdas, sabes usar InventarioPro. Sin curva de aprendizaje.</p></div>
+<div class="sps rv"><div class="sp"><div class="spn">1</div><h3>Configura</h3><p>Activa IVA, IEPS, claves SAT y las opciones que tu negocio necesite.</p></div><div class="sp"><div class="spn">2</div><h3>Registra productos</h3><p>SKU, descripción, precios, proveedor y stock mínimo en el Catálogo.</p></div><div class="sp"><div class="spn">3</div><h3>Captura movimientos</h3><p>Cada compra va a Entradas. Cada venta o merma va a Salidas.</p></div><div class="sp"><div class="spn">4</div><h3>Consulta resultados</h3><p>Stock, Kardex, valuación y alertas se actualizan al instante.</p></div></div></div></section>
 
-<!-- CAPTURAS -->
-<section class="sec" id="capturas"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Capturas del sistema</div>
-<h2 class="stt">Así se ve InventarioPro por dentro</h2>
-<p class="std">Capturas reales del sistema con datos de ejemplo.</p></div>
-
-<!-- CATÁLOGO MOCKUP -->
+<section class="sec" id="capturas"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Capturas del sistema</div><h2 class="stt">Así se ve InventarioPro <span class="hl">por dentro</span></h2><p class="std">Capturas reales del sistema funcionando con datos de ejemplo.</p></div>
 <div class="ssg rv">
-<div class="ssc"><div class="ssh"><div class="ssd" style="background:#f87171"></div><div class="ssd" style="background:#fbbf24"></div><div class="ssd" style="background:#34d399"></div><span class="ssl">Módulo: Catálogo de Productos</span></div>
-<div class="ss-body">
-<table class="ss-mock-table"><thead><tr><th>SKU</th><th>Descripción</th><th>Clave SAT</th><th>Stock</th><th>Costo Prom.</th><th>Estado</th></tr></thead>
-<tbody>
-<tr><td class="input-cell">SKU-001</td><td class="input-cell">Aceite 5W-30</td><td>15121501</td><td class="calc-cell">65</td><td class="calc-cell">$85.70</td><td class="ok">✅ OK</td></tr>
-<tr><td class="input-cell">SKU-002</td><td class="input-cell">Filtro de aire</td><td>25172504</td><td class="calc-cell">3</td><td class="calc-cell">$122.40</td><td class="warn">⚠️ Bajo</td></tr>
-<tr><td class="input-cell">SKU-003</td><td class="input-cell">Refresco 600ml</td><td>50202301</td><td class="calc-cell">155</td><td class="calc-cell">$8.50</td><td class="ok">✅ OK</td></tr>
-<tr><td class="input-cell">SKU-004</td><td class="input-cell">Papas fritas</td><td>50181903</td><td class="calc-cell">75</td><td class="calc-cell">$22.00</td><td class="ok">✅ OK</td></tr>
-<tr><td class="input-cell">SKU-005</td><td class="input-cell">Laptop Dell</td><td>43211507</td><td class="calc-cell">0</td><td class="calc-cell">$12,680</td><td class="err">🔴 Agotado</td></tr>
-</tbody></table>
-</div>
-<div class="sscap">📦 Stock actual y costo promedio se calculan automáticamente con cada entrada y salida</div>
-</div>
+<div class="ssc"><div class="ssh"><div class="ssd" style="background:#f87171"></div><div class="ssd" style="background:#fbbf24"></div><div class="ssd" style="background:#34d399"></div><span class="ssl">Módulo: Catálogo de Productos</span></div><div class="ss-body"><table class="ss-mock-table"><thead><tr><th>SKU</th><th>Descripción</th><th>Clave SAT</th><th>Stock</th><th>Costo Prom.</th><th>Estado</th></tr></thead><tbody><tr><td class="input-cell">SKU-001</td><td class="input-cell">Aceite 5W-30</td><td>15121501</td><td class="calc-cell">65</td><td class="calc-cell">$85.70</td><td class="ok">✅ OK</td></tr><tr><td class="input-cell">SKU-002</td><td class="input-cell">Filtro de aire</td><td>25172504</td><td class="calc-cell">3</td><td class="calc-cell">$122.40</td><td class="warn">⚠️ Bajo</td></tr><tr><td class="input-cell">SKU-003</td><td class="input-cell">Refresco 600ml</td><td>50202301</td><td class="calc-cell">155</td><td class="calc-cell">$8.50</td><td class="ok">✅ OK</td></tr><tr><td class="input-cell">SKU-004</td><td class="input-cell">Papas fritas</td><td>50181903</td><td class="calc-cell">75</td><td class="calc-cell">$22.00</td><td class="ok">✅ OK</td></tr><tr><td class="input-cell">SKU-005</td><td class="input-cell">Laptop Dell</td><td>43211507</td><td class="calc-cell">0</td><td class="calc-cell">$12,680</td><td class="err">🔴 Agotado</td></tr></tbody></table></div><div class="sscap">📦 Stock y costo promedio se recalculan con cada entrada y salida — cero intervención manual</div></div>
+<div class="ssc"><div class="ssh"><div class="ssd" style="background:#f87171"></div><div class="ssd" style="background:#fbbf24"></div><div class="ssd" style="background:#34d399"></div><span class="ssl">Módulo: Inventario Físico — Conciliación</span></div><div class="ss-body"><table class="ss-mock-table"><thead><tr><th>SKU</th><th>Producto</th><th>Sistema</th><th>Conteo</th><th>Dif.</th><th>Estado</th></tr></thead><tbody><tr><td>SKU-001</td><td>Aceite 5W-30</td><td>65</td><td class="input-cell">65</td><td class="calc-cell">0</td><td class="ok">✅ Cuadra</td></tr><tr><td>SKU-002</td><td>Filtro de aire</td><td>3</td><td class="input-cell">2</td><td class="calc-cell" style="color:var(--err)">-1</td><td class="err">🔴 Faltante</td></tr><tr><td>SKU-003</td><td>Refresco 600ml</td><td>155</td><td class="input-cell">158</td><td class="calc-cell" style="color:var(--warn)">+3</td><td class="warn">🟡 Sobrante</td></tr><tr><td>SKU-004</td><td>Papas fritas</td><td>75</td><td class="input-cell">75</td><td class="calc-cell">0</td><td class="ok">✅ Cuadra</td></tr></tbody></table></div><div class="sscap">📋 Capturas tu conteo real y el sistema calcula faltantes, sobrantes y diferencia en pesos</div></div>
+</div></div></section>
 
-<div class="ssc"><div class="ssh"><div class="ssd" style="background:#f87171"></div><div class="ssd" style="background:#fbbf24"></div><div class="ssd" style="background:#34d399"></div><span class="ssl">Módulo: Inventario Físico — Conciliación</span></div>
-<div class="ss-body">
-<table class="ss-mock-table"><thead><tr><th>SKU</th><th>Producto</th><th>Sistema</th><th>Conteo</th><th>Dif.</th><th>Estado</th></tr></thead>
-<tbody>
-<tr><td>SKU-001</td><td>Aceite 5W-30</td><td>65</td><td class="input-cell">65</td><td class="calc-cell">0</td><td class="ok">✅ Cuadra</td></tr>
-<tr><td>SKU-002</td><td>Filtro de aire</td><td>3</td><td class="input-cell">2</td><td class="calc-cell" style="color:var(--err)">-1</td><td class="err">🔴 Faltante</td></tr>
-<tr><td>SKU-003</td><td>Refresco 600ml</td><td>155</td><td class="input-cell">158</td><td class="calc-cell" style="color:var(--warn)">+3</td><td class="warn">🟡 Sobrante</td></tr>
-<tr><td>SKU-004</td><td>Papas fritas</td><td>75</td><td class="input-cell">75</td><td class="calc-cell">0</td><td class="ok">✅ Cuadra</td></tr>
-</tbody></table>
-</div>
-<div class="sscap">📋 Captura el conteo físico real y el sistema detecta faltantes y sobrantes automáticamente</div>
-</div>
-</div>
+<section class="sec sa"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Datos fiscales</div><h2 class="stt">Actualizado con cifras <span class="hl">oficiales 2026</span></h2></div>
+<div class="fdata rv"><div class="fdi"><span class="fdl">IVA General</span><span class="fdv fdv-b">16%</span></div><div class="fdi"><span class="fdl">IVA Frontera Norte</span><span class="fdv">8% (estímulo)</span></div><div class="fdi"><span class="fdl">IEPS Bebidas azucaradas</span><span class="fdv">$3.08/litro</span></div><div class="fdi"><span class="fdl">IEPS Edulcorantes</span><span class="fdv">$1.50/litro</span></div><div class="fdi"><span class="fdl">IEPS Alimentos +275kcal</span><span class="fdv fdv-b">8%</span></div><div class="fdi"><span class="fdl">Catálogo SAT</span><span class="fdv fdv-b">CFDI 4.0 · Anexo 20</span></div><div class="fdi"><span class="fdl">Método valuación</span><span class="fdv">Costo promedio (Art. 41 LISR)</span></div><div class="fdi"><span class="fdl">Formato</span><span class="fdv">.xlsx (Excel 2016+)</span></div></div></div></section>
 
-</div></section>
-
-<!-- DATOS FISCALES -->
-<section class="sec sa"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Datos fiscales</div>
-<h2 class="stt">Actualizado con cifras oficiales 2026</h2></div>
-<div class="fdata rv">
-<div class="fdi"><span class="fdl">IVA General</span><span class="fdv fdv-b">16%</span></div>
-<div class="fdi"><span class="fdl">IVA Frontera Norte</span><span class="fdv">8% (estímulo)</span></div>
-<div class="fdi"><span class="fdl">IEPS Bebidas azucaradas</span><span class="fdv">$3.08/litro</span></div>
-<div class="fdi"><span class="fdl">IEPS Edulcorantes</span><span class="fdv">$1.50/litro</span></div>
-<div class="fdi"><span class="fdl">IEPS Alimentos +275kcal</span><span class="fdv fdv-b">8%</span></div>
-<div class="fdi"><span class="fdl">Catálogo SAT</span><span class="fdv fdv-b">CFDI 4.0 · Anexo 20</span></div>
-<div class="fdi"><span class="fdl">Método valuación</span><span class="fdv">Costo promedio (Art. 41 LISR)</span></div>
-<div class="fdi"><span class="fdl">Formato</span><span class="fdv">.xlsx (Excel 2016+)</span></div>
-</div>
-</div></section>
-
-<!-- TESTIMONIOS -->
-<section class="sec" id="testimonios"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Testimonios</div>
-<h2 class="stt">Lo que dicen quienes ya controlan su inventario</h2></div>
+<section class="sec" id="testimonios"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Testimonios</div><h2 class="stt">Lo que dicen quienes ya <span class="hl">controlan su inventario</span></h2></div>
 <div class="rg rv">
-<div class="rc"><div class="rs">★★★★★</div><div class="rt">Tengo una ferretería con más de 200 productos. Antes llevaba todo en un cuaderno y siempre me faltaban cosas que no sabía cuándo se vendieron. Ahora con el Kardex sé exactamente qué se movió y cuándo.</div><div class="ra"><div class="rav" style="background:var(--b7)">JR</div><div><div class="rn">Jorge Ramírez</div><div class="rr">Ferretería · Querétaro, Qro.</div></div></div></div>
-<div class="rc"><div class="rs">★★★★★</div><div class="rt">Lo mejor es la conciliación de inventario físico. Cada mes hago conteo y el sistema me dice exactamente dónde están las diferencias. Me ha ahorrado faltantes de miles de pesos.</div><div class="ra"><div class="rav" style="background:#1e3a5f">MC</div><div><div class="rn">Martha Castillo</div><div class="rr">Tienda de abarrotes · Mérida, Yuc.</div></div></div></div>
-<div class="rc"><div class="rs">★★★★★</div><div class="rt">Soy contador y necesitaba las claves SAT y el costo promedio correcto para 3 clientes. El sistema me da el desglose exacto para facturar y cumplir con el Art. 76. Muy bien pensado.</div><div class="ra"><div class="rav" style="background:#0f2240">AL</div><div><div class="rn">C.P. Antonio López</div><div class="rr">Contador independiente · CDMX</div></div></div></div>
-<div class="rc"><div class="rs">★★★★☆</div><div class="rt">Manejo una papelería con 300 artículos. El sistema me marca en rojo los que se agotaron y en amarillo los que van a faltar. Antes compraba a lo loco, ahora compro lo justo.</div><div class="ra"><div class="rav" style="background:#0a1628">LS</div><div><div class="rn">Laura Soto</div><div class="rr">Papelería · Guadalajara, Jal.</div></div></div></div>
-</div>
+<div class="rc"><div class="rs">★★★★★</div><div class="rt">Tengo una ferretería con más de 200 productos. Antes llevaba todo en un cuaderno y siempre me faltaban cosas que no sabía cuándo se vendieron. Ahora con el Kardex <strong>sé exactamente qué se movió y cuándo.</strong></div><div class="ra"><div class="rav" style="background:var(--b7)">JR</div><div><div class="rn">Jorge Ramírez</div><div class="rr">Ferretería · Querétaro, Qro.</div></div></div></div>
+<div class="rc"><div class="rs">★★★★★</div><div class="rt">Lo mejor es la conciliación de inventario físico. Cada mes hago conteo y el sistema me dice <strong>exactamente dónde están las diferencias.</strong> Me ha ahorrado faltantes de miles de pesos.</div><div class="ra"><div class="rav" style="background:#1e3a5f">MC</div><div><div class="rn">Martha Castillo</div><div class="rr">Tienda de abarrotes · Mérida, Yuc.</div></div></div></div>
+<div class="rc"><div class="rs">★★★★★</div><div class="rt">Soy contador y necesitaba las claves SAT y el costo promedio correcto para 3 clientes. El sistema me da el <strong>desglose exacto para facturar y cumplir con el Art. 76.</strong> Muy bien pensado.</div><div class="ra"><div class="rav" style="background:#0f2240">AL</div><div><div class="rn">C.P. Antonio López</div><div class="rr">Contador independiente · CDMX</div></div></div></div>
+<div class="rc"><div class="rs">★★★★☆</div><div class="rt">Manejo una papelería con 300 artículos. El sistema me marca en rojo los que se agotaron y en amarillo los que van a faltar. <strong>Antes compraba a lo loco, ahora compro lo justo.</strong></div><div class="ra"><div class="rav" style="background:#0a1628">LS</div><div><div class="rn">Laura Soto</div><div class="rr">Papelería · Guadalajara, Jal.</div></div></div></div>
+</div></div></section>
+
+<section class="sec sb-bg" id="precio"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> Precio</div><h2 class="stt">Una inversión, no un <span class="hl">gasto mensual</span></h2><p class="std">Pagas una vez y es tuyo para siempre. Sin suscripciones, sin límites de uso.</p></div>
+<div style="max-width:480px;margin:0 auto 1.5rem;text-align:center;padding:.7rem 1.2rem;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:10px;font-size:.85rem;color:var(--gold);font-weight:600">⏳ Precio de lanzamiento por tiempo limitado — después vuelve a $399 MXN</div>
+<div class="prc rv"><div class="prb">🚀 Precio de lanzamiento</div><div class="prn">InventarioPro 2026</div><div class="prd">Sistema completo de inventarios para tu negocio</div><div class="pro">$399 MXN precio regular</div><div class="prr"><span class="prcu">$</span><span class="pra">199</span><span class="prm">MXN</span></div><div class="prp">Pago único · Entrega inmediata por email</div><div class="prdv"></div>
+<ul class="prfl"><li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Sistema completo (8 módulos, 18,021 fórmulas)</li><li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>IVA configurable · IEPS 2026 · Claves SAT CFDI 4.0</li><li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Costo promedio ponderado automático (Art. 41 LISR)</li><li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Kardex, alertas de stock y conciliación física</li><li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Dashboard con utilidad bruta, margen y análisis ABC</li><li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>11 opciones configurables (IVA, IEPS, lote, caducidad…)</li></ul>
+<a href="https://mpago.la/2hE6BcR" target="_blank" class="bm">Descargar ahora por $199 MXN</a><div class="prnt">Compatible con Excel 2016+ · Formato .xlsx</div><div class="prsc">🔒 Pago seguro con Mercado Pago · Tarjeta, transferencia o OXXO</div></div>
+<div class="upsell rv"><div class="upsell-text">¿También necesitas calcular nómina? <strong>NominaPro 2026</strong> calcula ISR, IMSS, INFONAVIT y genera recibos automáticamente. Mismo formato, misma calidad.</div><a href="/" class="upsell-btn">Ver NominaPro →</a></div>
 </div></section>
 
-<!-- PRECIO -->
-<section class="sec sb-bg" id="precio"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> Precio</div>
-<h2 class="stt">Una inversión, no un gasto mensual</h2>
-<p class="std">Pagas una vez y es tuyo para siempre. Sin suscripciones.</p></div>
-<div style="max-width:480px;margin:0 auto 1.5rem;text-align:center;padding:.7rem 1.2rem;background:var(--w);border:1.5px solid #fbbf24;border-radius:10px;font-size:.82rem;color:#92400e;font-weight:600">⏳ Precio de lanzamiento por tiempo limitado — después vuelve a $399 MXN</div>
-<div class="prc rv">
-<div class="prb">🚀 Precio de lanzamiento</div>
-<div class="prn">InventarioPro 2026</div>
-<div class="prd">Sistema completo de inventarios para tu negocio</div>
-<div class="pro">$399 MXN precio regular</div>
-<div class="prr"><span class="prcu">$</span><span class="pra">199</span><span class="prm">MXN</span></div>
-<div class="prp">Pago único · Entrega inmediata por email</div>
-<div class="prdv"></div>
-<ul class="prfl">
-<li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Sistema completo (8 módulos, 18,021 fórmulas)</li>
-<li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>IVA configurable · IEPS 2026 · Claves SAT CFDI 4.0</li>
-<li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Costo promedio ponderado automático</li>
-<li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Kardex, alertas de stock y conciliación física</li>
-<li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Dashboard con utilidad bruta, margen y análisis ABC</li>
-<li><div class="prck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>11 opciones configurables (IVA, IEPS, lote, caducidad…)</li>
-</ul>
-<a href="https://mpago.la/2hE6BcR" target="_blank" class="bm">Descargar ahora por $199 MXN</a>
-<div class="prnt">Compatible con Excel 2016+ · Formato .xlsx</div>
-<div class="prsc">🔒 Pago seguro con Mercado Pago · Tarjeta, transferencia o OXXO</div>
-</div>
-
-<!-- UPSELL NOMINAPRO -->
-<div class="upsell rv">
-<div class="upsell-text">¿También necesitas calcular nómina? <strong>NominaPro 2026</strong> calcula ISR, IMSS, INFONAVIT y genera recibos automáticamente. Mismo formato, misma calidad.</div>
-<a href="/" class="upsell-btn">Ver NominaPro →</a>
-</div>
-
-</div></section>
-
-<!-- FAQ -->
-<section class="sec" id="faq"><div class="ct">
-<div class="sh rv"><div class="sht"><div class="shd"></div> FAQ</div>
-<h2 class="stt">Preguntas frecuentes</h2></div>
+<section class="sec" id="faq"><div class="ct"><div class="sh rv"><div class="sht"><div class="shd"></div> FAQ</div><h2 class="stt">Preguntas frecuentes</h2></div>
 <div class="fql rv">
 <div class="fqi"><div class="fqq">¿Cómo recibo el sistema después de pagar?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Después de tu pago en Mercado Pago, te enviamos el archivo a tu correo electrónico en menos de 30 minutos. Si no lo recibes, escríbenos por WhatsApp y te lo mandamos al instante.</div></div></div>
-<div class="fqi"><div class="fqq">¿Necesito algún software especial?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Solo Microsoft Excel 2016 o superior. El formato .xlsx es estándar. Recomendamos Excel de escritorio porque algunas fórmulas avanzadas (SUMIFS, VLOOKUP anidado) no funcionan correctamente en Google Sheets o LibreOffice.</div></div></div>
+<div class="fqi"><div class="fqq">¿Necesito algún software especial?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Solo Microsoft Excel 2016 o superior. El formato .xlsx es estándar. Recomendamos Excel de escritorio porque fórmulas avanzadas como SUMIFS y VLOOKUP anidado no funcionan correctamente en Google Sheets o LibreOffice.</div></div></div>
 <div class="fqi"><div class="fqq">¿Puedo usarlo si no manejo IVA o IEPS?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Sí. En la hoja de Configuración desactivas IVA y/o IEPS poniendo "NO" y las columnas correspondientes muestran cero. El sistema funciona perfectamente solo con cantidades y costos.</div></div></div>
-<div class="fqi"><div class="fqq">¿Cuántos productos y movimientos soporta?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Hasta 500 productos en el catálogo y 1,000 movimientos tanto en entradas como en salidas. Para un negocio pequeño y mediano, esto es más que suficiente para un año completo.</div></div></div>
 <div class="fqi"><div class="fqq">¿Calcula el costo promedio automáticamente?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Sí. Cada vez que registras una entrada, el costo promedio ponderado se recalcula con la fórmula oficial: (inventario existente × costo anterior + unidades nuevas × costo nuevo) ÷ total unidades. Cumple con Art. 41 LISR.</div></div></div>
 <div class="fqi"><div class="fqq">¿Sirve para cumplir con el SAT?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Incluye claves SAT (c_ClaveProdServ y c_ClaveUnidad) para CFDI 4.0, costo promedio conforme al Art. 41 LISR, y conciliación de inventario físico conforme al Art. 76-XIV LISR. Los montos los transcribes directo a tu sistema de facturación.</div></div></div>
-<div class="fqi"><div class="fqq">¿Puedo usarlo para más de un negocio?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Cada archivo es para un negocio/almacén. Puedes duplicar el archivo para cada empresa. La licencia permite uso ilimitado.</div></div></div>
+<div class="fqi"><div class="fqq">¿Puedo usarlo para más de un negocio?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Cada archivo es para un negocio o almacén. Puedes duplicar el archivo para cada empresa o sucursal. La licencia permite uso ilimitado.</div></div></div>
 <div class="fqi"><div class="fqq">¿Incluye las tasas IEPS 2026?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Sí. Bebidas azucaradas $3.08/litro, edulcorantes $1.50/litro, alimentos alta densidad calórica 8%, alcohol 26.5% a 53%, tabaco 200% + cuota $0.8516/cigarro. Todo basado en la reforma del DOF 07/11/2025 y Acuerdo 179/2025.</div></div></div>
-</div>
-</div></section>
+<div class="fqi"><div class="fqq">¿Qué tipo de negocios lo usan?<div class="fqa">+</div></div><div class="fqan"><div class="fqai">Ferreterías, tiendas de abarrotes, papelerías, talleres, restaurantes, tiendas de ropa, farmacias, refaccionarias y cualquier negocio que maneje productos físicos. También lo usan contadores que llevan inventario de varios clientes.</div></div></div>
+</div></div></section>
 
-<!-- CTA FINAL -->
-<section class="ctf"><div class="ct rv">
-<h2>¿Listo para saber exactamente qué tienes en tu almacén?</h2>
-<p>18,021 fórmulas ya hicieron el trabajo por ti. Solo captura movimientos y todo se actualiza al instante.</p>
-<a href="#precio" class="bc">📦 Ver precio y descargar</a>
-<div style="margin-top:1rem;font-size:.78rem;color:rgba(255,255,255,.5)">💪 Garantía de 7 días — si no te sirve, te devolvemos tu dinero</div>
-</div></section>
-
-<footer><p>© 2026 nominamexico.com · Todos los derechos reservados · Datos fiscales 2026 · IVA 16% · IEPS actualizado · Catálogo SAT CFDI 4.0</p></footer>
-
-<!-- WHATSAPP -->
+<section class="ctf"><div class="ct rv"><h2>¿Listo para saber exactamente qué tienes en tu almacén?</h2><p>18,021 fórmulas ya hicieron el trabajo por ti. Solo captura movimientos y todo se actualiza al centavo.</p><a href="#precio" class="bc">📦 Ver precio y descargar</a><div style="margin-top:1rem;font-size:.8rem;color:rgba(255,255,255,.45)">💪 Garantía de 7 días — si no te sirve, te devolvemos tu dinero</div></div></section>
+<footer><p>© 2026 nominamexico.com · Todos los derechos reservados · IVA 16% · IEPS 2026 · Catálogo SAT CFDI 4.0 · Art. 41 y 76 LISR</p></footer>
 <a href="https://wa.me/message/F5GEDQNKGGBRE1" target="_blank" rel="noopener" class="wf" aria-label="WhatsApp"><div class="wt">¿Dudas? Escríbenos</div><div class="wb"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div></a>
-
 <script>
 document.querySelectorAll('.fqq').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.fqi').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open')})});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.1});document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
