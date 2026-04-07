@@ -8,71 +8,83 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root{--blue-900:#1a3a5c;--blue-700:#2563a0;--blue-600:#2b72b8;--blue-100:#dbeafe;--blue-50:#eff6ff;--green-700:#15803d;--green-600:#16a34a;--green-100:#dcfce7;--green-50:#f0fdf4;--gray-900:#111827;--gray-700:#374151;--gray-600:#4b5563;--gray-500:#6b7280;--gray-400:#9ca3af;--gray-200:#e5e7eb;--gray-50:#f9fafb;--white:#fff;--font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'IBM Plex Mono',monospace}
+        :root{--p:#0f4c2e;--p2:#1a6b41;--p3:#228b57;--p4:#2ea86e;--p5:#4cc88a;--pl:#e6f5ed;--pl2:#cceadb;--green-700:#15803d;--green-100:#dcfce7;--green-50:#f0fdf4;--t:#1a1a2e;--t2:#2d2d44;--t3:#4a4a66;--t4:#6e6e8a;--t5:#9595ab;--bdr:#d4ddd8;--bg:#fafcfb;--bg2:#f0f5f2;--w:#fff;--font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'IBM Plex Mono',monospace;--wa:#25D366}
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:var(--font);color:var(--gray-700);background:var(--gray-50);min-height:100vh;display:flex;flex-direction:column}
-        nav{background:var(--white);border-bottom:1px solid var(--gray-200);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:center}
-        nav .inner{max-width:700px;width:100%;display:flex;justify-content:center;align-items:center}
-        nav a{text-decoration:none;color:var(--blue-900);font-weight:800;font-size:1rem;display:flex;align-items:center;gap:.5rem}
-        nav .logo-icon{width:30px;height:30px;background:var(--blue-600);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.75rem}
-        .main{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem}
-        .card{max-width:500px;width:100%;background:var(--white);border-radius:20px;padding:3rem;text-align:center;border:1px solid var(--gray-200);box-shadow:0 12px 40px rgba(0,0,0,.06)}
-        .success-icon{width:80px;height:80px;background:var(--green-100);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2.5rem}
-        .card h1{font-size:1.5rem;font-weight:800;color:var(--blue-900);margin-bottom:.5rem}
-        .card .subtitle{font-size:.95rem;color:var(--gray-500);margin-bottom:2rem;line-height:1.7}
-        .info-box{background:var(--blue-50);border:1.5px solid var(--blue-100);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:left}
-        .info-title{font-size:.85rem;font-weight:700;color:var(--blue-700);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
-        .info-step{display:flex;gap:.7rem;margin-bottom:.7rem;align-items:flex-start}
-        .info-step:last-child{margin-bottom:0}
-        .info-num{width:22px;height:22px;background:var(--blue-600);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:.15rem}
-        .info-text{font-size:.88rem;color:var(--gray-700);line-height:1.6}
-        .info-text strong{color:var(--gray-900)}
-        .time-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--green-50);border:1px solid var(--green-100);color:var(--green-700);padding:.5rem 1.2rem;border-radius:100px;font-size:.85rem;font-weight:600;margin-bottom:1.5rem}
-        .help-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:1.2rem;text-align:center}
-        .help-text{font-size:.82rem;color:var(--gray-500);line-height:1.6}
-        .help-text a{color:var(--green-600);font-weight:700;text-decoration:none}
-        .help-text a:hover{text-decoration:underline}
-        .back-link{display:inline-block;margin-top:1.5rem;font-size:.82rem;color:var(--gray-400);text-decoration:none}
-        .back-link:hover{color:var(--blue-600)}
-        footer{padding:1.5rem;text-align:center;border-top:1px solid var(--gray-200);background:var(--white)}
-        footer p{font-size:.72rem;color:var(--gray-400)}
-        footer a{color:var(--blue-600);text-decoration:none}
-        @media(max-width:640px){
-            .card{padding:2rem 1.5rem;border-radius:16px}
-            .card h1{font-size:1.3rem}
-            .success-icon{width:64px;height:64px;font-size:2rem}
-        }
+        body{font-family:var(--font);color:var(--t3);background:var(--bg);min-height:100vh;display:flex;flex-direction:column}
+        nav{background:var(--t);padding:0 1.5rem;height:56px;display:flex;align-items:center;justify-content:center}
+        nav a{text-decoration:none;color:#fff;font-weight:800;font-size:1rem;display:flex;align-items:center;gap:.5rem}
+        nav .logo-icon{width:30px;height:30px;background:var(--p3);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.75rem}
+        .main{flex:1;display:flex;align-items:center;justify-content:center;padding:2.5rem 1.5rem}
+        .card{max-width:520px;width:100%;background:var(--w);border-radius:22px;padding:3rem;text-align:center;border:1px solid var(--bdr);box-shadow:0 16px 48px rgba(0,0,0,.06)}
+        .success-icon{width:80px;height:80px;background:var(--green-100);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2.5rem;animation:pop .4s ease-out}
+        @keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+        .card h1{font-size:1.6rem;font-weight:800;color:var(--t);margin-bottom:.4rem}
+        .card .subtitle{font-size:.95rem;color:var(--t4);margin-bottom:2rem;line-height:1.7}
+        .steps-box{background:var(--bg2);border:1.5px solid var(--pl2);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem;text-align:left}
+        .steps-title{font-size:.88rem;font-weight:700;color:var(--p);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+        .step{display:flex;gap:.8rem;margin-bottom:1rem;align-items:flex-start}
+        .step:last-child{margin-bottom:0}
+        .step-num{width:26px;height:26px;background:var(--p);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+        .step-text{font-size:.9rem;color:var(--t3);line-height:1.65}
+        .step-text strong{color:var(--t)}
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;padding:1.1rem;background:var(--wa);color:#fff;border-radius:14px;font-weight:700;font-size:1.1rem;text-decoration:none;transition:.3s;box-shadow:0 6px 24px rgba(37,211,102,.3);margin-bottom:1rem}
+        .wa-btn:hover{background:#20b858;transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.35)}
+        .wa-btn svg{width:24px;height:24px;fill:currentColor}
+        .wa-note{font-size:.8rem;color:var(--t5);line-height:1.6;margin-bottom:1.5rem}
+        .time-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--green-50);border:1px solid var(--green-100);color:var(--green-700);padding:.45rem 1.1rem;border-radius:100px;font-size:.82rem;font-weight:600;margin-bottom:1.5rem}
+        .help-box{background:var(--bg);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.2rem}
+        .help-text{font-size:.8rem;color:var(--t5);line-height:1.6}
+        .help-text strong{color:var(--t3)}
+        .back-link{display:inline-block;margin-top:1.5rem;font-size:.82rem;color:var(--t5);text-decoration:none;transition:.2s}
+        .back-link:hover{color:var(--p)}
+        footer{padding:1.5rem;text-align:center;background:var(--t)}
+        footer p{font-size:.72rem;color:rgba(255,255,255,.3)}
+        footer a{color:rgba(255,255,255,.5);text-decoration:none}
+        @media(max-width:640px){.card{padding:2rem 1.5rem;border-radius:18px}.card h1{font-size:1.35rem}.success-icon{width:68px;height:68px;font-size:2rem}.steps-box{padding:1.3rem}}
     </style>
 </head>
 <body>
-<nav><div class="inner"><a href="/"><div class="logo-icon">N</div>NominaPro</a></div></nav>
+<nav><a href="/"><div class="logo-icon">N</div>NominaPro 2026</a></nav>
+
 <div class="main">
     <div class="card">
-        <div class="success-icon">&#9989;</div>
-        <h1>&#161;Gracias por tu compra!</h1>
-        <p class="subtitle">Tu pago se ha procesado correctamente. En unos minutos recibir&#225;s tu archivo por correo electr&#243;nico.</p>
-        <div class="time-badge">&#9202; Entrega en menos de 30 minutos</div>
-        <div class="info-box">
-            <div class="info-title">&#128233; &#191;Qu&#233; sigue?</div>
-            <div class="info-step">
-                <div class="info-num">1</div>
-                <div class="info-text">Revisa tu <strong>bandeja de entrada</strong> (y la carpeta de spam) en los pr&#243;ximos minutos.</div>
+        <div class="success-icon">✅</div>
+        <h1>¡Pago recibido con éxito!</h1>
+        <p class="subtitle">Solo falta un paso para recibir tu sistema de nómina.</p>
+
+        <div class="time-badge">⚡ Entrega en menos de 5 minutos</div>
+
+        <div class="steps-box">
+            <div class="steps-title">📋 ¿Cómo recibo mi archivo?</div>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text"><strong>Toma captura o descarga tu comprobante</strong> de pago de Mercado Pago (lo encuentras en tu email o en la app).</div>
             </div>
-            <div class="info-step">
-                <div class="info-num">2</div>
-                <div class="info-text">Recibir&#225;s un correo con el archivo <strong>NominaPro2026-SISTEMA-v1.4.xlsx</strong> adjunto.</div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text"><strong>Envíalo por WhatsApp</strong> tocando el botón de abajo. Incluye el correo donde quieres recibir el archivo.</div>
             </div>
-            <div class="info-step">
-                <div class="info-num">3</div>
-                <div class="info-text">&#193;brelo con <strong>Microsoft Excel 2016 o superior</strong> y listo. La hoja de Ayuda te gu&#237;a paso a paso.</div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text"><strong>Recibe tu archivo NominaPro 2026</strong> en minutos. Te lo enviamos directo al WhatsApp y a tu correo.</div>
             </div>
         </div>
+
+        <a href="https://wa.me/message/F5GEDQNKGGBRE1?text=Hola%2C%20acabo%20de%20comprar%20NominaPro%202026.%20Adjunto%20mi%20comprobante%20de%20pago.%20Mi%20correo%20es%3A%20" target="_blank" class="wa-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Enviar comprobante por WhatsApp
+        </a>
+
+        <p class="wa-note">Al tocar el botón se abre WhatsApp con un mensaje prellenado. Solo adjunta tu comprobante y envíalo.</p>
+
         <div class="help-box">
-            <div class="help-text">&#191;No recibes el correo en 30 minutos? Escr&#237;benos por WhatsApp y te lo enviamos de inmediato.<br><br><a href="https://wa.me/message/F5GEDQNKGGBRE1" target="_blank">&#128172; Escribir por WhatsApp</a></div>
+            <p class="help-text"><strong>¿Tienes dudas?</strong> Nuestro equipo está disponible por WhatsApp de lunes a sábado de 9am a 8pm. La mayoría de entregas se hacen en menos de 5 minutos.</p>
         </div>
-        <a href="/" class="back-link">&#8592; Volver a nominamexico.com</a>
+
+        <a href="/" class="back-link">← Volver a nominamexico.com</a>
     </div>
 </div>
-<footer><p>&#169; 2026 <a href="/">nominamexico.com</a> &#183; NominaPro 2026</p></footer>
+
+<footer><p>© 2026 <a href="/">nominamexico.com</a> · NominaPro 2026</p></footer>
 </body>
 </html>
