@@ -1,0 +1,26 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "nomina-mexico.com"
+        }
+      ],
+      "destination": "https://www.nominapro.com.mx/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.nomina-mexico.com"
+        }
+      ],
+      "destination": "https://www.nominapro.com.mx/:path*",
+      "permanent": true
+    }
+  ]
+}
