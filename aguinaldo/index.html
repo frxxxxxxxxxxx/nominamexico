@@ -196,6 +196,27 @@ strong{color:var(--tinta);font-weight:600}
 }
 .portada .marco{position:relative;z-index:1}
 .portada h1{max-width:16ch;margin-bottom:.45em}
+
+/* Dos columnas: texto + calculadora a la izquierda, vitrina del producto a la derecha */
+.portada__grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;column-gap:52px;align-items:start}
+.portada__texto{grid-column:1;grid-row:1}
+.portada .recibo{grid-column:1;grid-row:2}
+
+.vitrina{
+  grid-column:2;grid-row:1 / span 2;position:sticky;top:26px;
+  background:linear-gradient(168deg,#E6EFFB 0%,#F7FAFE 100%);
+  border:1px solid var(--regla);border-radius:4px;
+  padding:14px 24px 26px;text-align:center;
+}
+.vitrina img{width:268px;margin:0 auto 8px;filter:drop-shadow(0 18px 28px rgba(10,31,68,.24))}
+.vitrina h3{font-size:1.1rem;margin-bottom:.3em}
+.vitrina p{font-size:.9rem;margin-bottom:16px}
+.vitrina__precio{
+  display:flex;align-items:baseline;justify-content:center;gap:9px;margin-bottom:14px;
+}
+.vitrina__precio .m{font-family:var(--display);font-weight:800;font-size:2rem;color:var(--sello);line-height:1;letter-spacing:-.03em}
+.vitrina__precio .a{text-decoration:line-through;color:var(--gris-tenue);font-size:1rem}
+.vitrina__nota{font-size:.78rem;color:var(--gris-tenue);margin-top:12px}
 .lede{font-size:clamp(1.05rem,2.2vw,1.22rem);max-width:54ch;color:var(--gris)}
 
 /* Sello de fecha límite — el momento memorable de la página */
@@ -428,9 +449,29 @@ footer nav{margin:14px 0 20px;display:flex;gap:22px;flex-wrap:wrap}
   font-size:.86rem;color:var(--gris-tenue);cursor:pointer;text-decoration:underline;
 }
 
+@media (max-width:980px){
+  /* Una sola columna: la vitrina baja DESPUÉS de la calculadora,
+     para no empujar la herramienta fuera de la primera pantalla. */
+  .portada__grid{grid-template-columns:1fr}
+  .portada__texto,.portada .recibo,.vitrina{grid-column:1;grid-row:auto}
+  .portada .recibo{max-width:none}
+  .vitrina{
+    position:static;margin-top:30px;text-align:left;
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  }
+  .vitrina img{width:120px;margin:0;flex-shrink:0}
+  .vitrina__contenido{flex:1;min-width:230px}
+  .vitrina__precio{justify-content:flex-start}
+  .vitrina h3{margin-bottom:.2em}
+  .vitrina p{margin-bottom:12px}
+}
 @media (max-width:860px){
   .oferta{grid-template-columns:1fr;gap:30px}
   .oferta__foto{max-width:300px;margin:0 auto}
+}
+@media (max-width:460px){
+  .vitrina{flex-direction:column;align-items:flex-start}
+  .vitrina img{width:148px;align-self:center}
 }
 @media (max-width:640px){
   body{font-size:16px}
@@ -458,14 +499,16 @@ footer nav{margin:14px 0 20px;display:flex;gap:22px;flex-wrap:wrap}
 
 <!-- ===================== PORTADA ===================== -->
 <header class="portada">
-  <div class="marco">
-    <div class="sello">
-      <span class="chico">FECHA LÍMITE DE PAGO</span>
-      <span class="grande">20 DIC 2026</span>
-    </div>
+  <div class="marco portada__grid">
+    <div class="portada__texto">
+      <div class="sello">
+        <span class="chico">FECHA LÍMITE DE PAGO</span>
+        <span class="grande">20 DIC 2026</span>
+      </div>
 
-    <h1>Cuánto te toca de aguinaldo este año</h1>
-    <p class="lede">Calcula tu aguinaldo completo o proporcional con la exención de ISR ya aplicada, y mira el neto real que vas a recibir. Gratis, sin registro y con las cifras fiscales 2026 del DOF.</p>
+      <h1>Cuánto te toca de aguinaldo este año</h1>
+      <p class="lede">Calcula tu aguinaldo completo o proporcional con la exención de ISR ya aplicada, y mira el neto real que vas a recibir. Gratis, sin registro y con las cifras fiscales 2026 del DOF.</p>
+    </div>
 
     <!-- CALCULADORA -->
     <div class="recibo">
@@ -567,6 +610,20 @@ footer nav{margin:14px 0 20px;display:flex;gap:22px;flex-wrap:wrap}
         </div>
       </div>
     </div>
+
+    <aside class="vitrina">
+      <img src="/img/plantilla-aguinaldo.png" alt="Plantilla de Aguinaldo 2026 en Excel para México" width="1024" height="1024">
+      <div class="vitrina__contenido">
+        <h3>¿Son varios empleados?</h3>
+        <p>La plantilla en Excel calcula el aguinaldo de toda tu nómina de una vez, con el ISR persona por persona y el recibo de cada quien.</p>
+        <div class="vitrina__precio">
+          <span class="m">$120</span>
+          <span class="a">$249</span>
+        </div>
+        <a href="#plantilla" class="btn btn--sello btn--lleno">Ver qué incluye</a>
+        <p class="vitrina__nota">Pago único · Garantía de 7 días</p>
+      </div>
+    </aside>
   </div>
 </header>
 
