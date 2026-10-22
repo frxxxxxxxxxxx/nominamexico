@@ -92,7 +92,10 @@
       "name": "Plantilla de Aguinaldo 2026 en Excel",
       "description": "Plantilla de Excel para calcular el aguinaldo de toda la plantilla laboral: proporcional por fecha de ingreso, exención de 30 UMA, retención de ISR y recibos imprimibles.",
       "image": "https://www.nominapro.com.mx/img/plantilla-aguinaldo.png",
-      "brand": { "@id": "https://www.nominapro.com.mx/#organization" },
+      "brand": {
+        "@type": "Brand",
+        "name": "NominaPro"
+      },
       "category": "Plantilla de hoja de cálculo",
       "offers": {
         "@type": "Offer",
@@ -100,7 +103,43 @@
         "priceCurrency": "MXN",
         "price": "120",
         "availability": "https://schema.org/InStock",
-        "priceValidUntil": "2026-12-31"
+        "itemCondition": "https://schema.org/NewCondition",
+        "validFrom": "2026-10-14T00:00:00-06:00",
+        "priceValidUntil": "2026-12-31T23:59:59-06:00",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "MX",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 7,
+          "returnFees": "https://schema.org/FreeReturn"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "MXN"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "MX"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            }
+          }
+        }
       }
     }
   ]
