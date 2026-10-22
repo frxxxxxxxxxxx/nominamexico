@@ -204,142 +204,203 @@ footer{padding:2.5rem 0;background:var(--t);text-align:center}
 @media(max-width:640px){html,body{overflow-x:hidden}.ct{padding:0 1.2rem;overflow:hidden}.nk{display:none}.nk.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1.5rem;border-bottom:1px solid var(--bdr);box-shadow:0 8px 24px rgba(0,0,0,.08);gap:1rem}.mm{display:block}.hero{padding:7.5rem 0 2.5rem}.hero h1{font-size:1.8rem}.hd{font-size:1.02rem}.ha{flex-direction:column}.ha .bm,.ha .bs2{width:100%;justify-content:center;text-align:center}.htr{flex-direction:column;gap:.6rem}.sec{padding:3.5rem 0}.sh{margin-bottom:2rem}.stt{font-size:1.4rem}.std{font-size:.95rem}.pg,.fg{grid-template-columns:1fr;gap:1rem}.pc,.fc{padding:1.5rem}.solbox{padding:1.5rem;gap:1.5rem;border-width:1px}.sc{padding:.6rem .4rem}.sci2{font-size:1rem}.scl{font-size:.54rem}.sps{grid-template-columns:1fr;gap:1.5rem}.ssg{grid-template-columns:1fr;gap:1rem}.tg{grid-template-columns:1fr}.spg{grid-template-columns:1fr;gap:.5rem}.rg{grid-template-columns:1fr;gap:1rem}.prc{margin:0 -.25rem}.prc-inner{padding:2rem 1.5rem}.fqq{padding:1rem;font-size:.92rem}.fqai{padding:0 1rem 1rem;font-size:.88rem}.ctf{padding:3.5rem 0}.ctf h2{font-size:1.4rem}.bc{width:90%;justify-content:center}.wt{display:none}.wb{width:54px;height:54px}.wb svg{width:28px;height:28px}.wf{bottom:18px;right:18px}.highlight-grid{grid-template-columns:1fr;gap:.8rem}.highlight-card{padding:1.3rem}.gar-grid{grid-template-columns:1fr 1fr;gap:1rem}.footer-links{gap:1rem}.cost-box{padding:1.5rem}.ba-col{padding:1.5rem}}
   </style>
 
-  <!-- Schema.org: SoftwareApplication -->
+  <!-- Schema.org — grafo único: Organization, WebSite, WebPage, Product, FAQPage, HowTo -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "NominaPro 2026",
-    "applicationCategory": "BusinessApplication",
-    "applicationSubCategory": "PayrollSoftware",
-    "operatingSystem": "Windows, macOS (Microsoft Excel 2016+)",
-    "description": "Plantilla profesional de nómina en Excel para México. Calcula ISR, IMSS, INFONAVIT, aguinaldo, finiquito y genera recibos automáticamente con tablas fiscales 2026 oficiales del DOF.",
-    "image": "https://www.nominapro.com.mx/img/nominapro-producto.png",
-    "url": "https://www.nominapro.com.mx/",
-    "downloadUrl": "https://www.nominapro.com.mx/",
-    "featureList": [
-      "Cálculo automático de ISR con 5 tablas oficiales del Anexo 8 RMF 2026",
-      "Cuotas IMSS completas con CEAV escalonada de 6 rangos",
-      "Cálculo de INFONAVIT (VSM, %SBC, cuota fija)",
-      "Subsidio al empleo automático",
-      "Recibos de nómina imprimibles",
-      "Calculadora de aguinaldo y finiquito",
-      "Registro de incidencias, horas extras y descuentos",
-      "Dashboard con navegación tipo profesional",
-      "Compatible con periodos semanal, quincenal y mensual"
-    ],
-    "brand": {
-      "@type": "Brand",
-      "name": "NominaPro"
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.nominapro.com.mx/",
-      "priceCurrency": "MXN",
-      "price": "199.00",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "itemCondition": "https://schema.org/NewCondition",
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": "MX",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-        "merchantReturnDays": 7,
-        "returnMethod": "https://schema.org/ReturnByMail",
-        "returnFees": "https://schema.org/FreeReturn"
-      }
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "4",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
-  }
-  </script>
-
-  <!-- Schema.org: FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "¿Cómo se calcula el ISR en la nómina de 2026 en México?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "El ISR se calcula aplicando las tablas del Anexo 8 de la RMF 2026 publicadas en el DOF el 28 de diciembre de 2025. Se ubica el ingreso gravable en el rango correspondiente, se aplica el porcentaje sobre el excedente del límite inferior, se suma la cuota fija y se resta el subsidio al empleo cuando corresponde. NominaPro aplica automáticamente las 5 tarifas oficiales (diaria, semanal, quincenal, mensual y anual)."
+        "@type": "Organization",
+        "@id": "https://www.nominapro.com.mx/#organization",
+        "name": "NominaPro",
+        "url": "https://www.nominapro.com.mx/",
+        "description": "Plantillas de Excel para el cálculo de nómina en México: ISR, IMSS, INFONAVIT, aguinaldo y finiquito con tablas fiscales oficiales del DOF.",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.nominapro.com.mx/img/nominapro-og.png",
+          "width": 1200,
+          "height": 630
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "México"
+        },
+        "knowsLanguage": "es-MX"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.nominapro.com.mx/#website",
+        "url": "https://www.nominapro.com.mx/",
+        "name": "NominaPro",
+        "inLanguage": "es-MX",
+        "publisher": { "@id": "https://www.nominapro.com.mx/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.nominapro.com.mx/#webpage",
+        "url": "https://www.nominapro.com.mx/",
+        "name": "Plantilla de Nómina Excel 2026 México | ISR, IMSS, INFONAVIT — NominaPro",
+        "description": "Plantilla profesional de nómina en Excel para México. ISR 2026, IMSS, INFONAVIT, CEAV escalonada y recibos automáticos.",
+        "inLanguage": "es-MX",
+        "isPartOf": { "@id": "https://www.nominapro.com.mx/#website" },
+        "about": { "@id": "https://www.nominapro.com.mx/#producto" }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://www.nominapro.com.mx/#producto",
+        "name": "NominaPro 2026 — Plantilla de nómina en Excel",
+        "description": "Plantilla de Excel para calcular la nómina de tu negocio en México. Incluye 11 hojas conectadas por fórmulas: ISR con las 5 tablas del Anexo 8 RMF 2026, cuotas IMSS con CEAV escalonada de 6 rangos, INFONAVIT en sus tres modalidades, subsidio al empleo automático, recibos de nómina imprimibles y calculadoras de aguinaldo y finiquito. Compatible con Excel 2016 o superior.",
+        "image": [
+          "https://www.nominapro.com.mx/img/nominapro-og.png",
+          "https://www.nominapro.com.mx/img/img-dashboard.png"
+        ],
+        "brand": {
+          "@type": "Brand",
+          "name": "NominaPro"
+        },
+        "category": "Plantilla de hoja de cálculo",
+        "inLanguage": "es-MX",
+        "audience": {
+          "@type": "BusinessAudience",
+          "name": "Negocios y contadores en México"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.nominapro.com.mx/",
+          "priceCurrency": "MXN",
+          "price": "199.00",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "validFrom": "2026-01-01T00:00:00-06:00",
+          "priceValidUntil": "2026-12-31T23:59:59-06:00",
+          "seller": { "@id": "https://www.nominapro.com.mx/#organization" },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "MX",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 7,
+            "returnFees": "https://schema.org/FreeReturn"
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "MXN"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "MX"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              }
+            }
+          }
         }
       },
       {
-        "@type": "Question",
-        "name": "¿Qué incluye NominaPro 2026?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Incluye 11 hojas conectadas: dashboard, configuración, empleados, incidencias, nómina, recibos imprimibles, aguinaldo, finiquito, tablas ISR 2026, resumen y auditoría. Las tablas oficiales del DOF están precargadas, la CEAV escalonada aplica automáticamente por rango salarial y el subsidio al empleo se ajusta solo. Compatible con Excel 2016 o superior."
-        }
+        "@type": "FAQPage",
+        "@id": "https://www.nominapro.com.mx/#faq",
+        "inLanguage": "es-MX",
+        "isPartOf": { "@id": "https://www.nominapro.com.mx/#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cómo se calcula el ISR en la nómina de 2026 en México?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El ISR se calcula aplicando las tablas del Anexo 8 de la RMF 2026 publicadas en el DOF el 28 de diciembre de 2025. Se ubica el ingreso gravable en el rango correspondiente, se aplica el porcentaje sobre el excedente del límite inferior, se suma la cuota fija y se resta el subsidio al empleo cuando corresponde. NominaPro aplica automáticamente las 5 tarifas oficiales (diaria, semanal, quincenal, mensual y anual)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué incluye NominaPro 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Incluye 11 hojas conectadas: dashboard, configuración, empleados, incidencias, nómina, recibos imprimibles, aguinaldo, finiquito, tablas ISR 2026, resumen y auditoría. Las tablas oficiales del DOF están precargadas, la CEAV escalonada aplica automáticamente por rango salarial y el subsidio al empleo se ajusta solo. Compatible con Excel 2016 o superior."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿NominaPro genera CFDI de nómina?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NominaPro calcula todos los montos que necesitas para tu CFDI de nómina con precisión oficial. El timbrado del XML lo realizas en el portal del SAT o con tu PAC autorizado; los montos calculados se transcriben directamente. Esto te permite mantener control total sin depender de un timbrador con costo por recibo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Está actualizado con las tablas fiscales 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Incluye las 5 tablas de ISR del Anexo 8 RMF 2026 (DOF 28/12/2025), UMA vigente de $117.31 diarios, salario mínimo general de $315.04, CEAV escalonada con 6 rangos del 3.15% al 7.51%, y subsidio al empleo de $535.65 mensuales para ingresos hasta $11,492.66."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta NominaPro 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El precio de lanzamiento es de $199 MXN en un solo pago (precio regular $399 MXN). Sin suscripciones mensuales ni renovaciones. Incluye garantía de devolución de 7 días y soporte por WhatsApp."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo usarlo para más de una empresa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Cada archivo se configura para una empresa, pero puedes duplicarlo tantas veces como necesites. Contadores independientes con múltiples clientes usan una copia por empresa. La licencia permite uso ilimitado."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo calculo el aguinaldo de mis empleados?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NominaPro incluye un módulo de aguinaldo que aplica el proporcional por fecha de ingreso, la exención de 30 UMA y la retención de ISR por empleado. También puedes usar nuestra calculadora de aguinaldo gratuita en línea para un cálculo individual."
+            }
+          }
+        ]
       },
       {
-        "@type": "Question",
-        "name": "¿NominaPro genera CFDI de nómina?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "NominaPro calcula todos los montos que necesitas para tu CFDI de nómina con precisión oficial. El timbrado del XML lo realizas en el portal del SAT o con tu PAC autorizado; los montos calculados se transcriben directamente. Esto te permite mantener control total sin depender de un timbrador con costo por recibo."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Está actualizado con las tablas fiscales 2026?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Incluye las 5 tablas de ISR del Anexo 8 RMF 2026 (DOF 28/12/2025), UMA vigente de $117.31 diarios, salario mínimo general de $315.04, CEAV escalonada con 6 rangos del 3.15% al 7.51%, y subsidio al empleo de $535.65 mensuales para ingresos hasta $11,492.66."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Cuánto cuesta NominaPro 2026?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "El precio de lanzamiento es de $199 MXN en un solo pago (precio regular $399 MXN). Sin suscripciones mensuales ni renovaciones. Incluye garantía de devolución de 7 días y soporte por WhatsApp."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Puedo usarlo para más de una empresa?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Cada archivo se configura para una empresa, pero puedes duplicarlo tantas veces como necesites. Contadores independientes con múltiples clientes usan una copia por empresa. La licencia permite uso ilimitado."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- Schema.org: HowTo -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "Cómo calcular la nómina de tus empleados con NominaPro 2026",
-    "description": "Tres pasos para tener la nómina de tu negocio calculada correctamente con ISR, IMSS e INFONAVIT del 2026.",
-    "totalTime": "PT10M",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "name": "Registrar empleados",
-        "text": "Captura nombre, RFC, NSS, fecha de ingreso y sueldo diario en la hoja de empleados. El SBC integrado se calcula automáticamente conforme al Art. 30 de la LSS."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Registrar incidencias del periodo",
-        "text": "Ingresa horas extras, faltas, bonos, comisiones o descuentos en la hoja de incidencias. Las fórmulas los aplican a la nómina de inmediato."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Generar nómina y recibos",
-        "text": "Abre la hoja de nómina para ver los cálculos completos por empleado y la hoja de recibos para imprimir el comprobante profesional de cada colaborador."
+        "@type": "HowTo",
+        "@id": "https://www.nominapro.com.mx/#comofunciona",
+        "name": "Cómo calcular la nómina de tus empleados con NominaPro 2026",
+        "description": "Tres pasos para tener la nómina de tu negocio calculada correctamente con ISR, IMSS e INFONAVIT del 2026.",
+        "inLanguage": "es-MX",
+        "totalTime": "PT10M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Registrar empleados",
+            "text": "Captura nombre, RFC, NSS, fecha de ingreso y sueldo diario en la hoja de empleados. El SBC integrado se calcula automáticamente conforme al Art. 30 de la LSS."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Registrar incidencias del periodo",
+            "text": "Ingresa horas extras, faltas, bonos, comisiones o descuentos en la hoja de incidencias. Las fórmulas los aplican a la nómina de inmediato."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Generar nómina y recibos",
+            "text": "Abre la hoja de nómina para ver los cálculos completos por empleado y la hoja de recibos para imprimir el comprobante profesional de cada colaborador."
+          }
+        ]
       }
     ]
   }
